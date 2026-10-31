@@ -1,4 +1,4 @@
-const PASSWORD_HASH='ee6ab94f00f074aaa13907b3b78d64aebad2710e6034755bf98dd38a11e16e0d';
+const ADMIN_PASSWORD='VisaLand2027!';
 const defaultContent={heroEyebrow:'Авторские путешествия · Азия',heroTitle:'Путешествия, <span>которые <em>запоминаются</em></span>',heroCopy:'Япония, Корея и другие страны. Продуманные маршруты, небольшие группы и забота на каждом этапе.',introTitle:'Мы создаём истории,<br>которые хочется <em>пересказывать</em>',introCopy:'В каждом маршруте — знаменитые места и маленькие открытия, локальная кухня, живые города и время почувствовать страну без спешки.',manifestoTitle:'Не по шаблону.<br><em>По-настоящему.</em>',manifestoLead:'Путешествие должно оставлять место для жизни.',manifestoCopy:'Поэтому между главными точками маршрута мы сохраняем время для спонтанных прогулок, любимых кафе и разговоров, после которых группа становится командой.',aboutTitle:'Путешествия, которые я создаю <em>с любовью к деталям</em>',aboutCopy:'Меня зовут Гаухар. Я организую путешествия и лично сопровождаю часть групп. Для меня важно не просто показать известные места, а создать комфортный, живой и запоминающийся маршрут.'};
 const contentLabels={heroEyebrow:'Надпись над главным заголовком',heroTitle:'Главный заголовок',heroCopy:'Описание первого экрана',introTitle:'Заголовок вступления',introCopy:'Текст вступления',manifestoTitle:'Заголовок «Наш подход»',manifestoLead:'Подзаголовок «Наш подход»',manifestoCopy:'Текст «Наш подход»',aboutTitle:'Заголовок «О проекте»',aboutCopy:'Основной текст «О проекте»'};
 const defaultTours=[
@@ -9,10 +9,9 @@ const defaultTours=[
 ];
 const sectionNames={hero:'Первый экран',intro:'Вступление',trips:'Форматы и туры',manifesto:'Наш подход',calendar:'Календарь',about:'О проекте',gallery:'Галерея',faq:'Вопросы и ответы',contact:'Форма заявки'};
 const defaultOrder=Object.keys(sectionNames);let order=[];let uploadValues={};
-async function hash(text){const bytes=new TextEncoder().encode(text);const digest=await crypto.subtle.digest('SHA-256',bytes);return [...new Uint8Array(digest)].map(x=>x.toString(16).padStart(2,'0')).join('')}
 function showDashboard(){document.querySelector('#login-panel').hidden=true;document.querySelector('#dashboard').hidden=false;renderEditor()}
 if(sessionStorage.getItem('visaLandAdmin')==='true')showDashboard();
-document.querySelector('#login-form').onsubmit=async e=>{e.preventDefault();const valid=await hash(document.querySelector('#password').value)===PASSWORD_HASH;if(valid){sessionStorage.setItem('visaLandAdmin','true');showDashboard()}else document.querySelector('#login-error').textContent='Неверный пароль'};
+document.querySelector('#login-form').onsubmit=e=>{e.preventDefault();const entered=document.querySelector('#password').value.trim().replace(/^`|`$/g,'');if(entered===ADMIN_PASSWORD){sessionStorage.setItem('visaLandAdmin','true');showDashboard()}else document.querySelector('#login-error').textContent='Неверный пароль'};
 document.querySelector('#logout').onclick=()=>{sessionStorage.removeItem('visaLandAdmin');location.reload()};
 document.querySelectorAll('.tab').forEach(btn=>btn.onclick=()=>{document.querySelectorAll('.tab,.panel').forEach(el=>el.classList.remove('active'));btn.classList.add('active');document.querySelector(`[data-panel="${btn.dataset.tab}"]`).classList.add('active')});
 function config(){return JSON.parse(localStorage.getItem('visaLandConfig')||'{}')}
