@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Visa Land — управление сайтом</title>
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+  <main>
+    <section class="login" id="login-panel">
+      <div class="login-card">
+        <p class="label">Visa Land</p>
+        <h1>Управление сайтом</h1>
+        <p>Введите пароль администратора.</p>
+        <form id="login-form"><input id="password" type="password" autocomplete="current-password" placeholder="Пароль" required><button>Войти</button><p class="error" id="login-error"></p></form>
+      </div>
+    </section>
+
+    <section class="dashboard" id="dashboard" hidden>
+      <header><div><p class="label">Visa Land</p><h1>Редактор контента</h1></div><div class="header-actions"><a href="/" target="_blank">Открыть сайт</a><button class="secondary" id="logout">Выйти</button></div></header>
+      <nav><button class="tab active" data-tab="content">Тексты</button><button class="tab" data-tab="tours">Туры и фото</button><button class="tab" data-tab="layout">Порядок блоков</button></nav>
+
+      <form id="editor-form">
+        <section class="panel active" data-panel="content">
+          <div class="panel-head"><div><p class="label">Основная страница</p><h2>Тексты</h2></div><p>Можно использовать теги &lt;br&gt; и &lt;em&gt; в заголовках.</p></div>
+          <div class="form-grid" id="content-fields"></div>
+        </section>
+        <section class="panel" data-panel="tours">
+          <div class="panel-head"><div><p class="label">Каталог</p><h2>Туры и фотографии</h2></div><p>Укажите URL изображения или загрузите файл. При пустом поле будет использована резервная фотография.</p></div>
+          <div id="tour-fields"></div>
+        </section>
+        <section class="panel" data-panel="layout">
+          <div class="panel-head"><div><p class="label">Композиция</p><h2>Порядок секций</h2></div><p>Перемещайте блоки вверх и вниз. Первый экран рекомендуется оставить первым.</p></div>
+          <ol class="section-order" id="section-order"></ol>
+        </section>
+        <div class="save-bar"><p id="save-status"></p><button class="reset" type="button" id="reset-site">Вернуть исходную версию</button><button type="submit">Сохранить изменения</button></div>
+      </form>
+    </section>
+  </main>
+  <dialog id="reset-dialog"><h2>Вернуть исходную версию?</h2><p>Все сохранённые тексты, фотографии и порядок блоков будут удалены. Главная страница вернётся к базовой версии.</p><div><button id="cancel-reset" class="secondary">Отмена</button><button id="confirm-reset" class="reset">Вернуть исходную</button></div></dialog>
+  <script src="admin.js"></script>
+</body>
+</html>
