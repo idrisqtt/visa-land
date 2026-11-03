@@ -14,7 +14,7 @@
         <p class="label">Visa Land</p>
         <h1>Управление сайтом</h1>
         <p>Введите пароль администратора.</p>
-        <form id="login-form"><input id="password" type="password" autocomplete="current-password" placeholder="Пароль" required><button>Войти</button><p class="error" id="login-error"></p></form>
+        <form id="login-form"><input id="email" type="email" autocomplete="username" placeholder="Email администратора" required><input id="password" type="password" autocomplete="current-password" placeholder="Пароль" required><button>Войти</button><p class="error" id="login-error"></p></form>
       </div>
     </section>
 
@@ -29,7 +29,7 @@
           <div class="faq-editor-list" id="faq-fields"></div>
         </section>
         <section class="panel" data-panel="media">
-          <div class="panel-head"><div><p class="label">Медиатека</p><h2>Фото и видео</h2></div><p>Укажите URL файла или загрузите изображение до 1,5 МБ и видео до 4 МБ. Изменения сохраняются в этом браузере.</p></div>
+          <div class="panel-head"><div><p class="label">Медиатека</p><h2>Фото и видео</h2></div><p>Укажите URL или загрузите изображение до 5 МБ и видео до 10 МБ. Файлы сохраняются в Supabase Storage.</p></div>
           <div class="media-grid" id="media-fields"></div>
         </section>
         <section class="panel" data-panel="tours">
@@ -45,6 +45,8 @@
     </section>
   </main>
   <dialog id="reset-dialog"><h2>Вернуть исходную версию?</h2><p>Все сохранённые тексты, фотографии и порядок блоков будут удалены. Главная страница вернётся к базовой версии.</p><div><button id="cancel-reset" class="secondary">Отмена</button><button id="confirm-reset" class="reset">Вернуть исходную</button></div></dialog>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="/supabase-config.js"></script>
   <script src="/admin/admin.js"></script>
 </body>
 </html>
