@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Visa Land — авторские групповые путешествия по Японии, Корее и другим странам.">
   <title>Visa Land — путешествия, которые запоминаются</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="assets/media/hero-group-japan.jpg" as="image" fetchpriority="high">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -20,8 +23,8 @@
   <main id="top">
     <section class="hero" data-section="hero">
       <div class="hero-media" role="img" aria-label="Группа Visa Land во время путешествия по Японии">
-        <video autoplay muted loop playsinline poster="assets/media/hero-group-japan.jpg" aria-hidden="true">
-          <source src="assets/media/torii-loop.mp4" type="video/mp4">
+        <video muted loop playsinline preload="none" poster="assets/media/hero-group-japan.jpg" aria-hidden="true">
+          <source data-src="assets/media/torii-loop.mp4" type="video/mp4">
         </video>
       </div>
       <div class="hero-shade"></div>
@@ -96,7 +99,7 @@
         <a class="text-link" href="#contact">Обсудить поездку <span class="line-icon" aria-hidden="true"></span></a>
       </div>
       <figure class="visa-support-photo">
-        <img src="assets/media/visa-support.jpg" alt="Паспорта участников путешествия Visa Land" loading="lazy">
+        <img src="assets/media/visa-support.jpg" alt="Паспорта участников путешествия Visa Land" loading="lazy" decoding="async">
         <figcaption>Подготовка без лишнего стресса</figcaption>
       </figure>
     </section>
@@ -104,13 +107,13 @@
     <section class="gallery section" aria-label="Фотографии из путешествий" data-section="gallery">
       <div class="section-head"><div><p class="eyebrow">Моменты</p><h2>Уже случилось с нами</h2></div><a class="text-link" href="#">Instagram <span class="line-icon" aria-hidden="true"></span></a></div>
       <div class="gallery-grid">
-        <figure class="g1"><img src="assets/media/gallery-seoul-group.jpg" alt="Группа Visa Land в Сеуле" loading="lazy"><figcaption>Сеул</figcaption></figure>
-        <figure class="g2"><img src="assets/media/gallery-kimono.jpg" alt="Участницы путешествия в кимоно" loading="lazy"><figcaption>Киото</figcaption></figure>
-        <figure class="g3"><img src="assets/media/gallery-japan-group.jpg" alt="Группа у японского храма" loading="lazy"><figcaption>Япония</figcaption></figure>
-        <figure class="g4"><img src="assets/media/gallery-local-food.jpg" alt="Завтрак в локальном ресторане" loading="lazy"><figcaption>Локальная кухня</figcaption></figure>
-        <figure class="g5"><img src="assets/media/gallery-kimono-gates.jpg" alt="Участницы у ворот японского храма" loading="lazy"><figcaption>Фусими Инари</figcaption></figure>
-        <figure class="g6"><img src="assets/media/gallery-dinner.jpg" alt="Совместный ужин участников путешествия" loading="lazy"><figcaption>Вечер вместе</figcaption></figure>
-        <figure class="g7"><img src="assets/media/gallery-korea-detail.jpg" alt="Архитектурная деталь корейского дворца" loading="lazy"><figcaption>Сеул</figcaption></figure>
+        <figure class="g1"><img src="assets/media/gallery-seoul-group.jpg" alt="Группа Visa Land в Сеуле" loading="lazy" decoding="async"><figcaption>Сеул</figcaption></figure>
+        <figure class="g2"><img src="assets/media/gallery-kimono.jpg" alt="Участницы путешествия в кимоно" loading="lazy" decoding="async"><figcaption>Киото</figcaption></figure>
+        <figure class="g3"><img src="assets/media/gallery-japan-group.jpg" alt="Группа у японского храма" loading="lazy" decoding="async"><figcaption>Япония</figcaption></figure>
+        <figure class="g4"><img src="assets/media/gallery-local-food.jpg" alt="Завтрак в локальном ресторане" loading="lazy" decoding="async"><figcaption>Локальная кухня</figcaption></figure>
+        <figure class="g5"><img src="assets/media/gallery-kimono-gates.jpg" alt="Участницы у ворот японского храма" loading="lazy" decoding="async"><figcaption>Фусими Инари</figcaption></figure>
+        <figure class="g6"><img src="assets/media/gallery-dinner.jpg" alt="Совместный ужин участников путешествия" loading="lazy" decoding="async"><figcaption>Вечер вместе</figcaption></figure>
+        <figure class="g7"><img src="assets/media/gallery-korea-detail.jpg" alt="Архитектурная деталь корейского дворца" loading="lazy" decoding="async"><figcaption>Сеул</figcaption></figure>
       </div>
     </section>
 

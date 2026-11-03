@@ -24,6 +24,15 @@ const tourSelect=document.querySelector('#tour-select'),dateSelect=document.quer
 document.querySelector('#lead-form').onsubmit=e=>{e.preventDefault();const data=Object.fromEntries(new FormData(e.target));const leads=JSON.parse(localStorage.getItem('visaLandLeads')||'[]');leads.push({...data,createdAt:new Date().toISOString()});localStorage.setItem('visaLandLeads',JSON.stringify(leads));document.querySelector('#form-status').textContent='Спасибо! Заявка сохранена. Мы свяжемся с вами в ближайшее время.';e.target.reset();updateDates()};
 const header=document.querySelector('#header');addEventListener('scroll',()=>header.classList.toggle('scrolled',scrollY>40));const toggle=document.querySelector('.menu-toggle'),menu=document.querySelector('.mobile-menu');toggle.onclick=()=>{const open=menu.classList.toggle('open');toggle.setAttribute('aria-expanded',open);menu.setAttribute('aria-hidden',!open)};menu.querySelectorAll('a').forEach(a=>a.onclick=()=>{menu.classList.remove('open');toggle.setAttribute('aria-expanded','false')});
 
+// Keep the critical path light: show the optimized poster first, then start video
+// after the page is interactive. Below-the-fold CSS backgrounds load near viewport.
+const heroVideo=document.querySelector('.hero-media video');
+const loadHeroVideo=()=>{const source=heroVideo?.querySelector('source[data-src]');if(!source)return;source.src=source.dataset.src;source.removeAttribute('data-src');heroVideo.load();heroVideo.play().catch(()=>{})};
+addEventListener('load',()=>('requestIdleCallback'in window?requestIdleCallback(loadHeroVideo,{timeout:1800}):setTimeout(loadHeroVideo,500)),{once:true});
+const lazyMedia=document.querySelectorAll('.manifesto-image,.about-photo');
+const mediaObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('media-loaded');mediaObserver.unobserve(entry.target)}}),{rootMargin:'500px 0px'});
+lazyMedia.forEach(el=>mediaObserver.observe(el));
+
 // A restrained motion layer: sakura petals, staggered reveals and light image parallax.
 const reduceMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;
 if(!reduceMotion){
