@@ -20,12 +20,17 @@
 
     <section class="dashboard" id="dashboard" hidden>
       <header><div><p class="label">Visa Land</p><h1>Редактор контента</h1></div><div class="header-actions"><a href="/" target="_blank">Открыть сайт</a><button class="secondary" id="logout">Выйти</button></div></header>
-      <nav><button class="tab active" data-tab="content">Тексты</button><button class="tab" data-tab="tours">Туры и фото</button><button class="tab" data-tab="layout">Порядок блоков</button></nav>
+      <nav><button class="tab active" data-tab="content">Все тексты</button><button class="tab" data-tab="media">Фото и видео</button><button class="tab" data-tab="tours">Туры</button><button class="tab" data-tab="layout">Порядок блоков</button></nav>
 
       <form id="editor-form">
         <section class="panel active" data-panel="content">
           <div class="panel-head"><div><p class="label">Основная страница</p><h2>Тексты</h2></div><p>Можно использовать теги &lt;br&gt; и &lt;em&gt; в заголовках.</p></div>
           <div class="form-grid" id="content-fields"></div>
+          <div class="faq-editor-list" id="faq-fields"></div>
+        </section>
+        <section class="panel" data-panel="media">
+          <div class="panel-head"><div><p class="label">Медиатека</p><h2>Фото и видео</h2></div><p>Укажите URL файла или загрузите изображение до 1,5 МБ и видео до 4 МБ. Изменения сохраняются в этом браузере.</p></div>
+          <div class="media-grid" id="media-fields"></div>
         </section>
         <section class="panel" data-panel="tours">
           <div class="panel-head"><div><p class="label">Каталог</p><h2>Туры и фотографии</h2></div><p>Укажите URL изображения или загрузите файл. При пустом поле будет использована резервная фотография.</p></div>
