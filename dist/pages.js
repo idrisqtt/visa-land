@@ -56,6 +56,19 @@
     const faq=document.querySelector('#public-faq');faq.innerHTML=(config.faqs.length?config.faqs:VisaDefaults.faqs).map(([q,a])=>`<details class="faq-row"><summary>${e(q)}</summary><p>${e(a)}</p></details>`).join('');
   }
   window.VisaHero?.mount(config);
+  // Motion skill principles adapted to the static site: once-only entrances,
+  // compositor-only movement, cleanup and a live reduced-motion preference.
+  const motionPreference=matchMedia('(prefers-reduced-motion: reduce)');
+  const running=new Set();
+  const move=(el,frames,options)=>{if(motionPreference.matches||!el.animate)return;const animation=el.animate(frames,options);running.add(animation);animation.finished.catch(()=>{}).finally(()=>running.delete(animation));return animation};
+  const entranceOptions={duration:650,easing:'cubic-bezier(.16,1,.3,1)'};
+  const opening=document.querySelector('.home-title');
+  if(opening)move(opening,[{transform:'translateY(20px)',opacity:.65},{transform:'translateY(0)',opacity:1}],entranceOptions);
+  const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(!entry.isIntersecting)return;observer.unobserve(entry.target);move(entry.target,[{transform:'translateY(18px)',opacity:.7},{transform:'translateY(0)',opacity:1}],entranceOptions)}),{threshold:.12,rootMargin:'0px 0px -24px'});
+  document.querySelectorAll('.home-people,.visa-help-photo,.trip-gallery img').forEach(el=>observer.observe(el));
+  document.querySelectorAll('.button').forEach(button=>{button.addEventListener('pointerdown',()=>{if(!button.disabled)move(button,[{scale:1},{scale:.97}],{duration:120,fill:'forwards'})});const release=()=>{running.forEach(animation=>{if(animation.effect?.target===button)animation.cancel()});move(button,[{scale:.97},{scale:1}],{duration:300,easing:'cubic-bezier(.16,1,.3,1)'})};button.addEventListener('pointerup',release);button.addEventListener('pointerleave',release);button.addEventListener('pointercancel',release)});
+  motionPreference.addEventListener('change',()=>{if(motionPreference.matches)running.forEach(animation=>animation.cancel())});
+  window.addEventListener('pagehide',()=>{observer.disconnect();running.forEach(animation=>animation.cancel())},{once:true});
   document.querySelectorAll('.site-nav a').forEach(a=>{if(new URL(a.getAttribute('href'),location.origin).pathname.replace(/\.html$/,'')===location.pathname.replace(/\.html$/,''))a.setAttribute('aria-current','page')});
   const toggle=document.querySelector('#nav-toggle'),nav=document.querySelector('.site-nav');toggle.onclick=()=>{const open=toggle.getAttribute('aria-expanded')!=='true';toggle.setAttribute('aria-expanded',String(open));nav.classList.toggle('is-open',open)};document.addEventListener('keydown',event=>{if(event.key==='Escape'){nav.classList.remove('is-open');toggle.setAttribute('aria-expanded','false')}});
 })();
