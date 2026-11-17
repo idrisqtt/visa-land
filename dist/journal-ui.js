@@ -23,7 +23,6 @@
     if(document.body.dataset.page!=='trip'||document.querySelector('.route-contents'))return;
     const sections=[['.itinerary','Программа'],['.trip-gallery','Фото'],['.trip-inclusions','Стоимость'],['.trip-support','Вопросы']].map(([selector,label])=>({el:document.querySelector(selector),label})).filter(item=>item.el);
     if(!sections.length)return;
-    const cover=document.querySelector('.trip-cover img');if(cover){cover.src='/assets/media/route-coast-ai.jpg';cover.alt='Атмосферная иллюстрация японского побережья';const caption=document.createElement('span');caption.className='trip-art-caption';caption.textContent='Атмосферная иллюстрация · создано с ИИ';document.querySelector('.trip-opening').append(caption)}
     prepareDays();
     const nav=document.createElement('nav');nav.className='route-contents';nav.setAttribute('aria-label','Разделы маршрута');
     sections.forEach(({el,label},index)=>{el.id='route-section-'+index;const a=document.createElement('a');a.href='#'+el.id;a.textContent=label;nav.append(a)});
