@@ -3,6 +3,9 @@ const catalogAPI=window.VisaCatalog;
 let catalogDraft=[],calendarDraft=[],catalogFiles=new Map(),catalogDirty=false;
 const originalRenderEditor=renderEditor;
 const adminForm=document.querySelector('#editor-form');
+// Hidden editor tabs must not prevent submit through native URL validation.
+adminForm.noValidate=true;
+adminForm.addEventListener('invalid',event=>{document.querySelector('#save-status').textContent='Проверьте поле: '+(event.target.closest('label')?.textContent.trim()||event.target.name)},true);
 // Multipage navigation replaces the old single-page section ordering.
 document.querySelector('[data-tab="layout"]').hidden=true;
 document.querySelector('[data-panel="layout"]').hidden=true;
@@ -39,8 +42,8 @@ function collectDepartures(){document.querySelectorAll('[data-departure]').forEa
 addTourButton.onclick=()=>{collectCatalog();catalogDraft.push({id:crypto.randomUUID(),title:'Новое путешествие',category:'group',published:false,route:'',dates:'',days:'',price:'',places:'',status:'Скоро анонс',image:'/assets/media/tour-private-asia.jpg',desc:'',program:[],gallery:[],included:[],excluded:[]});markCatalogDirty();renderCatalogEditor();renderDepartureEditor()};
 document.querySelector('#add-departure').onclick=()=>{collectCatalog();if(!catalogDraft.length){alert('Сначала добавьте путешествие.');return}calendarDraft.push({id:crypto.randomUUID(),tourId:catalogDraft[0].id,start:'',end:'',label:'',status:'Открыт набор',places:'',published:false});markCatalogDirty();renderDepartureEditor()};
 adminForm.onsubmit=async event=>{
- event.preventDefault();const status=document.querySelector('#save-status'),submit=adminForm.querySelector('[type="submit"]');try{await window.flushVisualDraft?.()}catch(error){status.textContent='Изменение не сохранено: '+error.message;return}collectCatalog();
- const invalid=catalogDraft.find(t=>!t.title.trim()||(t.published&&(!t.route.trim()||!t.desc.trim()||!t.program.length||t.program.some(day=>!String(typeof day==='string'?day:day.title||'').trim())||!t.included.length||!t.excluded.length)));if(invalid){status.textContent=`Маршрут «${invalid.title||'Без названия'}» не готов к публикации. Добавьте описание, программу, а также списки «Включено» и «Оплачивается отдельно».`;return}
+ event.preventDefault();const status=document.querySelector('#save-status'),submit=adminForm.querySelector('[type="submit"]');status.textContent='Проверяем изменения…';try{await window.flushVisualDraft?.();collectCatalog()}catch(error){status.textContent='Изменение не сохранено: '+error.message;console.error(error);return}
+ const invalid=catalogDraft.find(t=>!String(t.title||'').trim());if(invalid){status.textContent='Укажите название путешествия перед сохранением.';return}
  if(calendarDraft.some(d=>!catalogDraft.some(t=>t.id===d.tourId)||(d.published&&!d.start&&!d.label.trim())||(d.start&&d.end&&d.end<d.start))){status.textContent='Проверьте календарь: укажите маршрут и даты; окончание должно быть не раньше начала.';return}
  if(catalogDraft.some(t=>[t.image,...t.gallery,...t.program.map(d=>d.image)].some(v=>v&&!String(v).startsWith('blob:')&&!catalogAPI.url(v)))){status.textContent='Проверьте ссылки на фотографии: используйте HTTP или HTTPS.';return}
  submit.disabled=true;adminForm.inert=true;status.textContent='Загружаем файлы и сохраняем…';
