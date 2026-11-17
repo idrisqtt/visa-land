@@ -68,6 +68,10 @@
     const faq=document.querySelector('#public-faq');faq.innerHTML=(config.faqs.length?config.faqs:VisaDefaults.faqs).map(([q,a])=>`<details class="faq-row"><summary>${e(q)}</summary><p>${e(a)}</p></details>`).join('');
   }
   window.VisaHero?.mount(config);
+  const supportCopy=document.querySelector('.trip-support>div:first-child');
+  if(supportCopy)supportCopy.insertAdjacentHTML('afterbegin',image(config.media?.aboutImage||'/assets/media/founder-group.jpg','Гаухар и участники путешествия Visa Land','class="support-team-photo" loading="lazy" decoding="async"'));
+  const leadSection=document.querySelector('.lead-section');
+  if(leadSection){leadSection.insertAdjacentHTML('afterbegin',image('/assets/media/gallery-dinner.jpg','', 'class="lead-background" loading="lazy" decoding="async"'));leadSection.querySelector('textarea')?.setAttribute('rows','2')}
   document.querySelectorAll('#public-faq,.trip-support-faq').forEach((group,groupIndex)=>{
     group.querySelectorAll('details').forEach((item,index)=>{
       item.name='faq-group-'+groupIndex;
