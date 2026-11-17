@@ -76,6 +76,10 @@ components:
 
 # Design System: Visa Land
 
+## November 2026 — user-approved soft direction
+
+This update supersedes the square-corner and flat-only rules below for all public pages. Warm paper #FAF7F0, forest ink #243C34, sage #DCE5D3 and terracotta #B9533E replace the previous public palette. Supporting surfaces: #FFFDF8, dark forest #1C302A, dark fields #2C483E; muted text #56675D. Primary buttons use warm white text. Cards and photos use 16px corners, fields 12px, broad sections 22–32px, and small controls pill shapes. Hover elevation is a subtle downward soft shadow; movement uses cubic-bezier(.16,1,.3,1), 250–450ms, with reduced-motion overrides. Documentary imagery, existing content and booking behavior are preserved. Public stylesheet: dist/pages.css.
+
 ## Multipage extension — November 2026
 
 The active public surface is `pages.css`, layered over shared tokens in `styles.css`. It uses independent home, catalog, trip, calendar and about routes. Display type is capped at 96px with 0.98 line height; section titles use `clamp(36px, 5vw, 76px)`. Journey cards are links with 440px desktop photos and a two-column grid, stacking at 600px. Calendar entries link to a trip and keep dates/statuses together. The authenticated editor uses dense labelled fields, collapsible journeys, separate departure rows and a persistent save bar.
