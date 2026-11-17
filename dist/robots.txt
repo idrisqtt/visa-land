@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /admin/
 
-Sitemap: https://gohaxo.kz/sitemap.xml
+Sitemap: https://www.gohaxo.kz/sitemap.xml
