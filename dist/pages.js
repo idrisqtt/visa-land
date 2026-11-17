@@ -100,21 +100,23 @@
   // Motion skill principles adapted to the static site: once-only entrances,
   // compositor-only movement, cleanup and a live reduced-motion preference.
   const motionPreference=matchMedia('(prefers-reduced-motion: reduce)');
+  const desktopCover=matchMedia('(min-width:901px) and (pointer:fine)');
   const heroCover=document.querySelector('.home-opening');
   let coverFrame=0;
   const coverCatalog=document.querySelector('.catalog-section');
-  const updateCover=()=>{coverFrame=0;if(!heroCover||motionPreference.matches)return;const height=heroCover.offsetHeight,progress=Math.min(1,Math.max(0,scrollY/height));heroCover.style.transform=`translateY(${-progress*height}px)`;heroCover.style.visibility=progress>=1?'hidden':'visible';if(coverCatalog){coverCatalog.style.transform=progress<1?`translateY(${progress*height-height}px)`:'none';coverCatalog.inert=progress===0}};
+  const updateCover=()=>{coverFrame=0;if(!heroCover||motionPreference.matches||!desktopCover.matches)return;const height=heroCover.offsetHeight,progress=Math.min(1,Math.max(0,scrollY/height));heroCover.style.transform=`translateY(${-progress*height}px)`;heroCover.style.visibility=progress>=1?'hidden':'visible';if(coverCatalog){coverCatalog.style.transform=progress<1?`translateY(${progress*height-height}px)`:'none';coverCatalog.inert=progress===0}};
   const onCoverScroll=()=>{if(!coverFrame)coverFrame=requestAnimationFrame(updateCover)};
-  const setCoverMode=()=>{if(!heroCover)return;document.body.classList.toggle('hero-cover-transition',!motionPreference.matches);if(motionPreference.matches){heroCover.style.removeProperty('transform');heroCover.style.removeProperty('visibility');if(coverCatalog){coverCatalog.inert=false;coverCatalog.style.removeProperty('transform')}}else updateCover()};
+  const setCoverMode=()=>{if(!heroCover)return;const enabled=!motionPreference.matches&&desktopCover.matches;document.body.classList.toggle('hero-cover-transition',enabled);if(!enabled){heroCover.style.removeProperty('transform');heroCover.style.removeProperty('visibility');if(coverCatalog){coverCatalog.inert=false;coverCatalog.style.removeProperty('transform')}}else updateCover()};
+  desktopCover.addEventListener('change',setCoverMode);
   setCoverMode();window.addEventListener('scroll',onCoverScroll,{passive:true});window.addEventListener('resize',onCoverScroll);motionPreference.addEventListener('change',setCoverMode);
   // A deliberate first gesture completes the cover transition in one movement.
   let coverJumping=false,coverGestureTimer,touchStartY=null;
-  const finishCover=()=>{if(!heroCover||motionPreference.matches||coverJumping||scrollY>=heroCover.offsetHeight-2)return false;coverJumping=true;window.scrollTo({top:heroCover.offsetHeight,behavior:'smooth'});clearTimeout(coverGestureTimer);coverGestureTimer=setTimeout(()=>{coverJumping=false},1000);return true};
+  const finishCover=()=>{if(!heroCover||!desktopCover.matches||motionPreference.matches||coverJumping||scrollY>=heroCover.offsetHeight-2)return false;coverJumping=true;window.scrollTo({top:heroCover.offsetHeight,behavior:'smooth'});clearTimeout(coverGestureTimer);coverGestureTimer=setTimeout(()=>{coverJumping=false},1000);return true};
   const coverWheel=event=>{if(event.ctrlKey||Math.abs(event.deltaX)>Math.abs(event.deltaY)||event.deltaY<=0)return;if(coverJumping){event.preventDefault();return}if(finishCover())event.preventDefault()};
   const coverTouchStart=event=>{touchStartY=event.touches.length===1?event.touches[0].clientY:null};
   const coverTouchMove=event=>{if(touchStartY===null||!event.touches.length)return;if(touchStartY-event.touches[0].clientY>24&&(coverJumping||finishCover()))event.preventDefault()};
   const coverKey=event=>{if(event.target.closest('input,textarea,select,button,[contenteditable="true"]')||event.altKey||event.ctrlKey||event.metaKey||event.shiftKey)return;if(['ArrowDown','PageDown',' '].includes(event.key)&&(coverJumping||finishCover()))event.preventDefault()};
-  if(heroCover){window.addEventListener('wheel',coverWheel,{passive:false});window.addEventListener('touchstart',coverTouchStart,{passive:true});window.addEventListener('touchmove',coverTouchMove,{passive:false});window.addEventListener('keydown',coverKey)}
+  if(heroCover){window.addEventListener('wheel',coverWheel,{passive:false});window.addEventListener('keydown',coverKey)}
   window.addEventListener('pagehide',()=>{clearTimeout(coverGestureTimer);window.removeEventListener('wheel',coverWheel);window.removeEventListener('touchstart',coverTouchStart);window.removeEventListener('touchmove',coverTouchMove);window.removeEventListener('keydown',coverKey)},{once:true});
   window.addEventListener('pagehide',()=>{cancelAnimationFrame(coverFrame);window.removeEventListener('scroll',onCoverScroll);window.removeEventListener('resize',onCoverScroll);motionPreference.removeEventListener('change',setCoverMode)},{once:true});
   const running=new Set();
@@ -122,7 +124,7 @@
   const entranceOptions={duration:650,easing:'cubic-bezier(.16,1,.3,1)'};
   const opening=document.querySelector('.home-title');
   if(opening)move(opening,[{transform:'translateY(20px)',opacity:.65},{transform:'translateY(0)',opacity:1}],entranceOptions);
-  const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(!entry.isIntersecting)return;observer.unobserve(entry.target);move(entry.target,[{transform:'translateY(18px)',opacity:.7},{transform:'translateY(0)',opacity:1}],entranceOptions)}),{threshold:.12,rootMargin:'0px 0px -24px'});
+  const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{entry.target.getAnimations().forEach(a=>a.cancel());move(entry.target,entry.isIntersecting?[{opacity:.6,transform:'translateY(10px)'},{opacity:1,transform:'translateY(0)'}]:[{opacity:1},{opacity:.6}],{...entranceOptions,duration:450})}),{threshold:.08});
   document.querySelectorAll('.home-people:not(.care-story .home-people),.visa-help-photo,.trip-gallery img,.travel-frames figure').forEach(el=>observer.observe(el));
   const catalogGrid=document.querySelector('#catalog');
   const catalogMotion=new MutationObserver(()=>{catalogGrid.querySelectorAll('.journey-card').forEach((card,index)=>move(card,[{opacity:.7,transform:'translateY(12px)'},{opacity:1,transform:'translateY(0)'}],{...entranceOptions,duration:420,delay:Math.min(index*45,135)}))});
