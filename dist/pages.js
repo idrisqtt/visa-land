@@ -101,7 +101,7 @@
   const opening=document.querySelector('.home-title');
   if(opening)move(opening,[{transform:'translateY(20px)',opacity:.65},{transform:'translateY(0)',opacity:1}],entranceOptions);
   const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(!entry.isIntersecting)return;observer.unobserve(entry.target);move(entry.target,[{transform:'translateY(18px)',opacity:.7},{transform:'translateY(0)',opacity:1}],entranceOptions)}),{threshold:.12,rootMargin:'0px 0px -24px'});
-  document.querySelectorAll('.home-people,.visa-help-photo,.trip-gallery img,.travel-frames figure,.care-step').forEach(el=>observer.observe(el));
+  document.querySelectorAll('.home-people:not(.care-story .home-people),.visa-help-photo,.trip-gallery img,.travel-frames figure').forEach(el=>observer.observe(el));
   const catalogGrid=document.querySelector('#catalog');
   const catalogMotion=new MutationObserver(()=>{catalogGrid.querySelectorAll('.journey-card').forEach((card,index)=>move(card,[{opacity:.7,transform:'translateY(12px)'},{opacity:1,transform:'translateY(0)'}],{...entranceOptions,duration:420,delay:Math.min(index*45,135)}))});
   if(catalogGrid)catalogMotion.observe(catalogGrid,{childList:true});
