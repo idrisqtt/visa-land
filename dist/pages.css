@@ -1,5 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Forum&display=swap');
 @view-transition{navigation:auto}
+/* Consistent, restrained grotesk across every public content stage. */
+body h1,body h2,body h3,body button,body input,body select,body textarea{font-family:var(--display)}
+body h1{font-weight:700}
+body h2,body h3{font-weight:600}
+body h1 span,body h2 span{font-weight:500}
+body .catalog-filters.visual-formats button.format-panel .format-panel-title{font-family:var(--display);font-weight:600;letter-spacing:-.025em;font-size:clamp(24px,2.8vw,38px);line-height:1.16}
+body .catalog-filters.visual-formats button.format-panel:not(.active) .format-panel-title{font-family:var(--display);font-size:20px;font-weight:600;letter-spacing:0}
+body .care-story .home-people-copy h2{font-family:var(--display);font-weight:600;letter-spacing:-.025em;line-height:1.16}
+body .care-story .home-people-copy h2 span{font-weight:500}
+body .care-story .care-roles h3{font-weight:600;font-size:26px}
+body .care-story .care-step p{font-weight:400;letter-spacing:0}
+@media(max-width:600px){body .catalog-filters.visual-formats button.format-panel .format-panel-title{font-size:28px}body .catalog-filters.visual-formats button.format-panel:not(.active) .format-panel-title{font-size:18px}}
 /* A pinned documentary image accompanies three readable story beats. */
 body .care-story{align-items:start;overflow:visible}
 body .care-story .home-people{position:sticky;top:40px;align-self:start}
