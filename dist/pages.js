@@ -25,6 +25,14 @@
     document.querySelectorAll('[data-filter]').forEach(b=>b.onclick=()=>{category=b.dataset.filter;document.querySelectorAll('[data-filter]').forEach(x=>{x.setAttribute('aria-pressed',x===b);x.classList.toggle('active',x===b)});if(document.startViewTransition&&!matchMedia('(prefers-reduced-motion: reduce)').matches)document.startViewTransition(render);else render()});render();
   }
   const calendarEl=document.querySelector('#departures');if(calendarEl)calendarEl.innerHTML=calendarList(departures);
+  if(page==='home'){
+    const visaPhoto=document.querySelector('.visa-help-photo img');if(config.media?.visaImage)visaPhoto.src=url(config.media.visaImage);
+    const form=document.querySelector('#lead-form'),tourSelect=document.querySelector('#tour-select'),dateSelect=document.querySelector('#date-select'),formStatus=document.querySelector('#form-status');
+    tourSelect.innerHTML=catalog.length?catalog.map(t=>`<option value="${e(t.title)}" data-tour-id="${e(t.id)}">${e(t.title)}</option>`).join(''):'<option value="Подбор путешествия">Помогите подобрать путешествие</option>';
+    const updateLeadDates=()=>{const selected=tourSelect.selectedOptions[0]?.dataset.tourId,dates=departures.filter(d=>d.tourId===selected);dateSelect.innerHTML=dates.length?dates.map(d=>`<option value="${e(formatDeparture(d))}">${e(formatDeparture(d))}</option>`).join(''):'<option value="Даты уточняются">Даты уточняются</option>'};
+    tourSelect.addEventListener('change',updateLeadDates);updateLeadDates();
+    form.addEventListener('submit',async event=>{event.preventDefault();const button=form.querySelector('button[type="submit"]'),data=Object.fromEntries(new FormData(form));button.disabled=true;formStatus.className='form-status wide';formStatus.textContent='Отправляем заявку…';try{if(!window.visaSupabase)throw new Error('service unavailable');const {error}=await window.visaSupabase.from('leads').insert({name:data.name.trim(),phone:data.phone.trim(),tour:data.tour,departure_date:data.date,comment:data.comment?.trim()||null});if(error)throw error;form.reset();updateLeadDates();formStatus.classList.add('is-success');formStatus.textContent='Спасибо! Заявка отправлена. Мы свяжемся с вами в ближайшее время.'}catch(error){console.error('Lead submission failed',error);formStatus.classList.add('is-error');formStatus.innerHTML=`Не удалось отправить заявку. <a href="${whatsApp()}" target="_blank" rel="noopener">Напишите нам в WhatsApp ↗</a>`}finally{button.disabled=false}});
+  }
   if(page==='trip'){
     const t=catalog.find(t=>t.id===new URLSearchParams(location.search).get('id'));const main=document.querySelector('#trip-content');
     if(!t){document.title='Поездка не найдена — Visa Land';main.innerHTML='<section class="page-heading"><h1>Маршрут не найден</h1><p>Возможно, поездка перенесена или ещё готовится.</p><a class="button button-accent" href="/trips.html">Все путешествия</a></section>'}
