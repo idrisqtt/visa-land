@@ -74,9 +74,10 @@
   const heroCover=document.querySelector('.home-opening');
   if(heroCover){const next=document.querySelector('.catalog-section'),stage=document.createElement('div');stage.className='hero-cover-stage';heroCover.before(stage);stage.append(heroCover,next)}
   let coverFrame=0;
-  const updateCover=()=>{coverFrame=0;if(!heroCover||motionPreference.matches)return;const height=heroCover.offsetHeight,progress=Math.min(1,Math.max(0,scrollY/height));heroCover.style.transform=`translateY(${-progress*height*.18}px)`};
+  const coverCatalog=heroCover?.parentElement.querySelector('.catalog-section');
+  const updateCover=()=>{coverFrame=0;if(!heroCover||motionPreference.matches)return;const height=heroCover.offsetHeight,progress=Math.min(1,Math.max(0,scrollY/height));heroCover.style.transform=`translateY(${-progress*height*.18}px)`;if(coverCatalog){const edge=Math.max(0,heroCover.getBoundingClientRect().bottom-coverCatalog.getBoundingClientRect().top);coverCatalog.style.clipPath=edge>0?`inset(${edge}px 0 0 0)`:'none';coverCatalog.inert=progress===0}};
   const onCoverScroll=()=>{if(!coverFrame)coverFrame=requestAnimationFrame(updateCover)};
-  const setCoverMode=()=>{if(!heroCover)return;document.body.classList.toggle('hero-cover-transition',!motionPreference.matches);if(motionPreference.matches)heroCover.style.removeProperty('transform');else updateCover()};
+  const setCoverMode=()=>{if(!heroCover)return;document.body.classList.toggle('hero-cover-transition',!motionPreference.matches);if(motionPreference.matches){heroCover.style.removeProperty('transform');if(coverCatalog){coverCatalog.style.removeProperty('clip-path');coverCatalog.inert=false}}else updateCover()};
   setCoverMode();window.addEventListener('scroll',onCoverScroll,{passive:true});window.addEventListener('resize',onCoverScroll);motionPreference.addEventListener('change',setCoverMode);
   window.addEventListener('pagehide',()=>{cancelAnimationFrame(coverFrame);window.removeEventListener('scroll',onCoverScroll);window.removeEventListener('resize',onCoverScroll);motionPreference.removeEventListener('change',setCoverMode)},{once:true});
   const running=new Set();
