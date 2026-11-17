@@ -78,6 +78,15 @@
   const onCoverScroll=()=>{if(!coverFrame)coverFrame=requestAnimationFrame(updateCover)};
   const setCoverMode=()=>{if(!heroCover)return;document.body.classList.toggle('hero-cover-transition',!motionPreference.matches);if(motionPreference.matches){heroCover.style.removeProperty('transform');heroCover.style.removeProperty('visibility');if(coverCatalog){coverCatalog.inert=false;coverCatalog.style.removeProperty('transform')}}else updateCover()};
   setCoverMode();window.addEventListener('scroll',onCoverScroll,{passive:true});window.addEventListener('resize',onCoverScroll);motionPreference.addEventListener('change',setCoverMode);
+  // A deliberate first gesture completes the cover transition in one movement.
+  let coverJumping=false,coverGestureTimer,touchStartY=null;
+  const finishCover=()=>{if(!heroCover||motionPreference.matches||coverJumping||scrollY>=heroCover.offsetHeight-2)return false;coverJumping=true;window.scrollTo({top:heroCover.offsetHeight,behavior:'smooth'});clearTimeout(coverGestureTimer);coverGestureTimer=setTimeout(()=>{coverJumping=false},1000);return true};
+  const coverWheel=event=>{if(event.ctrlKey||Math.abs(event.deltaX)>Math.abs(event.deltaY)||event.deltaY<=0)return;if(coverJumping){event.preventDefault();return}if(finishCover())event.preventDefault()};
+  const coverTouchStart=event=>{touchStartY=event.touches.length===1?event.touches[0].clientY:null};
+  const coverTouchMove=event=>{if(touchStartY===null||!event.touches.length)return;if(touchStartY-event.touches[0].clientY>24&&(coverJumping||finishCover()))event.preventDefault()};
+  const coverKey=event=>{if(event.target.closest('input,textarea,select,button,[contenteditable="true"]')||event.altKey||event.ctrlKey||event.metaKey||event.shiftKey)return;if(['ArrowDown','PageDown',' '].includes(event.key)&&(coverJumping||finishCover()))event.preventDefault()};
+  if(heroCover){window.addEventListener('wheel',coverWheel,{passive:false});window.addEventListener('touchstart',coverTouchStart,{passive:true});window.addEventListener('touchmove',coverTouchMove,{passive:false});window.addEventListener('keydown',coverKey)}
+  window.addEventListener('pagehide',()=>{clearTimeout(coverGestureTimer);window.removeEventListener('wheel',coverWheel);window.removeEventListener('touchstart',coverTouchStart);window.removeEventListener('touchmove',coverTouchMove);window.removeEventListener('keydown',coverKey)},{once:true});
   window.addEventListener('pagehide',()=>{cancelAnimationFrame(coverFrame);window.removeEventListener('scroll',onCoverScroll);window.removeEventListener('resize',onCoverScroll);motionPreference.removeEventListener('change',setCoverMode)},{once:true});
   const running=new Set();
   const move=(el,frames,options)=>{if(motionPreference.matches||!el.animate)return;const animation=el.animate(frames,options);running.add(animation);animation.finished.catch(()=>{}).finally(()=>running.delete(animation));return animation};
