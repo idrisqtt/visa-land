@@ -1,4 +1,24 @@
 @view-transition{navigation:auto}
+/* Photo-led tour cards and a full-bleed visa story. */
+body .journey-grid .journey-card{display:block;position:relative;isolation:isolate;min-height:440px;overflow:hidden;color:#faf7f0;border-radius:16px}
+body .journey-grid .journey-card .journey-photo{position:absolute;inset:0;height:100%;width:100%;aspect-ratio:auto;border-radius:inherit;z-index:-2}
+body .journey-grid .journey-card::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(9,20,15,.12),rgba(9,20,15,.35) 35%,rgba(9,20,15,.94));pointer-events:none}
+body .journey-grid .journey-card .journey-photo>span{color:var(--graphite);background:#faf7f0}
+body .journey-grid .journey-card .journey-info{position:relative;display:flex;flex-direction:column;justify-content:flex-end;min-height:440px;padding:85px 28px 28px;border:0}
+body .journey-grid .journey-card .journey-info>p{color:#e4eade}
+body .journey-grid .journey-card .journey-info h2,body .journey-grid .journey-card .journey-info h3{color:#faf7f0;font-size:clamp(28px,3vw,42px)}
+body .journey-grid .journey-card .journey-info>div{display:flex;justify-content:space-between;align-items:center;gap:16px;border:0}
+body .journey-grid .journey-card .journey-info>div>span{display:block;margin:0;font-size:12px}
+body .journey-grid .journey-card:first-child{grid-row:auto}
+body .visa-help{position:relative;isolation:isolate;display:flex;align-items:center;min-height:85svh;padding:100px 7vw;color:#faf7f0;overflow:hidden}
+body .visa-help .visa-help-photo{position:absolute;inset:0;z-index:-2;height:100%;width:100%;margin:0}
+body .visa-help .visa-help-photo img{height:100%;width:100%;aspect-ratio:auto;object-fit:cover;border-radius:0}
+body .visa-help::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(9,20,15,.9),rgba(9,20,15,.65) 55%,rgba(9,20,15,.25));pointer-events:none}
+body .visa-help .visa-help-copy{max-width:720px}
+body .visa-help .visa-help-copy .visa-note{color:#dce5d3}
+body .visa-help .visa-help-photo figcaption{position:absolute;bottom:30px;right:4vw;left:auto;color:#faf7f0;background:transparent;max-width:240px;font-size:12px}
+body .visa-help .text-link{padding:15px 20px;border:1px solid rgba(250,247,240,.5);border-radius:12px;background:rgba(250,247,240,.1)}
+@media(max-width:600px){body .journey-grid .journey-card,body .journey-grid .journey-card .journey-info{min-height:420px}body .journey-grid .journey-card .journey-info{padding:80px 22px 24px}body .visa-help{min-height:700px;padding:80px 24px 110px}body .visa-help .visa-help-photo figcaption{left:24px;right:auto;bottom:28px}}
 /* The opening slides away while the next chapter is already underneath. */
 @media(prefers-reduced-motion:no-preference){html:has(body.hero-cover-transition){scroll-snap-type:none}body.hero-cover-transition main{padding-top:100svh}body.hero-cover-transition main>.home-opening{position:fixed;inset:0 0 auto;z-index:12;will-change:transform;box-shadow:0 24px 45px rgba(20,35,27,.16)}body.hero-cover-transition main>.catalog-section{position:relative;background:var(--porcelain)}}
 .departure-timeline{padding-left:24px;border-left:1px solid var(--line)}.timeline-month{position:relative;display:grid;grid-template-columns:150px minmax(0,1fr);gap:36px;padding:0 0 44px}.timeline-month::before{content:"";position:absolute;left:-29px;top:8px;width:9px;height:9px;border-radius:50%;background:var(--graphite)}.timeline-month>h3{font-size:20px;text-transform:capitalize;line-height:1.4;margin:0}.timeline-trip{display:grid;grid-template-columns:180px minmax(0,1fr) 170px;gap:24px;padding:0 0 26px;margin-bottom:24px;border-bottom:1px solid var(--line);align-items:start}.timeline-date{display:flex;flex-direction:column;gap:8px;font-size:14px;font-variant-numeric:tabular-nums}.timeline-date>span{font-size:12px;color:var(--muted)}.timeline-description h4{font-size:23px;font-weight:600;line-height:1.25;margin:0 0 10px}.timeline-description p{font-size:12px;color:var(--muted);line-height:1.6}.timeline-status{font-size:12px;text-align:right}.timeline-trip:hover h4{color:var(--tomato)}
