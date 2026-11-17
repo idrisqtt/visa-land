@@ -6,6 +6,18 @@
     nodes.forEach(node=>{const fragment=document.createDocumentFragment();node.textContent.split(/([↗↘←])/).forEach(part=>{if(!arrowPaths[part]){fragment.append(document.createTextNode(part));return}const svg=document.createElementNS('http://www.w3.org/2000/svg','svg');svg.setAttribute('viewBox','0 0 24 24');svg.setAttribute('class','ui-arrow');svg.setAttribute('aria-hidden','true');const path=document.createElementNS(svg.namespaceURI,'path');path.setAttribute('d',arrowPaths[part]);svg.append(path);fragment.append(svg)});node.replaceWith(fragment)});
   }
   replaceArrows(document.body);
+  const mobileArrows=matchMedia('(max-width:900px)');
+  function removeMobileArrowGlyphs(root){
+    if(!mobileArrows.matches)return;
+    const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT),nodes=[];
+    while(walker.nextNode()){const node=walker.currentNode;if(/[↗↘↙↖←→↑↓➜➝➞➟➠➡⬅⬆⬇⤴⤵🔗]/u.test(node.textContent)&&!node.parentElement?.closest('script,style,textarea,input'))nodes.push(node)}
+    nodes.forEach(node=>{node.textContent=node.textContent.replace(/[↗↘↙↖←→↑↓➜➝➞➟➠➡⬅⬆⬇⤴⤵🔗][\uFE0E\uFE0F]?/gu,'')});
+  }
+  removeMobileArrowGlyphs(document.body);
+  const arrowCleanup=new MutationObserver(records=>{records.forEach(record=>{if(record.type==='characterData')removeMobileArrowGlyphs(record.target.parentElement);else record.addedNodes.forEach(node=>{if(node.nodeType===1)removeMobileArrowGlyphs(node);else if(node.nodeType===3)removeMobileArrowGlyphs(node.parentElement)})})});
+  arrowCleanup.observe(document.body,{childList:true,subtree:true,characterData:true});
+  mobileArrows.addEventListener('change',()=>removeMobileArrowGlyphs(document.body));
+  window.addEventListener('pagehide',()=>arrowCleanup.disconnect(),{once:true});
   if(document.body.dataset.page==='visas'){
     const services=document.querySelector('.visa-services');
     services.querySelectorAll(':scope>section').forEach(section=>{

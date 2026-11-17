@@ -1,4 +1,5 @@
 @view-transition{navigation:auto}
+@media(max-width:900px){body .ui-arrow,body .line-icon{display:none!important}}
 @media(max-width:900px),(pointer:coarse){html:has(body[data-page="home"]){scroll-snap-type:none;scroll-behavior:auto}body .departure-timeline{scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;overscroll-behavior-x:auto}body .visual-formats .format-panel{touch-action:pan-y}}
 @media(max-width:600px){body[data-page="home"] .care-story.care-story .home-people-copy{display:flex;flex-direction:column;gap:28px}body[data-page="home"] .care-story.care-story .home-people-copy .care-step{flex:none;margin:0;position:static;inset:auto;min-height:0;height:auto}body[data-page="home"] .care-story.care-story .home-people-copy h2{margin:0;font-size:30px;line-height:1.25;overflow-wrap:normal}body[data-page="home"] .care-story.care-story .home-people-copy h2 span{display:inline}}
 .visa-help .visa-details-button{margin-top:32px;background:rgba(255,255,255,.14);color:#fff;border:1px solid rgba(255,255,255,.65);border-radius:12px;justify-content:center}.visa-help .visa-details-button:hover{background:rgba(255,255,255,.25)}
