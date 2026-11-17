@@ -6,6 +6,16 @@
     nodes.forEach(node=>{const fragment=document.createDocumentFragment();node.textContent.split(/([↗↘←])/).forEach(part=>{if(!arrowPaths[part]){fragment.append(document.createTextNode(part));return}const svg=document.createElementNS('http://www.w3.org/2000/svg','svg');svg.setAttribute('viewBox','0 0 24 24');svg.setAttribute('class','ui-arrow');svg.setAttribute('aria-hidden','true');const path=document.createElementNS(svg.namespaceURI,'path');path.setAttribute('d',arrowPaths[part]);svg.append(path);fragment.append(svg)});node.replaceWith(fragment)});
   }
   replaceArrows(document.body);
+  if(document.body.dataset.page==='visas'){
+    const services=document.querySelector('.visa-services');
+    services.querySelectorAll(':scope>section').forEach(section=>{
+      const heading=section.querySelector('h2'),details=document.createElement('details'),summary=document.createElement('summary'),content=document.createElement('div');
+      details.className='visa-accordion';details.name='visa-directions';summary.append(heading);const mark=document.createElement('span');mark.className='faq-mark';mark.setAttribute('aria-hidden','true');summary.append(mark);content.className='visa-accordion-content';section.replaceWith(details);details.append(summary,content);content.append(section);
+      details.addEventListener('toggle',()=>{if(details.open&&!matchMedia('(prefers-reduced-motion: reduce)').matches)content.animate([{opacity:.4,transform:'translateY(-8px)'},{opacity:1,transform:'translateY(0)'}],{duration:350,easing:'cubic-bezier(.16,1,.3,1)'})});
+    });
+    document.querySelectorAll('.visa-direction-nav a').forEach(a=>a.addEventListener('click',()=>{const section=document.getElementById(a.hash.slice(1));if(section)section.closest('details').open=true}));
+    const initial=document.getElementById(location.hash.slice(1));if(initial?.closest('.visa-accordion'))initial.closest('details').open=true;
+  }
   const updates=new MutationObserver(records=>records.forEach(record=>record.addedNodes.forEach(node=>{if(node.nodeType===1&&!node.matches('svg,path'))replaceArrows(node)})));
   updates.observe(document.body,{childList:true,subtree:true});
   // Content is generated asynchronously by pages.js; build navigation only once.
