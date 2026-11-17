@@ -68,6 +68,13 @@
     const faq=document.querySelector('#public-faq');faq.innerHTML=(config.faqs.length?config.faqs:VisaDefaults.faqs).map(([q,a])=>`<details class="faq-row"><summary>${e(q)}</summary><p>${e(a)}</p></details>`).join('');
   }
   window.VisaHero?.mount(config);
+  document.querySelectorAll('.departure-timeline').forEach((rail,index)=>{
+    rail.id='departure-rail-'+index;rail.setAttribute('tabindex','0');rail.setAttribute('role','region');rail.setAttribute('aria-label','Поездки по датам. Горизонтальная прокрутка');
+    rail.querySelectorAll('.timeline-trip').forEach(card=>{const id=new URL(card.href).searchParams.get('id'),tour=catalog.find(t=>t.id===id);if(tour)card.insertAdjacentHTML('afterbegin',image(tour.image,'','loading="lazy" class="departure-photo"'))});
+    const controls=document.createElement('div');controls.className='departure-controls';controls.innerHTML=`<span>Листайте, чтобы выбрать заезд</span><button type="button" aria-label="Предыдущие поездки" aria-controls="${rail.id}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14 6-6 6 6 6"/></svg></button><button type="button" aria-label="Следующие поездки" aria-controls="${rail.id}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m10 6 6 6-6 6"/></svg></button>`;rail.before(controls);
+    const buttons=controls.querySelectorAll('button'),sync=()=>{buttons[0].disabled=rail.scrollLeft<2;buttons[1].disabled=rail.scrollLeft+rail.clientWidth>=rail.scrollWidth-2};
+    buttons.forEach((button,i)=>button.onclick=()=>rail.scrollBy({left:(i?1:-1)*(rail.querySelector('.timeline-trip').offsetWidth+20),behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'}));rail.addEventListener('scroll',sync,{passive:true});window.addEventListener('resize',sync);requestAnimationFrame(sync);
+  });
   // Motion skill principles adapted to the static site: once-only entrances,
   // compositor-only movement, cleanup and a live reduced-motion preference.
   const motionPreference=matchMedia('(prefers-reduced-motion: reduce)');
