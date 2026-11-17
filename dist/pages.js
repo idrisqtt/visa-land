@@ -71,6 +71,14 @@
   // Motion skill principles adapted to the static site: once-only entrances,
   // compositor-only movement, cleanup and a live reduced-motion preference.
   const motionPreference=matchMedia('(prefers-reduced-motion: reduce)');
+  const heroCover=document.querySelector('.home-opening');
+  if(heroCover){const next=document.querySelector('.catalog-section'),stage=document.createElement('div');stage.className='hero-cover-stage';heroCover.before(stage);stage.append(heroCover,next)}
+  let coverFrame=0;
+  const updateCover=()=>{coverFrame=0;if(!heroCover||motionPreference.matches)return;const height=heroCover.offsetHeight,progress=Math.min(1,Math.max(0,scrollY/height));heroCover.style.transform=`translateY(${-progress*height*.18}px)`};
+  const onCoverScroll=()=>{if(!coverFrame)coverFrame=requestAnimationFrame(updateCover)};
+  const setCoverMode=()=>{if(!heroCover)return;document.body.classList.toggle('hero-cover-transition',!motionPreference.matches);if(motionPreference.matches)heroCover.style.removeProperty('transform');else updateCover()};
+  setCoverMode();window.addEventListener('scroll',onCoverScroll,{passive:true});window.addEventListener('resize',onCoverScroll);motionPreference.addEventListener('change',setCoverMode);
+  window.addEventListener('pagehide',()=>{cancelAnimationFrame(coverFrame);window.removeEventListener('scroll',onCoverScroll);window.removeEventListener('resize',onCoverScroll);motionPreference.removeEventListener('change',setCoverMode)},{once:true});
   const running=new Set();
   const move=(el,frames,options)=>{if(motionPreference.matches||!el.animate)return;const animation=el.animate(frames,options);running.add(animation);animation.finished.catch(()=>{}).finally(()=>running.delete(animation));return animation};
   const entranceOptions={duration:650,easing:'cubic-bezier(.16,1,.3,1)'};
