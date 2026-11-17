@@ -76,6 +76,10 @@ components:
 
 # Design System: Visa Land
 
+## Refined journal composition — current public direction
+
+The public pages now use open sections rather than rounded section containers. Cream is the dominant canvas; a pale sage #E6EBDF separates the documentary team story and supporting information. Photography uses 16px corners; actions use 12px, filters 10px, status labels 8px. No blanket pill treatment or card shadows. Home proceeds from a shorter film opening directly to the catalog, then a real team photograph and introduction, departures, visa help and application. Headlines outside the hero are quieter, 36–64px; card titles 28–40px. Motion is limited to media, image hover and control feedback, with reduced-motion support. Mobile support sections stack and itinerary images fit their text column. This direction supersedes older square-only rules and the rounded-section update below.
+
 ## November 2026 — user-approved soft direction
 
 This update supersedes the square-corner and flat-only rules below for all public pages. Warm paper #FAF7F0, forest ink #243C34, sage #DCE5D3 and terracotta #B9533E replace the previous public palette. Supporting surfaces: #FFFDF8, dark forest #1C302A, dark fields #2C483E; muted text #56675D. Primary buttons use warm white text. Cards and photos use 16px corners, fields 12px, broad sections 22–32px, and small controls pill shapes. Hover elevation is a subtle downward soft shadow; movement uses cubic-bezier(.16,1,.3,1), 250–450ms, with reduced-motion overrides. Documentary imagery, existing content and booking behavior are preserved. Public stylesheet: dist/pages.css.

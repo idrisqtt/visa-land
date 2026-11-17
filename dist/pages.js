@@ -26,6 +26,14 @@
   }
   const calendarEl=document.querySelector('#departures');if(calendarEl)calendarEl.innerHTML=calendarList(departures);
   if(page==='home'){
+    const intro=document.querySelector('.home-intro'),catalogSection=document.querySelector('.catalog-section');
+    catalogSection.after(intro);
+    intro.insertAdjacentHTML('afterbegin','<figure class="home-people"><img src="/assets/media/founder-group.jpg" alt="Гаухар и участники путешествия Visa Land" loading="lazy" decoding="async"><figcaption>Гаухар и команда Visa Land</figcaption></figure>');
+    const peopleCopy=document.createElement('div');peopleCopy.className='home-people-copy';
+    [...intro.children].filter(el=>!el.classList.contains('home-people')).forEach(el=>peopleCopy.appendChild(el));intro.appendChild(peopleCopy);
+    peopleCopy.insertAdjacentHTML('beforeend','<p data-content="aboutCopy"></p><a class="text-link" href="/about.html">Познакомиться с командой ↗</a>');
+    peopleCopy.querySelector('[data-content="aboutCopy"]').textContent=content.aboutCopy||'Меня зовут Гаухар. Я организую путешествия и лично сопровождаю часть групп. Вместе со мной работают групп-лидеры и местные специалисты.';
+    const peoplePhoto=intro.querySelector('img');if(config.media?.aboutImage)peoplePhoto.src=url(config.media.aboutImage);
     const visaPhoto=document.querySelector('.visa-help-photo img');if(config.media?.visaImage)visaPhoto.src=url(config.media.visaImage);
     const form=document.querySelector('#lead-form'),tourSelect=document.querySelector('#tour-select'),dateSelect=document.querySelector('#date-select'),formStatus=document.querySelector('#form-status');
     tourSelect.innerHTML=catalog.length?catalog.map(t=>`<option value="${e(t.title)}" data-tour-id="${e(t.id)}">${e(t.title)}</option>`).join(''):'<option value="Подбор путешествия">Помогите подобрать путешествие</option>';
