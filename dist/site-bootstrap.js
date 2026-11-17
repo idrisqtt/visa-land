@@ -7,6 +7,6 @@
     console.warn('Using bundled site content:',error.message);
     window.visaLandRemoteConfig=null;
   }finally{
-    const script=document.createElement('script');script.src='/app.js?v=3';document.body.appendChild(script);
+    const script=document.createElement('script');script.src='/app.js?v=4';document.body.appendChild(script);
   }
 })();
