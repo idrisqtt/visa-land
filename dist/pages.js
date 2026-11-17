@@ -68,6 +68,21 @@
     const faq=document.querySelector('#public-faq');faq.innerHTML=(config.faqs.length?config.faqs:VisaDefaults.faqs).map(([q,a])=>`<details class="faq-row"><summary>${e(q)}</summary><p>${e(a)}</p></details>`).join('');
   }
   window.VisaHero?.mount(config);
+  document.querySelectorAll('#public-faq,.trip-support-faq').forEach((group,groupIndex)=>{
+    group.querySelectorAll('details').forEach((item,index)=>{
+      item.name='faq-group-'+groupIndex;
+      const summary=item.querySelector('summary'),answer=item.querySelector('p');
+      if(!summary||!answer)return;
+      const marker=document.createElement('span');marker.className='faq-mark';marker.setAttribute('aria-hidden','true');summary.append(marker);
+      let animation;
+      summary.addEventListener('click',event=>{
+        event.preventDefault();animation?.cancel();
+        if(item.open){item.open=false;return}
+        group.querySelectorAll('details[open]').forEach(other=>{other.open=false});item.open=true;
+        if(!matchMedia('(prefers-reduced-motion: reduce)').matches)animation=answer.animate([{opacity:0,transform:'translateY(-6px)'},{opacity:1,transform:'translateY(0)'}],{duration:280,easing:'cubic-bezier(.16,1,.3,1)'});
+      });
+    });
+  });
   document.querySelectorAll('.departure-timeline').forEach((rail,index)=>{
     rail.id='departure-rail-'+index;rail.setAttribute('tabindex','0');rail.setAttribute('role','region');rail.setAttribute('aria-label','Поездки по датам. Горизонтальная прокрутка');
     rail.querySelectorAll('.timeline-trip').forEach(card=>{const id=new URL(card.href).searchParams.get('id'),tour=catalog.find(t=>t.id===id);if(tour)card.insertAdjacentHTML('afterbegin',image(tour.image,'','loading="lazy" class="departure-photo"'))});
