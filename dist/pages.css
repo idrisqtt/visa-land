@@ -1,5 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Forum&display=swap');
 @view-transition{navigation:auto}
+/* A pinned documentary image accompanies three readable story beats. */
+body .care-story{align-items:start;overflow:visible}
+body .care-story .home-people{position:sticky;top:40px;align-self:start}
+body .care-story .home-people img{height:calc(100svh - 130px);max-height:780px;object-fit:cover}
+body .care-story .care-step{min-height:65svh;display:flex;flex-direction:column;justify-content:center;padding:50px 0}
+body .care-story h2{font-size:clamp(34px,4.1vw,60px);text-transform:none;font-weight:500;line-height:1.14;letter-spacing:-.025em}
+body .care-story h2 span{font-weight:300}
+.care-roles{gap:42px}.care-roles h3{font-size:30px;font-weight:500;margin-bottom:12px}.care-roles p,.care-personal p{max-width:48ch;font-size:18px;line-height:1.8}.care-personal p{font-size:22px}.care-personal .text-link{align-self:flex-start}
+@media(max-width:900px){body .care-story{grid-template-columns:1fr;gap:30px}body .care-story .home-people{position:relative;top:auto}body .care-story .home-people img{height:auto;max-height:650px;aspect-ratio:4/3}body .care-story .care-step{min-height:0;padding:28px 0}.care-roles{gap:28px}.care-personal p{font-size:19px}}
+@media(prefers-reduced-motion:reduce){body .care-story .home-people{position:relative;top:auto}body .care-story .care-step{min-height:0;padding:30px 0}}
 body .catalog-filters.visual-formats .format-panel-title{font-family:'Forum',Georgia,serif;font-weight:400;letter-spacing:.005em;font-size:clamp(28px,3.2vw,46px);line-height:1.08}
 body .catalog-filters.visual-formats .format-panel:not(.active) .format-panel-title{font-size:25px;letter-spacing:.02em}
 body .catalog-filters.visual-formats .format-panel-count{font-family:var(--display);font-size:12px;letter-spacing:.025em}

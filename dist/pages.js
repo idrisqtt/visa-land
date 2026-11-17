@@ -38,6 +38,9 @@
     peopleCopy.querySelector('[data-content="aboutCopy"]').textContent=content.aboutCopy||'Меня зовут Гаухар. Я организую путешествия и лично сопровождаю часть групп. Вместе со мной работают групп-лидеры и местные специалисты.';
     intro.insertAdjacentHTML('afterend','<section class="travel-frames" aria-label="Моменты путешествий Visa Land"><div class="travel-frames-heading"><h2>Место для впечатлений.</h2><p>Локальные места, новые знакомства и время почувствовать страну.</p></div><div class="travel-frames-grid"><figure><img src="/assets/media/gallery-kimono.jpg" alt="Участницы поездки в кимоно" loading="lazy" decoding="async"><figcaption>Япония</figcaption></figure><figure><img src="/assets/media/gallery-seoul-group.jpg" alt="Участники путешествия в Сеуле" loading="lazy" decoding="async"><figcaption>Сеул</figcaption></figure><figure><img src="/assets/media/gallery-dinner.jpg" alt="Участники Visa Land за совместным ужином" loading="lazy" decoding="async"><figcaption>Вечер вместе</figcaption></figure></div></section>');
     const peoplePhoto=intro.querySelector('img');if(config.media?.aboutImage)peoplePhoto.src=url(config.media.aboutImage);
+    intro.classList.add('care-story');
+    peopleCopy.innerHTML='<div class="care-step"><h2>Вы собираете чемодан.<br><span>Остальное мы берём на себя.</span></h2></div><div class="care-step care-roles"><div><h3>Вы</h3><p>Выбираете путешествие, делитесь пожеланиями и готовитесь к новым впечатлениям.</p></div><div><h3>Мы</h3><p>Продумываем маршрут и помогаем подготовиться к поездке. Все условия и состав пакета обсуждаем до бронирования.</p></div></div><div class="care-step care-personal"><p></p><a class="text-link" href="/about.html">Познакомиться с командой</a></div>';
+    peopleCopy.querySelector('.care-personal p').textContent=content.aboutCopy||'Меня зовут Гаухар. Я организую путешествия и лично сопровождаю часть групп. Для меня важно создать комфортный, живой и запоминающийся маршрут.';
     const visaPhoto=document.querySelector('.visa-help-photo img');if(config.media?.visaImage)visaPhoto.src=url(config.media.visaImage);
     const form=document.querySelector('#lead-form'),tourSelect=document.querySelector('#tour-select'),dateSelect=document.querySelector('#date-select'),formStatus=document.querySelector('#form-status');
     tourSelect.innerHTML=catalog.length?catalog.map(t=>`<option value="${e(t.title)}" data-tour-id="${e(t.id)}">${e(t.title)}</option>`).join(''):'<option value="Подбор путешествия">Помогите подобрать путешествие</option>';
@@ -69,7 +72,7 @@
   const opening=document.querySelector('.home-title');
   if(opening)move(opening,[{transform:'translateY(20px)',opacity:.65},{transform:'translateY(0)',opacity:1}],entranceOptions);
   const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(!entry.isIntersecting)return;observer.unobserve(entry.target);move(entry.target,[{transform:'translateY(18px)',opacity:.7},{transform:'translateY(0)',opacity:1}],entranceOptions)}),{threshold:.12,rootMargin:'0px 0px -24px'});
-  document.querySelectorAll('.home-people,.visa-help-photo,.trip-gallery img,.travel-frames figure').forEach(el=>observer.observe(el));
+  document.querySelectorAll('.home-people,.visa-help-photo,.trip-gallery img,.travel-frames figure,.care-step').forEach(el=>observer.observe(el));
   const catalogGrid=document.querySelector('#catalog');
   const catalogMotion=new MutationObserver(()=>{catalogGrid.querySelectorAll('.journey-card').forEach((card,index)=>move(card,[{opacity:.7,transform:'translateY(12px)'},{opacity:1,transform:'translateY(0)'}],{...entranceOptions,duration:420,delay:Math.min(index*45,135)}))});
   if(catalogGrid)catalogMotion.observe(catalogGrid,{childList:true});
