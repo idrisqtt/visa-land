@@ -1,11 +1,11 @@
 /* One media controller for the homepage and the editor preview. */
 (function(){
  const clamp=(value,fallback,min,max)=>Number.isFinite(Number(value))&&value!==''?Math.max(min,Math.min(max,Number(value))):fallback;
- function settings(config={}){const c=config.content||{},m=config.media||{};return {mode:c.heroMode==='photo'?'photo':'video',poster:m.heroPoster||'/assets/media/hero-group-japan.jpg',mobilePoster:m.heroMobilePoster||m.heroPoster||'/assets/media/hero-group-japan.jpg',video:m.heroVideo||'/assets/media/torii-loop.mp4',mobileVideo:m.heroMobileVideo||m.heroVideo||'/assets/media/torii-loop.mp4',x:clamp(c.heroX,50,0,100),y:clamp(c.heroY,50,0,100),mobileX:clamp(c.heroMobileX,50,0,100),mobileY:clamp(c.heroMobileY,50,0,100),shade:clamp(c.heroShade,65,25,90),height:c.heroHeight==='compact'?'compact':'full',button:c.heroButton||'Выбрать путешествие ↗',buttonUrl:VisaCatalog.url(c.heroButtonUrl||'/trips.html')||'/trips.html',caption:c.heroCaption??'Япония · Южная Корея · Ваши новые истории'}}
+ function settings(config={}){const c=config.content||{},m=config.media||{};return {mode:c.heroMode==='photo'?'photo':'video',poster:m.heroPoster||'/assets/media/hero-group-japan-ai.jpg',mobilePoster:m.heroMobilePoster||m.heroPoster||'/assets/media/hero-group-japan-ai.jpg',video:m.heroVideo||'/assets/media/torii-loop.mp4',mobileVideo:m.heroMobileVideo||m.heroVideo||'/assets/media/torii-loop.mp4',x:clamp(c.heroX,50,0,100),y:clamp(c.heroY,50,0,100),mobileX:clamp(c.heroMobileX,50,0,100),mobileY:clamp(c.heroMobileY,50,0,100),shade:clamp(c.heroShade,65,25,90),height:c.heroHeight==='compact'?'compact':'full',button:c.heroButton||'Выбрать путешествие ↗',buttonUrl:VisaCatalog.url(c.heroButtonUrl||'/trips.html')||'/trips.html',caption:c.heroCaption??'Япония · Южная Корея · Ваши новые истории'}}
  function mount(config={},root=document.querySelector('.home-opening'),options={}){
   if(!root)return ()=>{};
   const s=settings(config),video=root.querySelector('.home-film'),photo=root.querySelector('.home-photo'),mobile=matchMedia('(max-width: 600px)');
-  const mediaUrl=value=>options.preview&&String(value).startsWith('blob:')?value:VisaCatalog.url(value);
+  const mediaUrl=value=>{const source=String(value);const upgraded=/\/hero-group-japan\.jpg(?:\?.*)?$/.test(source)?'/assets/media/hero-group-japan-ai.jpg':value;return options.preview&&source.startsWith('blob:')?value:VisaCatalog.url(upgraded)};
   let visible=false,failed=false,disposed=false;
   root.dataset.heroHeight=s.height;root.style.setProperty('--hero-shade',String(s.shade/100));
   const caption=root.querySelector('.film-caption');if(caption)caption.textContent=s.caption;
