@@ -76,6 +76,10 @@ components:
 
 # Design System: Visa Land
 
+## Current palette — neutral minimalism
+
+Supersedes prior green and terracotta palettes on public pages: canvas #F7F7F5, ink #24272D, muted copy #60656D, secondary surface #EEEEED, dark surface #1C1F24, controls #30353D. Slate blue #49617E is reserved for primary actions, active questions and focus; hover #354B66. Pale #E5E9EF supports emphasis on dark surfaces. Documentary photographs supply the dominant colour. Do not reintroduce green, terracotta or orange UI accents.
+
 ## Refined journal composition — current public direction
 
 The public pages now use open sections rather than rounded section containers. Cream is the dominant canvas; a pale sage #E6EBDF separates the documentary team story and supporting information. Photography uses 16px corners; actions use 12px, filters 10px, status labels 8px. No blanket pill treatment or card shadows. Home proceeds from a shorter film opening directly to the catalog, then a real team photograph and introduction, departures, visa help and application. Headlines outside the hero are quieter, 36–64px; card titles 28–40px. Motion is limited to media, image hover and control feedback, with reduced-motion support. Mobile support sections stack and itinerary images fit their text column. This direction supersedes older square-only rules and the rounded-section update below.
