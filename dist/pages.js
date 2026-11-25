@@ -2,6 +2,7 @@
   window.addEventListener('pagereveal',event=>{event.viewTransition?.ready.catch(()=>{})});
   const {escape:e,url,tours:readTours,calendar:readCalendar}=VisaCatalog;
   const page=document.body.dataset.page||'home';
+  if(page==='home'&&['#visas','#visa-directions','#korea','#japan','#schengen','#usa','#other'].includes(location.hash)){location.replace('/visas'+location.search+(location.hash==='#visas'?'':location.hash));return}
   const status=document.querySelector('#page-status');
   const toggle=document.querySelector('#nav-toggle'),nav=document.querySelector('.site-nav');
   const closeMenu=()=>{nav.classList.remove('is-open');toggle.setAttribute('aria-expanded','false')};
