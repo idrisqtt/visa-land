@@ -46,8 +46,9 @@
   const setMeta=(selector,attributes)=>{let element=document.head.querySelector(selector);if(!element){element=document.createElement(selector.startsWith('link')?'link':'meta');document.head.append(element)}Object.entries(attributes).forEach(([key,value])=>element.setAttribute(key,value))};
   const applySEO=seo=>{const canonical='https://www.gohaxo.kz'+seo.path,imageUrl=new URL(seo.image,'https://www.gohaxo.kz').href;document.title=seo.title;setMeta('meta[name="description"]',{name:'description',content:seo.description});setMeta('link[rel="canonical"]',{rel:'canonical',href:canonical});[['og:type','website'],['og:locale','ru_KZ'],['og:site_name','VISALAND'],['og:title',seo.title],['og:description',seo.description],['og:url',canonical],['og:image',imageUrl]].forEach(([property,content])=>setMeta(`meta[property="${property}"]`,{property,content}));[['twitter:card','summary_large_image'],['twitter:title',seo.title],['twitter:description',seo.description],['twitter:image',imageUrl]].forEach(([name,content])=>setMeta(`meta[name="${name}"]`,{name,content}))};
   applySEO(seoPages[page]||seoPages.home);
+  if(page==='visas')nav.querySelector('a[href="/visas"]')?.setAttribute('aria-current','page');
   let config={content:{},media:{},tours:[],faqs:[]};
-  try{if(window.visaSupabase){const request=window.visaSupabase.from('site_config').select('*').eq('id','main').maybeSingle();const result=await Promise.race([request,new Promise((_,reject)=>setTimeout(()=>reject(new Error('timeout')),6000))]);if(result.error)throw result.error;const d=result.data||{};config={content:d.content||{},media:d.media||{},tours:d.tours||[],faqs:d.faqs||[]}}}catch{if(status)status.textContent='Показаны сохранённые маршруты. Актуальные даты уточните в WhatsApp.'}
+  try{if(window.visaSupabase){const request=window.visaSupabase.from('site_config').select('*').eq('id','main').maybeSingle();const result=await Promise.race([request,new Promise((_,reject)=>setTimeout(()=>reject(new Error('timeout')),6000))]);if(result.error)throw result.error;const d=result.data||{};config={content:d.content||{},media:d.media||{},tours:d.tours||[],faqs:d.faqs||[],updatedAt:d.updated_at}}}catch{if(status)status.textContent='Показаны сохранённые маршруты. Актуальные даты уточните в WhatsApp.'}
   const catalog=readTours(config).filter(t=>t.published);
   const departures=readCalendar(config,catalog).filter(d=>d.published!==false&&catalog.some(t=>t.id===d.tourId));
   const link=t=>'/trips/'+encodeURIComponent(t.id);
@@ -88,6 +89,8 @@
     const peoplePhoto=intro.querySelector('img');if(config.media?.aboutImage)peoplePhoto.src=url(config.media.aboutImage);
     intro.classList.add('care-story');
     peopleCopy.innerHTML='<div class="care-step"><h2>Вы собираете чемодан.<br><span>Остальное мы берём на себя.</span></h2></div><div class="care-step care-roles"><div><h3>Вы</h3><p>Выбираете путешествие, делитесь пожеланиями и готовитесь к новым впечатлениям.</p></div><div><h3>Мы</h3><p>Продумываем маршрут и помогаем подготовиться к поездке. Все условия и состав пакета обсуждаем до бронирования.</p></div></div><div class="care-step care-personal"><p></p><a class="text-link" href="/#about">Познакомиться с командой</a></div>';
+    if(typeof content.introTitle==='string')peopleCopy.querySelector('h2').innerHTML=rich(content.introTitle);
+    if(typeof content.introCopy==='string')peopleCopy.querySelector('.care-roles>div:last-child p').textContent=content.introCopy;
     peopleCopy.querySelector('.care-personal p').textContent=content.aboutCopy||'Меня зовут Гаухар. Я организую путешествия и лично сопровождаю часть групп. Для меня важно создать комфортный, живой и запоминающийся маршрут.';
     const roles=peopleCopy.querySelector('.care-roles');[...roles.children].forEach(role=>{role.classList.add('care-step');roles.before(role)});roles.remove();
     const careSteps=[...peopleCopy.querySelectorAll('.care-step')];careSteps[0].classList.add('care-active');
@@ -181,6 +184,7 @@
   document.querySelectorAll('.button').forEach(button=>{let pressed=false,pressAnimation;button.addEventListener('pointerdown',event=>{if(button.disabled||event.button!==0)return;pressed=true;pressAnimation?.cancel();pressAnimation=move(button,[{scale:1},{scale:.97}],{duration:120,fill:'forwards'})});const release=()=>{if(!pressed)return;pressed=false;pressAnimation?.cancel();move(button,[{scale:.97},{scale:1}],{duration:300,easing:'cubic-bezier(.16,1,.3,1)'})};button.addEventListener('pointerup',release);button.addEventListener('pointerleave',release);button.addEventListener('pointercancel',release);button.addEventListener('blur',release)});
   motionPreference.addEventListener('change',()=>{if(motionPreference.matches)running.forEach(animation=>animation.cancel())});
   window.addEventListener('pagehide',()=>{observer.disconnect();catalogMotion.disconnect();running.forEach(animation=>animation.cancel())},{once:true});
+  window.VisaLive?.watch(config.updatedAt);
   // Restore deep links after the catalog and cover layout have been rendered.
   requestAnimationFrame(()=>requestAnimationFrame(scrollToSection));
   if(page==='home'){

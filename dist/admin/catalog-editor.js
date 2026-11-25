@@ -55,8 +55,9 @@ adminForm.onsubmit=async event=>{
   const faqFields=[...adminForm.querySelectorAll('[name^="faq."]')];const faqs=[];for(let i=0;i<faqFields.length/2;i++)faqs.push([String(fd.get(`faq.${i}.q`)||''),String(fd.get(`faq.${i}.a`)||'')]);
   content.catalogVersion='2';content.calendarData=JSON.stringify(calendarDraft);
   const {data:{user}}=await db.auth.getUser();if(!user)throw new Error('Сессия истекла. Войдите снова.');
-  const {error}=await db.from('site_config').upsert({id:'main',content,media,tours:draft,faqs,section_order:order,updated_at:new Date().toISOString(),updated_by:user.id});if(error)throw error;
-  activeConfig={content,media,tours:draft,faqs,sectionOrder:order};catalogDraft=draft;catalogFiles.forEach((_,preview)=>URL.revokeObjectURL(preview));catalogFiles.clear();mediaUploads={};catalogDirty=false;renderCatalogEditor();renderDepartureEditor();status.textContent='Сохранено. Каталог, страницы поездок и календарь обновлены.';
+  const {data:saved,error}=await db.from('site_config').upsert({id:'main',content,media,tours:draft,faqs,section_order:order,updated_at:new Date().toISOString(),updated_by:user.id}).select('updated_at').single();if(error)throw error;
+  if(!saved?.updated_at)throw new Error('Сервер не подтвердил сохранение');
+  activeConfig={content,media,tours:draft,faqs,sectionOrder:order};catalogDraft=draft;catalogFiles.forEach((_,preview)=>URL.revokeObjectURL(preview));catalogFiles.clear();mediaUploads={};catalogDirty=false;renderCatalogEditor();renderDepartureEditor();status.textContent='Сохранено и опубликовано. Открытые страницы сайта обновляются автоматически.';window.VisaLive?.publish(saved.updated_at);
  }catch(error){status.textContent='Не удалось сохранить: '+error.message+'. Изменения остались в редакторе.'}finally{submit.disabled=false;adminForm.inert=false}
 };
 // This replaces the destructive reset with a confirmation that explains its actual scope.
