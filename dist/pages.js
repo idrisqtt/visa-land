@@ -3,6 +3,37 @@
   const {escape:e,url,tours:readTours,calendar:readCalendar}=VisaCatalog;
   const page=document.body.dataset.page||'home';
   const status=document.querySelector('#page-status');
+  const toggle=document.querySelector('#nav-toggle'),nav=document.querySelector('.site-nav');
+  const closeMenu=()=>{nav.classList.remove('is-open');toggle.setAttribute('aria-expanded','false')};
+  toggle.onclick=()=>{const open=toggle.getAttribute('aria-expanded')!=='true';toggle.setAttribute('aria-expanded',String(open));nav.classList.toggle('is-open',open)};
+  nav.addEventListener('click',event=>{if(event.target.closest('a'))closeMenu()});
+  document.addEventListener('keydown',event=>{if(event.key==='Escape'&&toggle.getAttribute('aria-expanded')==='true'){closeMenu();toggle.focus()}});
+
+  // Section navigation works immediately, including while remote data is loading.
+  const scrollToSection=()=>{
+    if(page!=='home'||!location.hash)return;
+    let id;try{id=decodeURIComponent(location.hash.slice(1))}catch{return}
+    const target=document.getElementById(id);if(!target)return;
+    const accordion=target.closest('.visa-accordion');if(accordion)accordion.open=true;
+    const cover=document.querySelector('.home-opening');
+    const isCoveredCatalog=target.id==='trips'&&cover&&document.body.classList.contains('hero-cover-transition');
+    if(isCoveredCatalog)target.inert=false;
+    const top=isCoveredCatalog?cover.offsetHeight:target.getBoundingClientRect().top+scrollY-24;
+    window.scrollTo({top:Math.max(0,top),behavior:'instant'});
+    if(!target.hasAttribute('tabindex'))target.setAttribute('tabindex','-1');
+    target.focus({preventScroll:true});
+  };
+  document.addEventListener('click',event=>{
+    const anchor=event.target.closest('a[href]');if(!anchor||event.defaultPrevented||event.button!==0||event.metaKey||event.ctrlKey||event.shiftKey||event.altKey||anchor.hasAttribute('download')||(anchor.target&&anchor.target!=='_self'))return;
+    const destination=new URL(anchor.href,location.href);
+    if(page==='home'&&destination.origin===location.origin&&['/','/index.html'].includes(destination.pathname)&&destination.hash){
+      event.preventDefault();if(location.hash!==destination.hash)history.pushState(null,'',destination.hash);
+      closeMenu();scrollToSection();
+      nav.querySelectorAll('a').forEach(link=>{if(new URL(link.href).hash===destination.hash)link.setAttribute('aria-current','location');else link.removeAttribute('aria-current')});
+    }
+  });
+  window.addEventListener('hashchange',scrollToSection);
+
   const seoPages={
     home:{title:'Авторские туры в Японию и Корею из Алматы — VISALAND',description:'VISALAND — авторские путешествия по Японии и Южной Корее из Алматы. Небольшие группы, продуманные маршруты и визовое сопровождение.',path:'/',image:'/assets/media/hero-group-japan-ai.jpg'},
     trips:{title:'Авторские путешествия в Японию и Корею — VISALAND',description:'Групповые и индивидуальные туры VISALAND из Алматы: программы, даты и стоимость путешествий.',path:'/trips',image:'/assets/media/gallery-seoul-group.jpg'},
@@ -50,12 +81,12 @@
     intro.insertAdjacentHTML('afterbegin','<figure class="home-people"><img src="/assets/media/founder-group.jpg" alt="Гаухар и участники путешествия VISALAND" loading="lazy" decoding="async"><figcaption>Гаухар и команда VISALAND</figcaption></figure>');
     const peopleCopy=document.createElement('div');peopleCopy.className='home-people-copy';
     [...intro.children].filter(el=>!el.classList.contains('home-people')).forEach(el=>peopleCopy.appendChild(el));intro.appendChild(peopleCopy);
-    peopleCopy.insertAdjacentHTML('beforeend','<p data-content="aboutCopy"></p><a class="text-link" href="/about.html">Познакомиться с командой ↗</a>');
+    peopleCopy.insertAdjacentHTML('beforeend','<p data-content="aboutCopy"></p><a class="text-link" href="/#about">Познакомиться с командой ↗</a>');
     peopleCopy.querySelector('[data-content="aboutCopy"]').textContent=content.aboutCopy||'Меня зовут Гаухар. Я организую путешествия и лично сопровождаю часть групп. Вместе со мной работают групп-лидеры и местные специалисты.';
     intro.insertAdjacentHTML('afterend','<section class="travel-frames" aria-label="Моменты путешествий VISALAND"><div class="travel-frames-heading"><h2>Место для впечатлений.</h2><p>Локальные места, новые знакомства и время почувствовать страну.</p></div><div class="travel-frames-grid"><figure><img src="/assets/media/gallery-kimono.jpg" alt="Участницы поездки в кимоно" loading="lazy" decoding="async"><figcaption>Япония</figcaption></figure><figure><img src="/assets/media/gallery-seoul-group.jpg" alt="Участники путешествия в Сеуле" loading="lazy" decoding="async"><figcaption>Сеул</figcaption></figure><figure><img src="/assets/media/gallery-dinner.jpg" alt="Участники VISALAND за совместным ужином" loading="lazy" decoding="async"><figcaption>Вечер вместе</figcaption></figure></div></section>');
     const peoplePhoto=intro.querySelector('img');if(config.media?.aboutImage)peoplePhoto.src=url(config.media.aboutImage);
     intro.classList.add('care-story');
-    peopleCopy.innerHTML='<div class="care-step"><h2>Вы собираете чемодан.<br><span>Остальное мы берём на себя.</span></h2></div><div class="care-step care-roles"><div><h3>Вы</h3><p>Выбираете путешествие, делитесь пожеланиями и готовитесь к новым впечатлениям.</p></div><div><h3>Мы</h3><p>Продумываем маршрут и помогаем подготовиться к поездке. Все условия и состав пакета обсуждаем до бронирования.</p></div></div><div class="care-step care-personal"><p></p><a class="text-link" href="/about.html">Познакомиться с командой</a></div>';
+    peopleCopy.innerHTML='<div class="care-step"><h2>Вы собираете чемодан.<br><span>Остальное мы берём на себя.</span></h2></div><div class="care-step care-roles"><div><h3>Вы</h3><p>Выбираете путешествие, делитесь пожеланиями и готовитесь к новым впечатлениям.</p></div><div><h3>Мы</h3><p>Продумываем маршрут и помогаем подготовиться к поездке. Все условия и состав пакета обсуждаем до бронирования.</p></div></div><div class="care-step care-personal"><p></p><a class="text-link" href="/#about">Познакомиться с командой</a></div>';
     peopleCopy.querySelector('.care-personal p').textContent=content.aboutCopy||'Меня зовут Гаухар. Я организую путешествия и лично сопровождаю часть групп. Для меня важно создать комфортный, живой и запоминающийся маршрут.';
     const roles=peopleCopy.querySelector('.care-roles');[...roles.children].forEach(role=>{role.classList.add('care-step');roles.before(role)});roles.remove();
     const careSteps=[...peopleCopy.querySelectorAll('.care-step')];careSteps[0].classList.add('care-active');
@@ -71,8 +102,8 @@
     const requestedId=new URLSearchParams(location.search).get('id')||decodeURIComponent(location.pathname.match(/^\/trips\/([^/]+)\/?$/)?.[1]||'');
     const t=catalog.find(t=>t.id===requestedId);const main=document.querySelector('#trip-content');
     if(t)applySEO({title:t.title+' — авторский тур | VISALAND',description:(t.desc||`Авторский тур «${t.title}». ${t.route}.`).slice(0,160),path:'/trips/'+encodeURIComponent(t.id),image:t.image});
-    if(!t){document.title='Поездка не найдена — VISALAND';main.innerHTML='<section class="page-heading"><h1>Маршрут не найден</h1><p>Возможно, поездка перенесена или ещё готовится.</p><a class="button button-accent" href="/trips.html">Все путешествия</a></section>'}
-    else{document.title=t.title+' — VISALAND';const dates=departures.filter(d=>d.tourId===t.id),faqs=(config.faqs.length?config.faqs:VisaDefaults.faqs).slice(0,6);const itinerary=t.program.length?t.program.map((day,i)=>{const d=typeof day==='string'?{title:day,description:'',image:''}:day,hasDetails=Boolean(d.description||d.image);return hasDetails?`<details class="itinerary-day" ${i===0?'open':''}><summary><span>День ${i+1}</span><h3>${e(d.title)}</h3><span class="expand-mark" aria-hidden="true">+</span></summary>${d.description?`<p>${e(d.description)}</p>`:''}${d.image?image(d.image,d.title,'loading="lazy"'):''}</details>`:`<div class="itinerary-day itinerary-day-static"><span>День ${i+1}</span><h3>${e(d.title)}</h3></div>`}).join(''):'<p class="empty-state">Подробная программа готовится. Напишите нам — расскажем о логике маршрута и сроках публикации.</p>';main.innerHTML=`<section class="trip-opening"><div><a class="back-link" href="/trips.html">← Все путешествия</a><h1>${e(t.title)}</h1><p>${e(t.route)}</p><div class="trip-facts"><span>${e(t.days)}</span><span>${e(t.price)}</span><span>${e(t.status)}</span></div><a class="button button-accent" href="${whatsApp(t)}" target="_blank" rel="noopener">Обсудить этот маршрут ↗</a></div><div class="trip-cover">${image(t.image,t.title,'fetchpriority="high"')}</div></section><section class="trip-story"><h2>Ваше путешествие</h2><p>${e(t.desc)}</p></section><section class="itinerary section"><div class="section-head"><h2>День за днём</h2><p>Программа маршрута</p></div>${itinerary}<div class="trip-inline-cta"><p>Хотите уточнить темп, свободное время или конкретный день?</p><a class="text-link" href="${whatsApp(t)}" target="_blank" rel="noopener">Задать вопрос по маршруту ↗</a></div></section>${t.gallery.length?`<section class="trip-gallery section"><h2>В кадре</h2><div>${t.gallery.map((photo,i)=>image(typeof photo==='string'?photo:photo.url,photo.alt||t.title+' — фото '+(i+1),'loading="lazy"')).join('')}</div></section>`:''}<section class="trip-inclusions section"><div><h2>Включено</h2>${t.included.length?'<ul>'+t.included.map(v=>'<li>'+e(v)+'</li>').join('')+'</ul>':'<p>Точный состав пакета фиксируется в предложении до оплаты. Напишите нам, чтобы получить актуальные условия.</p>'}</div><div><h2>Оплачивается отдельно</h2>${t.excluded.length?'<ul>'+t.excluded.map(v=>'<li>'+e(v)+'</li>').join('')+'</ul>':'<p>Дополнительные расходы зависят от выбранного формата. Мы заранее перечислим их перед бронированием.</p>'}</div></section><section class="trip-support section"><div><h2>До поездки<br><span>всё будет понятно.</span></h2><p>Гаухар, групп-лидеры и местные специалисты помогают подготовиться к путешествию. Условия и окончательная сумма фиксируются до оплаты.</p><a class="button button-accent" href="${whatsApp(t)}" target="_blank" rel="noopener">Обсудить детали ↗</a></div><div class="trip-support-faq">${faqs.map(([q,a])=>`<details><summary>${e(q)}</summary><p>${e(a)}</p></details>`).join('')}</div></section><section class="section"><h2>Выберите дату</h2><div class="calendar-entries">${calendarList(dates)}</div></section>`}
+    if(!t){document.title='Поездка не найдена — VISALAND';main.innerHTML='<section class="page-heading"><h1>Маршрут не найден</h1><p>Возможно, поездка перенесена или ещё готовится.</p><a class="button button-accent" href="/#trips">Все путешествия</a></section>'}
+    else{document.title=t.title+' — VISALAND';const dates=departures.filter(d=>d.tourId===t.id),faqs=(config.faqs.length?config.faqs:VisaDefaults.faqs).slice(0,6);const itinerary=t.program.length?t.program.map((day,i)=>{const d=typeof day==='string'?{title:day,description:'',image:''}:day,hasDetails=Boolean(d.description||d.image);return hasDetails?`<details class="itinerary-day" ${i===0?'open':''}><summary><span>День ${i+1}</span><h3>${e(d.title)}</h3><span class="expand-mark" aria-hidden="true">+</span></summary>${d.description?`<p>${e(d.description)}</p>`:''}${d.image?image(d.image,d.title,'loading="lazy"'):''}</details>`:`<div class="itinerary-day itinerary-day-static"><span>День ${i+1}</span><h3>${e(d.title)}</h3></div>`}).join(''):'<p class="empty-state">Подробная программа готовится. Напишите нам — расскажем о логике маршрута и сроках публикации.</p>';main.innerHTML=`<section class="trip-opening"><div><a class="back-link" href="/#trips">← Все путешествия</a><h1>${e(t.title)}</h1><p>${e(t.route)}</p><div class="trip-facts"><span>${e(t.days)}</span><span>${e(t.price)}</span><span>${e(t.status)}</span></div><a class="button button-accent" href="${whatsApp(t)}" target="_blank" rel="noopener">Обсудить этот маршрут ↗</a></div><div class="trip-cover">${image(t.image,t.title,'fetchpriority="high"')}</div></section><section class="trip-story"><h2>Ваше путешествие</h2><p>${e(t.desc)}</p></section><section class="itinerary section"><div class="section-head"><h2>День за днём</h2><p>Программа маршрута</p></div>${itinerary}<div class="trip-inline-cta"><p>Хотите уточнить темп, свободное время или конкретный день?</p><a class="text-link" href="${whatsApp(t)}" target="_blank" rel="noopener">Задать вопрос по маршруту ↗</a></div></section>${t.gallery.length?`<section class="trip-gallery section"><h2>В кадре</h2><div>${t.gallery.map((photo,i)=>image(typeof photo==='string'?photo:photo.url,photo.alt||t.title+' — фото '+(i+1),'loading="lazy"')).join('')}</div></section>`:''}<section class="trip-inclusions section"><div><h2>Включено</h2>${t.included.length?'<ul>'+t.included.map(v=>'<li>'+e(v)+'</li>').join('')+'</ul>':'<p>Точный состав пакета фиксируется в предложении до оплаты. Напишите нам, чтобы получить актуальные условия.</p>'}</div><div><h2>Оплачивается отдельно</h2>${t.excluded.length?'<ul>'+t.excluded.map(v=>'<li>'+e(v)+'</li>').join('')+'</ul>':'<p>Дополнительные расходы зависят от выбранного формата. Мы заранее перечислим их перед бронированием.</p>'}</div></section><section class="trip-support section"><div><h2>До поездки<br><span>всё будет понятно.</span></h2><p>Гаухар, групп-лидеры и местные специалисты помогают подготовиться к путешествию. Условия и окончательная сумма фиксируются до оплаты.</p><a class="button button-accent" href="${whatsApp(t)}" target="_blank" rel="noopener">Обсудить детали ↗</a></div><div class="trip-support-faq">${faqs.map(([q,a])=>`<details><summary>${e(q)}</summary><p>${e(a)}</p></details>`).join('')}</div></section><section class="section"><h2>Выберите дату</h2><div class="calendar-entries">${calendarList(dates)}</div></section>`}
   }
   if(page==='trip'){
     const params=new URLSearchParams(location.search);
@@ -80,7 +111,7 @@
     const selected=departures.find(d=>d.id===params.get('departure')&&d.tourId===routeId);
     if(selected){const t=catalog.find(t=>t.id===selected.tourId);document.querySelector('.trip-opening')?.insertAdjacentHTML('afterend',`<section class="selected-departure" id="departure-request"><div><h2>Выбранный заезд</h2><p>${e(t.title)} · ${e(formatDeparture(selected))}</p><p>${e(selected.status)}${selected.places?' · '+e(selected.places):''}</p></div><a class="button button-accent" href="${whatsApp(t,selected)}" target="_blank" rel="noopener">Уточнить места в WhatsApp ↗</a></section>`);document.querySelector('#departure-request')?.scrollIntoView()}
   }
-  if(page==='about'){
+  if(page==='about'||page==='home'){
     const photo=document.querySelector('#about-image');if(config.media?.aboutImage)photo.src=url(config.media.aboutImage);
     const faq=document.querySelector('#public-faq');faq.innerHTML=(config.faqs.length?config.faqs:VisaDefaults.faqs).map(([q,a])=>`<details class="faq-row"><summary>${e(q)}</summary><p>${e(a)}</p></details>`).join('');
   }
@@ -149,6 +180,17 @@
   document.querySelectorAll('.button').forEach(button=>{let pressed=false,pressAnimation;button.addEventListener('pointerdown',event=>{if(button.disabled||event.button!==0)return;pressed=true;pressAnimation?.cancel();pressAnimation=move(button,[{scale:1},{scale:.97}],{duration:120,fill:'forwards'})});const release=()=>{if(!pressed)return;pressed=false;pressAnimation?.cancel();move(button,[{scale:.97},{scale:1}],{duration:300,easing:'cubic-bezier(.16,1,.3,1)'})};button.addEventListener('pointerup',release);button.addEventListener('pointerleave',release);button.addEventListener('pointercancel',release);button.addEventListener('blur',release)});
   motionPreference.addEventListener('change',()=>{if(motionPreference.matches)running.forEach(animation=>animation.cancel())});
   window.addEventListener('pagehide',()=>{observer.disconnect();catalogMotion.disconnect();running.forEach(animation=>animation.cancel())},{once:true});
-  document.querySelectorAll('.site-nav a').forEach(a=>{if(new URL(a.getAttribute('href'),location.origin).pathname.replace(/\.html$/,'')===location.pathname.replace(/\.html$/,''))a.setAttribute('aria-current','page')});
-  const toggle=document.querySelector('#nav-toggle'),nav=document.querySelector('.site-nav');toggle.onclick=()=>{const open=toggle.getAttribute('aria-expanded')!=='true';toggle.setAttribute('aria-expanded',String(open));nav.classList.toggle('is-open',open);if(open)move(nav,[{opacity:.5,transform:'translateY(-8px)'},{opacity:1,transform:'translateY(0)'}],{duration:300,easing:'cubic-bezier(.16,1,.3,1)'})};document.addEventListener('keydown',event=>{if(event.key==='Escape'){nav.classList.remove('is-open');toggle.setAttribute('aria-expanded','false')}});
+  // Restore deep links after the catalog and cover layout have been rendered.
+  requestAnimationFrame(()=>requestAnimationFrame(scrollToSection));
+  if(page==='home'){
+    const sectionLinks=[...nav.querySelectorAll('a')];
+    const sections=sectionLinks.map(a=>document.getElementById(new URL(a.href).hash.slice(1))).filter(Boolean);
+    const sectionObserver=new IntersectionObserver(entries=>{
+      const visible=entries.filter(entry=>entry.isIntersecting).sort((a,b)=>a.boundingClientRect.top-b.boundingClientRect.top)[0];
+      if(!visible)return;
+      sectionLinks.forEach(a=>{if(new URL(a.href).hash==='#'+visible.target.id)a.setAttribute('aria-current','location');else a.removeAttribute('aria-current')});
+    },{rootMargin:'-10% 0px -65% 0px',threshold:0});
+    sections.forEach(section=>sectionObserver.observe(section));
+    window.addEventListener('pagehide',()=>sectionObserver.disconnect(),{once:true});
+  }
 })();

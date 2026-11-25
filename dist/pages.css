@@ -163,3 +163,11 @@ body{scrollbar-color:#9298a2 var(--porcelain)}::selection{background:#e5e9ef;col
 @media(max-width:900px){.visa-help,.lead-section{grid-template-columns:1fr;gap:55px}.visa-help-photo{height:70vw}}
 @media(max-width:600px){.visa-help-photo{height:115vw}.lead-section{padding:75px 20px}.lead-section .lead-form{grid-template-columns:1fr}.lead-section .lead-form .wide{grid-column:1}.lead-section h2{font-size:42px}}
 .visa-help-photo{border-radius:var(--radius)}.visa-help-photo figcaption{border-radius:10px}.lead-section{border-radius:28px 28px 0 0;margin-inline:20px}.lead-section .lead-form input,.lead-section .lead-form select,.lead-section .lead-form textarea{border-radius:12px;background:#30353d;transition:border-color .25s,background .25s}.lead-section .lead-form input::placeholder,.lead-section .lead-form textarea::placeholder{color:#c8ccd3}.lead-section h2 span,.trip-support h2 span{color:#e5e9ef}.lead-section .button{color:#ffffff}.lead-section .lead-form label{text-transform:none;letter-spacing:0}.lead-section .consent input{accent-color:#e5e9ef}.lead-section .lead-form textarea{resize:vertical}.lead-section-copy p{color:#e5e9ef}@media(max-width:600px){.lead-section{margin-inline:10px;border-radius:22px 22px 0 0}}
+
+/* Shared sections of the single-page site. */
+#trips,#calendar,#visas,#visa-directions,#about,#faq,.visa-accordion{scroll-margin-top:24px}
+.about-opening h2{font-size:clamp(48px,6vw,90px);margin-bottom:40px}
+.visa-page-opening h2{font-size:clamp(52px,7.8vw,96px);line-height:.98}
+.visa-direction-nav{top:24px}
+.site-nav a[aria-current="location"]{text-decoration:underline;text-underline-offset:6px}
+@media(max-width:600px){.about-opening h2{font-size:48px}.visa-page-opening h2{font-size:60px}}
