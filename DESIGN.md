@@ -1,236 +1,284 @@
 ---
 name: Visa Land
-description: Modern travel editorial for small-group journeys from Almaty
+description: Photographic travel editorial with quiet paper surfaces and restrained red actions
 colors:
-  porcelain: "#F5F3ED"
-  matcha-leaf: "#A5B88A"
-  graphite: "#292B29"
-  tomato-red: "#D85B49"
-  muted-graphite: "#656A64"
-  night-graphite: "#1B1D1B"
-  white: "#FFFFFF"
+  paper: "#f7f7f5"
+  ink: "#252728"
+  muted: "#606363"
+  line: "#dededb"
+  accent: "#b84330"
+  accent-hover: "#973523"
+  tile: "#eeeeeb"
+  tab: "#e6e6e3"
+  white: "#ffffff"
+  form-panel: "#252a2bed"
+  admin-line: "#d9dcda"
+  admin-field-border: "#bfc5c1"
+  admin-secondary: "#e9ece7"
+  admin-error: "#9b2923"
 typography:
   display:
     fontFamily: "Manrope, Arial, sans-serif"
-    fontSize: "clamp(58px, 8.8vw, 140px)"
-    fontWeight: 800
-    lineHeight: 0.78
-    letterSpacing: "-0.04em"
+    fontSize: "clamp(44px, 5.8vw, 84px)"
+    fontWeight: 500
+    lineHeight: 1.06
+    letterSpacing: "-0.035em"
   headline:
     fontFamily: "Manrope, Arial, sans-serif"
-    fontSize: "clamp(44px, 6.6vw, 104px)"
-    fontWeight: 700
-    lineHeight: 0.9
-    letterSpacing: "-0.04em"
+    fontSize: "clamp(30px, 3.6vw, 54px)"
+    fontWeight: 500
+    lineHeight: 1.12
+    letterSpacing: "-0.035em"
   title:
     fontFamily: "Manrope, Arial, sans-serif"
-    fontSize: "34px"
-    fontWeight: 700
-    lineHeight: 1
-    letterSpacing: "-0.04em"
+    fontSize: "clamp(27px, 3vw, 42px)"
+    fontWeight: 500
+    lineHeight: 1.1
+    letterSpacing: "-0.035em"
   body:
     fontFamily: "Manrope, Arial, sans-serif"
-    fontSize: "15px"
+    fontSize: "16px"
     fontWeight: 400
-    lineHeight: 1.7
+    lineHeight: 1.65
   label:
     fontFamily: "Manrope, Arial, sans-serif"
-    fontSize: "11px"
+    fontSize: "14px"
+    fontWeight: 600
+    lineHeight: 1.45
+  admin-heading:
+    fontFamily: "Manrope, Arial, sans-serif"
+    fontSize: "28px"
     fontWeight: 700
-    lineHeight: 1.2
-    letterSpacing: "0.1em"
+    letterSpacing: "-0.03em"
+  admin-section:
+    fontFamily: "Manrope, Arial, sans-serif"
+    fontSize: "26px"
+    fontWeight: 700
+    lineHeight: 1.25
+    letterSpacing: "-0.025em"
+  admin-field:
+    fontFamily: "Manrope, Arial, sans-serif"
+    fontSize: "16px"
+    fontWeight: 400
+    lineHeight: 1.5
 rounded:
-  square: "0px"
+  tab-edge: "5px"
+  control: "6px"
+  detail-photo: "8px"
+  card: "12px"
+  dialog: "14px"
+  circle: "50%"
+  admin-frame: "10px"
 spacing:
   xs: "8px"
-  sm: "16px"
-  md: "20px"
-  lg: "28px"
-  section-mobile: "84px"
-  section-desktop: "130px"
+  sm: "12px"
+  md: "16px"
+  rail: "18px"
+  grid: "20px"
+  lg: "24px"
+  panel: "28px"
+  xl: "32px"
+  section-mobile: "56px"
+  section-desktop: "84px"
 components:
   button-accent:
-    backgroundColor: "{colors.tomato-red}"
-    textColor: "{colors.graphite}"
+    backgroundColor: "{colors.accent}"
+    textColor: "{colors.white}"
     typography: "{typography.label}"
-    rounded: "{rounded.square}"
-    padding: "17px 22px"
+    rounded: "{rounded.control}"
+    padding: "12px 24px"
+    height: "46px"
+  button-accent-hover:
+    backgroundColor: "{colors.accent-hover}"
   button-outline:
-    backgroundColor: "transparent"
-    textColor: "{colors.porcelain}"
+    backgroundColor: "#ffffff14"
+    textColor: "{colors.white}"
     typography: "{typography.label}"
-    rounded: "{rounded.square}"
-    padding: "12px 18px"
-  card-trip:
-    backgroundColor: "{colors.porcelain}"
-    textColor: "{colors.graphite}"
-    rounded: "{rounded.square}"
-    padding: "24px"
+    rounded: "{rounded.control}"
+    padding: "12px 24px"
+  button-form:
+    backgroundColor: "{colors.paper}"
+    textColor: "{colors.ink}"
+    typography: "{typography.label}"
+    rounded: "{rounded.control}"
+    padding: "12px 24px"
+  tab-selected:
+    backgroundColor: "{colors.accent}"
+    textColor: "{colors.white}"
+    padding: "14px 18px"
+  card-format:
+    backgroundColor: "{colors.tile}"
+    textColor: "{colors.ink}"
+    rounded: "{rounded.card}"
   field-dark:
-    backgroundColor: "transparent"
-    textColor: "{colors.porcelain}"
-    typography: "{typography.body}"
-    rounded: "{rounded.square}"
-    padding: "15px"
+    backgroundColor: "#ffffff0a"
+    textColor: "{colors.white}"
+    rounded: "{rounded.control}"
+    padding: "12px"
+  dialog-tour:
+    backgroundColor: "{colors.paper}"
+    textColor: "{colors.ink}"
+    rounded: "{rounded.dialog}"
+    width: "min(1000px, calc(100% - 48px))"
+  admin-button:
+    backgroundColor: "{colors.accent}"
+    textColor: "{colors.white}"
+    rounded: "{rounded.control}"
+    padding: "11px 18px"
+  admin-field:
+    backgroundColor: "{colors.white}"
+    textColor: "{colors.ink}"
+    typography: "{typography.admin-field}"
+    rounded: "{rounded.control}"
+    padding: "11px 12px"
 ---
 
 # Design System: Visa Land
-
-## Current palette — neutral minimalism
-
-Supersedes prior green and terracotta palettes on public pages: canvas #F7F7F5, ink #24272D, muted copy #60656D, secondary surface #EEEEED, dark surface #1C1F24, controls #30353D. Slate blue #49617E is reserved for primary actions, active questions and focus; hover #354B66. Pale #E5E9EF supports emphasis on dark surfaces. Documentary photographs supply the dominant colour. Do not reintroduce green, terracotta or orange UI accents.
-
-## Refined journal composition — current public direction
-
-The public pages now use open sections rather than rounded section containers. Cream is the dominant canvas; a pale sage #E6EBDF separates the documentary team story and supporting information. Photography uses 16px corners; actions use 12px, filters 10px, status labels 8px. No blanket pill treatment or card shadows. Home proceeds from a shorter film opening directly to the catalog, then a real team photograph and introduction, departures, visa help and application. Headlines outside the hero are quieter, 36–64px; card titles 28–40px. Motion is limited to media, image hover and control feedback, with reduced-motion support. Mobile support sections stack and itinerary images fit their text column. This direction supersedes older square-only rules and the rounded-section update below.
-
-## November 2026 — user-approved soft direction
-
-This update supersedes the square-corner and flat-only rules below for all public pages. Warm paper #FAF7F0, forest ink #243C34, sage #DCE5D3 and terracotta #B9533E replace the previous public palette. Supporting surfaces: #FFFDF8, dark forest #1C302A, dark fields #2C483E; muted text #56675D. Primary buttons use warm white text. Cards and photos use 16px corners, fields 12px, broad sections 22–32px, and small controls pill shapes. Hover elevation is a subtle downward soft shadow; movement uses cubic-bezier(.16,1,.3,1), 250–450ms, with reduced-motion overrides. Documentary imagery, existing content and booking behavior are preserved. Public stylesheet: dist/pages.css.
-
-## Multipage extension — November 2026
-
-The active public surface is `pages.css`, layered over shared tokens in `styles.css`. It uses independent home, catalog, trip, calendar and about routes. Display type is capped at 96px with 0.98 line height; section titles use `clamp(36px, 5vw, 76px)`. Journey cards are links with 440px desktop photos and a two-column grid, stacking at 600px. Calendar entries link to a trip and keep dates/statuses together. The authenticated editor uses dense labelled fields, collapsible journeys, separate departure rows and a persistent save bar.
-
-Motion now expresses navigation and choice: native cross-document transitions and filter transitions, a 700ms cover reveal, and 180ms editor expansion feedback. No staggered section entrances. Spatial motion respects reduced-motion, and background video pauses when invisible.
 
 ## Overview
 
 **Creative North Star: "The Living Travel Journal"**
 
-Visa Land is a calm, code-first travel editorial: large grotesk headlines, documentary trip photography, generous air, and a strict grid of fine rules. It should feel like a contemporary journal made by people who were actually there—not a glossy booking engine or a catalogue of tourism clichés.
+Visa Land uses neutral paper, medium-weight Manrope, documentary travel imagery, and restrained red actions. Photography carries the atmosphere; quiet surfaces and compact controls keep the travel decision readable.
 
-The system moves between Porcelain openness, Matcha warmth, and Graphite depth, with Tomato Red reserved for decisive action. Light and bold Manrope weights create the expressive contrast. On mobile, the hierarchy compresses into a direct path from Instagram arrival, through trips and dates, to a WhatsApp conversation.
+The public experience is one continuous page with a founder introduction, split photo/text format tiles, a photographic departure rail, a passport banner, and an image-backed application form. Tour details open in a native dialog.
 
 **Key Characteristics:**
 
-- Oversized, tightly set grotesk display type with light-weight phrases inside bold statements.
-- Documentary photography shown at generous scale with factual, compact captions.
-- Square forms and one-pixel borders that make the page feel composed rather than decorated.
-- Flat color fields in Porcelain, Matcha Leaf, and Graphite; Tomato Red marks action.
-- One cinematic hero drift, restrained image motion, and a complete reduced-motion fallback.
+- Neutral paper and dark ink with red reserved for selection and action.
+- Medium-weight, tightly tracked headings with readable supporting copy.
+- Soft rectangular photographs, flat surfaces, and fine dividers.
+- Restrained state feedback and explicit control over hero video.
 
 ## Colors
 
-The palette combines quiet paper, botanical warmth, ink-dark structure, and one human red accent.
+The current palette is neutral paper and ink with a restrained red accent. Frontmatter is normative; public styling comes from `dist/landing.css`, replacing earlier `pages.css` directions.
 
 ### Primary
 
-- **Tomato Red:** Use for the principal conversion action, modal close control, text selection, caret, scrollbar, and light-surface focus outline. Its rarity gives it urgency.
-
-### Secondary
-
-- **Matcha Leaf:** Use for broad editorial bands, emphasized phrases on dark photography, proof strips, and dark-surface focus outlines.
+- **Travel Red (accent):** Selected format tabs, primary tour actions, open accordion summaries, hover links, carets, and visible focus.
+- **Deep Travel Red (accent-hover):** Primary action hover feedback.
 
 ### Neutral
 
-- **Porcelain:** The default page canvas, card surface, caption ground, and text color over Graphite or imagery.
-- **Graphite:** The default copy color, structural border, dark editorial section, and primary high-contrast ground.
-- **Muted Graphite:** Secondary metadata, routes, and supporting information on Porcelain.
-- **Night Graphite:** The footer ground and deepest tonal endpoint.
-- **White:** Reserved for legibility over photographic modal imagery and legacy high-contrast text contexts.
+- **Paper:** Page, dialog, footer, and light application submit button.
+- **Ink:** Main text and light-surface controls.
+- **Muted:** Supporting copy, itinerary text, and metadata.
+- **Line:** Fine dividers and quiet control borders.
+- **Tile / Tab:** Tonal backing for format tiles and unselected format controls.
+- **White:** Text and controls over imagery.
+- **Form Panel:** Translucent dark field behind the application inputs.
 
-### Named Rules
-
-**The Four-Ink Rule.** Build every major composition from Porcelain, Matcha Leaf, Graphite, and Tomato Red; additional neutrals may only support hierarchy.
-
-**The Tomato Means Action Rule.** Do not turn Tomato Red into a decorative field. It identifies an action, focus, or selection.
+**The Restrained Red Rule.** Red identifies action, selection, or focus; photography supplies the page's broader color.
 
 ## Typography
 
-**Display Font:** Manrope (with Arial and sans-serif fallbacks)  
-**Body Font:** Manrope (with Arial and sans-serif fallbacks)
+**Display Font:** Manrope, with Arial and sans-serif fallbacks.
+**Body Font:** Manrope, with Arial and sans-serif fallbacks.
 
-**Character:** A single modern grotesk gains range through extreme scale and deliberate weight contrast. Tight bold headlines supply authority; light inset phrases bring softness and human cadence.
+Use medium-weight headings with tight tracking; inline heading spans step down to regular weight. Body copy has generous leading. Labels and actions use sentence case without forced uppercase tracking.
 
-### Hierarchy
-
-- **Display:** Extra bold, tightly tracked, compressed line height. Use only for the opening statement; embedded phrases may drop to light weight and take Matcha Leaf.
-- **Headline:** Bold, tightly tracked, near-solid line height. Use for section theses rather than descriptive labels.
-- **Title:** Bold and compact. Use for tour names and other card-level destinations.
-- **Body:** Regular weight with open leading. Keep explanatory copy in compact columns, generally no wider than about 680px.
-- **Label:** Small, bold, widely tracked, and usually uppercase. Use for metadata, captions, statuses, and navigation cues.
-
-### Named Rules
-
-**The Weight-Shift Rule.** Create expression inside a headline by changing weight before introducing another font, effect, or ornament.
-
-**The Scale Before Decoration Rule.** Headlines earn presence through size, line breaks, and contrast—not shadows, outlines, or gradients on type.
+- **Display:** Hero statement; mobile uses `clamp(38px, 8.5vw, 58px)`.
+- **Headline:** Main section headings; format heading uses `clamp(26px, 3vw, 40px)`, visa banner up to 58px.
+- **Title:** Split format tiles; departure titles use 28px and 1.14 line height.
+- **Body:** General prose; supporting tile and mobile hero copy use 15px. Format descriptions stop at 74ch; hero copy at 48ch.
+- **Label:** Compact actions; navigation uses 14px regular weight, with 13px metadata where appropriate.
 
 ## Layout
 
-Desktop sections use broad vertical spacing and a 4vw horizontal inset. The editorial grid alternates asymmetrical two-column stories, three-card travel grids, ruled calendar rows, and image-led splits. One-pixel borders and narrow gaps make related elements read as a system.
+The page order is hero (`#home`), founder introduction (`#about`), formats (`#trips`), calendar (`#calendar`), visa (`#visas`), application (`#contact`). The header links to the primary travel and application anchors. Program, gallery, inclusions, and tour FAQ belong inside the tour dialog.
 
-At 900px, major two-column stories stack, trip cards move to two columns, and navigation becomes a full-screen Graphite menu. At 600px, sections use a 20px inset and 84px vertical padding; trip cards become an 85vw horizontal snap rail, decorative hero annotations disappear, galleries reduce to the strongest image, and forms become one column. The mobile sequence must keep trips, dates, and the WhatsApp handoff easy to scan after an Instagram visit.
+The main shell and header cap at 1440px. Desktop sections use 5vw horizontal insets and 84px top spacing; the hero has a 24px outer inset. At 1500px and wider, general sections and hero content use 72px horizontal padding. The full hero uses an automatic height with minimum `max(570px, min(76svh, 820px))`; compact mode uses minimum `max(460px, 58svh)`. Long headings and copy grow the hero instead of being clipped. On mobile, full mode has minimum `max(570px, calc(86svh - 68px))`; compact mode has a 500px minimum.
 
-**The Border-Led Grid Rule.** Use fine rules and alignment—not floating rounded containers—to define groups, rows, and transitions.
+Format tiles use a `.85fr / 1.4fr` copy/photo split and 20px gaps. The calendar shows three photo cards with 18px gaps, two at 1000px and below. The visa directory and application use two columns. Form fields use a two-column grid with full-width rows for supporting controls.
+
+At 700px and below, navigation becomes a paper dropdown beneath the 68px header; content stacks, format photos move above copy at 230px height, and calendar cards occupy 82% of the rail with 12px gaps. General sections use 20px horizontal insets and 56px top spacing. Hero outer insets become 12px, its content aligns low, and the caption disappears. Forms become one column with 16px input text. The dialog narrows to viewport minus 20px, grows to at most 94svh, and stacks its booking controls. Hero media independently switches mobile sources at 600px.
+
+The admin operation surface shares the 1440px shell, with 36px desktop side padding, 24px at 1000px and below, and 16px at 700px and below. Panels use 32px top padding, two-column field grids with 18px gaps, and three-column media grids (two at 1000px, one at 700px). All field grids stack on mobile. Horizontally scrolling tabs remain available at narrow widths; the dark save bar stays sticky at the bottom and wraps its status above actions.
 
 ## Elevation & Depth
 
-The system is flat by default and uses no box shadows. Depth comes from full-bleed documentary photography, tonal field changes, overlays on imagery, and physical hover movement. The hero alone receives a layered cinematic shade to protect typography over video.
+Surfaces have no authored box shadows. Depth comes from photography, dark readability overlays, translucent form panels, and the native dialog backdrop. The departure image alone scales gently on hover; the card itself stays in place. The dialog's booking bar remains sticky at the bottom while details scroll.
 
-**The Flat-by-Default Rule.** Do not add ambient shadows to cards, navigation, fields, or modals; use borders, color, and overlap instead.
+The admin uses the same flat approach: white media and login panels sit against paper with fine borders. Preview frames and the dark sticky save bar establish working context without shadows.
 
 ## Shapes
 
-Forms are square and architectural. Buttons, fields, cards, tabs, labels, and the modal use zero-radius corners. Fine one-pixel borders create the recurring silhouette, while photographs remain rectangular and crop edge-to-edge.
-
-**The No Soft Corners Rule.** Rounded pills and generic soft cards do not belong in this system; a status may be compact, but its geometry remains square.
+Use soft rectangles: controls and fields use the control radius, main tiles and image-backed sections the card radius, and dialog photos the detail-photo radius. The hero has 2px top corners and 14px bottom corners. The desktop dialog uses the dialog radius, dropping to the card radius on mobile. Circular calendar arrows and dialog close controls remain compact; segmented tabs round only their outside corners.
 
 ## Components
 
+### Admin Typography and Tokens
+
+The operation surface keeps fixed Manrope sizes instead of travel display scaling: page title 28px (23px on mobile), panel heading 26px (24px on mobile), subheading 19px, field text 16px, field labels and actions 14px, and hints 13px. Paper, ink, accent, and muted text are shared with the landing page. Admin-specific line, field-border, secondary-surface, and error tokens support dense editing. Admin controls have at least 44px targets; standard fields have a 46px minimum height. Focus uses the accent outline with a 3px offset. Invalid fields add a red border and pale error background.
+
 ### Buttons
 
-- **Shape:** Square, horizontally composed, and wide enough to pair a label with the custom line-arrow.
-- **Primary:** Tomato Red field with Graphite text, label typography, and 17px × 22px padding. On mobile it spans the available width.
-- **Hover / Focus:** Lift by 3px on hover; use a 3px Tomato Red outline on light surfaces and Matcha Leaf on dark surfaces, offset by 4px.
-- **Outline:** Transparent with a one-pixel current-color border, used for the compact desktop WhatsApp action.
+Red filled buttons use white text; outline buttons use a translucent white fill and border over hero or visa imagery. The application submit uses paper with ink text. Buttons have a 46px minimum height and 200ms color feedback. Disabled buttons retain their position with 35% opacity. Global keyboard focus is a 3px accent outline offset by 5px.
 
-### Tabs and Status Labels
+### Founder Introduction
 
-- **Style:** Tabs sit directly on the Matcha field above a Graphite rule. Inactive tabs use reduced opacity; the active tab becomes fully opaque and bold.
-- **Status:** A small uppercase label sits directly on photography using a Porcelain rectangular backing.
+Immediately after the hero, a paper-backed split introduces Gauhar Bekpayeva with a short bio on the left and a documentary group photograph on the right. Columns are equal, separated by 4%, with a 24px top margin and 5vw outer insets. The heading uses `clamp(38px, 4.3vw, 62px)` at weight 600 and 1.02 line height; the image is 360px tall with card-radius corners. At 700px and below, copy precedes the 280px photograph in one column with a 24px gap and 20px insets. The bio and photo retain their admin content hooks; the default photograph is `assets/media/founder-group.jpg`.
 
-### Cards / Containers
+### Format Tabs and Tiles
 
-- **Corner Style:** Square.
-- **Background:** Trip cards use Porcelain inside the Matcha travel section.
-- **Shadow Strategy:** No shadow; hover lifts the whole card by 8px.
-- **Border:** Internal price metadata is separated by a fine muted rule.
-- **Internal Padding:** Card content uses 24px.
+Three equal-width tabs form a centered segmented control, up to 850px wide. Selected tabs are red; inactive tabs are neutral gray and darken on hover. Arrow keys, Home, and End move selection. Below them, a category description precedes split copy/photo tiles; each tile's detail action opens the tour dialog.
+
+### Departure Calendar
+
+Photographic buttons carry date, trip name, duration, and availability over a bottom gradient. Cards have a 420px desktop minimum height and 380px mobile minimum height. Horizontal snapping and circular previous/next controls support browsing; arrows disable at rail boundaries. Photo hover scales to 1.035 over 500ms.
 
 ### Inputs / Fields
 
-- **Style:** Transparent fields on Graphite with a one-pixel translucent Porcelain border and 15px padding.
-- **Focus:** Border shifts to Matcha Leaf, supported by the global visible focus outline.
-- **Structure:** Labels are compact uppercase metadata; related fields form a two-column grid on desktop and one column on mobile.
+Visible labels sit above translucent dark fields with white text, fine white borders, and control-radius corners. Fields have a 46px minimum height. Consent uses a native checkbox with the red accent. Submission reports pending, success, or error inline and offers WhatsApp after a failure.
 
 ### Navigation
 
-The fixed desktop header is transparent and Porcelain over the hero, then condenses onto an almost-opaque Porcelain field with Graphite text after scrolling. Links use a fine animated underline. Below 900px, a two-line menu control opens a full-screen Graphite navigation panel with large text.
+The header sits in normal flow above the hero on paper. The wordmark is bold; navigation is compact and dark. Links become red on hover. The desktop WhatsApp action disappears at 1000px; the mobile menu toggles at 700px, closes after anchor navigation, and supports Escape.
 
-### Trip Calendar
+### Visa Banner and Accordions
 
-Months and departures form a ruled editorial ledger. Each row aligns date, trip name, status, and arrow; hover introduces a white tonal shift rather than a shadow. On small screens, status is omitted to preserve the date-and-trip decision path.
+A passport photograph sits beneath a directional dark overlay and white copy. Below, introductory text pairs with ruled country accordions. Open summaries turn red and their plus mark becomes a minus. Fine rules organize service details.
+
+### Tour Dialog
+
+A native modal dialog contains an image cover, facts, day-by-day program, gallery, inclusions, exclusions, FAQ, and sticky booking action. It caps at 1000px width and 90svh on desktop. Close button, Escape, and backdrop clicks dismiss it; focus returns to the trigger. Booking selects the tour and departure in the application before closing the dialog.
 
 ### Hero Media
 
-The hero uses real trip video with a documentary poster fallback and a slow 18-second drift. A left-to-right and bottom-up Graphite shade protects the display statement. All authored animation is disabled under `prefers-reduced-motion`.
+Default video is `assets/media/torii-loop.mp4`; the real-trip poster is `assets/media/hero-group-japan.jpg`. Saved admin desktop/mobile media and positioning override defaults. The top-right pause/resume control is visible for video unless reduced motion applies. Playback pauses when offscreen, when the document is hidden, on manual pause, and under reduced motion. Photo mode and failed playback retain the poster. No authored cinematic drift is applied. Reduced motion also disables CSS transitions, smooth scrolling, and departure-image hover scaling.
+
+### Admin Workspace
+
+The authenticated editor exposes eight working sections in order: hero, texts and links, photographs, tours, calendar, tour FAQ, draft preview, and leads. Tabs use selected state, a red bottom rule, roving keyboard focus, and Arrow/Home/End navigation. Open content groups use native disclosure rows with plus/minus markers. Tour editors group program days, gallery, inclusions, and publication controls; calendar entries are separate records associated with a tour. Tour FAQ appears in public tour dialogs.
+
+Text and attribute editing follows the explicit shared `dist/site-content.js` schema (180 fields and seven media slots), grouped by page section and searchable by labels and current values. Heading fields accept Enter for line breaks; rendering preserves only safe rich content. Preview editing targets durable field keys and declared media bindings, never positional `nth-child` selectors. Alt-click in the desktop preview locates the matching editor field; mobile users work through the editor sections.
+
+### Admin Hero and Media
+
+Photo/video mode, hero text, shade, and full/compact height are shared across devices. Desktop and mobile photo/video sources and horizontal/vertical crop coordinates are independent. Missing mobile media falls back to the desktop source for that media type. Media cards show a local preview, URL field, file chooser, status, and reset/fallback action. JPEG, PNG, and WebP images accept up to 5 MB; MP4 and WebM videos accept up to 40 MB. Hero uploads validate format, size, and browser decoding before replacing the staged selection.
+
+### Draft Preview and Publication
+
+Preview iframes render the actual landing page with draft content and working tour interactions; draft application forms do not send leads. Desktop preview uses an internal viewport at least 1200px wide and mobile uses 390px. `fitPreviewFrame` scales either viewport to the host width, preserving true desktop composition even when the editor runs on a phone. The hero preview shares this fitting behavior and allows content height to grow.
+
+The sticky save bar reports unsaved, pending, failed, and confirmed states. Files are staged locally until publication; copying or deleting a tour preserves staged media while another tour still references it. Validation opens the relevant editor section and focuses its field. Publication success requires a server-confirmed save, then updates previews and the published-page signal. Authentication or initial-load failures prevent saving defaults over published data. Failed publication retains the current editor draft and file selections for retry; this is an in-session draft, not a promise of persistence after closing the page. Reset uses a confirmation dialog. Existing authentication and storage policies remain the authority for writes.
 
 ## Do's and Don'ts
 
 ### Do:
 
-- **Do** use real Visa Land trip photography and factual captions.
-- **Do** preserve strong light/bold contrast inside oversized headlines.
-- **Do** organize content with one-pixel borders, alignment, and decisive color fields.
-- **Do** keep the mobile journey short: understand the offer, choose a trip or date, continue in WhatsApp.
-- **Do** reserve cinematic movement for the hero and keep all other motion subordinate.
+- Do use the current neutral paper palette and restrained red actions.
+- Do keep the six-section sequence and open tour details in the dialog.
+- Do retain readable photographic overlays and visible keyboard focus.
+- Do honor saved hero media, pause controls, and reduced-motion preferences.
+- Do preserve legible 16px admin fields, 44px minimum control targets, and visible save status.
+- Do keep device-specific hero media separate from shared text, shade, and height settings.
 
 ### Don't:
 
-- **Don't** introduce rounded cards, pill buttons, soft shadows, glassmorphism, or generic booking-widget styling.
-- **Don't** use Tomato Red as ambient decoration or on large background areas.
-- **Don't** replace documentary imagery with stock travel clichés or invented social proof.
-- **Don't** add competing display fonts, illustrative icons, or ornamental gradients.
-- **Don't** let desktop-only annotations or dense metadata obstruct the mobile conversion path.
+- Don't restore obsolete green, terracotta, slate-blue, or multipage styling rules.
+- Don't add ambient card shadows, oversized pill controls, or competing display fonts.
+- Don't move tour program, gallery, inclusions, or FAQ into separate main-page sections.
+- Don't force video playback when reduced motion, manual pause, or page visibility stops it.
+- Don't substitute a narrow layout for desktop preview or discard drafts after failed publication.

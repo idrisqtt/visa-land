@@ -1,17 +1,27 @@
+/* Same-origin, draft-only preview. Editing uses durable field keys rather than DOM positions. */
 (() => {
- const showFailure=message=>{const status=document.querySelector('#save-status');if(status)status.textContent='Ошибка редактора: '+message;const form=document.querySelector('#editor-form');if(form){form.inert=false;const submit=form.querySelector('[type="submit"]');if(submit)submit.disabled=false}};
- window.addEventListener('error',event=>showFailure(event.message));
- window.addEventListener('unhandledrejection',event=>showFailure(event.reason?.message||String(event.reason)));
- const tab=document.createElement('button');tab.type='button';tab.className='tab';tab.dataset.tab='visual';tab.textContent='Все страницы';tab.setAttribute('role','tab');document.querySelector('.dashboard nav').append(tab);tab.onclick=()=>activateAdminTab(tab);
- const panel=document.createElement('section');panel.className='panel';panel.dataset.panel='visual';panel.innerHTML='<div class="panel-head"><h2>Визуальный редактор</h2><p>Откройте страницу и нажмите на текст или фото. Для программы тура используйте вкладку «Путешествия»: там отдельно редактируются название, описание и фото каждого дня.</p></div><label class="field"><span>Страница</span><select id="visual-page"><option value="/">Главная</option><option value="/#trips">Путешествия</option><option value="/#calendar">Календарь</option><option value="/#about">О нас</option><option value="/visas">Визы</option></select></label><button type="button" id="visual-open">Открыть страницу</button><div id="visual-controls" hidden><label class="field"><span id="visual-label">Текст</span><textarea id="visual-value" rows="5"></textarea></label><label class="field"><span>Или загрузить изображение · до 5 МБ</span><input id="visual-file" type="file" accept="image/jpeg,image/png,image/webp"></label><button type="button" id="visual-apply">Применить в черновик</button><p id="visual-status" role="status"></p></div><iframe id="visual-frame" title="Предпросмотр страницы" style="width:100%;height:700px;border:1px solid #ccc;margin-top:24px;background:white"></iframe><textarea name="content.visualOverrides" id="visual-overrides" hidden></textarea>';
- adminForm.insertBefore(panel,document.querySelector('.save-bar'));
- const frame=panel.querySelector('iframe'),select=panel.querySelector('select'),stored=panel.querySelector('#visual-overrides');let selected=null,overrides={};
- document.addEventListener('visa-config-saved',()=>{selected=null;panel.querySelector('#visual-controls').hidden=true;panel.querySelector('#visual-status').textContent='Изменения опубликованы.'});
- const original=renderEditor;renderEditor=function(){original();try{overrides=JSON.parse(activeConfig.content?.visualOverrides||'{}')}catch{overrides={}}stored.value=JSON.stringify(overrides);select.querySelectorAll('[data-tour]').forEach(o=>o.remove());catalogDraft.forEach(t=>{const option=document.createElement('option');option.dataset.tour='';option.value='/trips/'+encodeURIComponent(t.id);option.textContent=t.title;select.append(option)})};
- const selector=el=>{const parts=[];while(el&&el.tagName!=='BODY'){parts.unshift(el.tagName.toLowerCase()+':nth-child('+([...el.parentElement.children].indexOf(el)+1)+')');el=el.parentElement}return 'body>'+parts.join('>')};
- panel.querySelector('#visual-open').onclick=()=>{selected=null;panel.querySelector('#visual-controls').hidden=true;frame.src=select.value};
- frame.onload=()=>{const doc=frame.contentDocument;doc.addEventListener('click',event=>{event.preventDefault();event.stopPropagation();const el=event.target.closest('img,h1,h2,h3,h4,p,figcaption,a,button,summary');if(!el)return;selected={el,key:selector(el),page:select.value,type:el.tagName==='IMG'?'image':'text'};panel.querySelector('#visual-controls').hidden=false;panel.querySelector('#visual-label').textContent=selected.type==='image'?'URL изображения':'Текст';panel.querySelector('#visual-value').value=selected.type==='image'?el.src:el.textContent;panel.querySelector('#visual-file').parentElement.hidden=selected.type!=='image'},true)};
- window.flushVisualDraft=async()=>{if(!selected)return;const target=selected,status=panel.querySelector('#visual-status');try{let value=panel.querySelector('#visual-value').value;const file=panel.querySelector('#visual-file').files[0];if(target.type==='image'){if(file){if(file.size>5000000||!['image/jpeg','image/png','image/webp'].includes(file.type))throw new Error('Выберите JPG, PNG или WebP до 5 МБ');value=await uploadFile(file,'visual')}value=catalogAPI.url(value);if(!value)throw new Error('Укажите HTTP или HTTPS URL');target.el.src=value}else target.el.textContent=value;
- overrides[target.page]||={};overrides[target.page][target.key]={type:target.type,value};stored.value=JSON.stringify(overrides);markCatalogDirty();panel.querySelector('#visual-file').value='';status.textContent='Изменение в черновике. Нажмите общую кнопку сохранения.'}catch(error){status.textContent=error.message;throw error}};
- panel.querySelector('#visual-apply').onclick=()=>window.flushVisualDraft().catch(()=>{});
+ const frame=document.querySelector('#page-preview'),section=document.querySelector('#preview-section');let ready=false,timer,mobile=false;
+ function config(){return draftConfig()}
+ function update(){
+  if(!ready||!frame.contentWindow?.VisaLanding)return;
+  frame.contentWindow.VisaLanding.preview(config());frame.classList.toggle('preview-mobile',mobile);fitPreviewFrame(frame,mobile,780);
+  const target=frame.contentDocument.querySelector(section.value);if(target)target.scrollIntoView({behavior:'instant',block:'start'});
+  document.querySelector('#preview-status').textContent='Черновик. Изменения ещё не опубликованы; форма заявки в предпросмотре не отправляется.';
+ }
+ window.refreshDraftPreview=()=>{if(!frame.src){ready=false;frame.src='/?editor-preview=1';return}update()};
+ window.scheduleDraftPreview=()=>{if(!ready)return;clearTimeout(timer);timer=setTimeout(update,250)};
+ frame.onload=()=>{
+  ready=true;update();
+  frame.contentDocument.addEventListener('click',event=>{
+   // Keep the website interactive, with an explicit edit shortcut on double-click.
+   if(!event.altKey)return;
+   const node=event.target.closest('[data-content],[data-content-html],[data-media],[data-content-placeholder]');if(!node)return;
+   event.preventDefault();event.stopPropagation();const key=node.dataset.media||node.dataset.content||node.dataset.contentHtml||node.dataset.contentPlaceholder;
+   if(!focusCmsField(key))document.querySelector('#preview-status').textContent='Поля этого элемента находятся в разделе «Туры».';
+  },true);
+  const helper=frame.contentDocument.createElement('style');helper.textContent='[data-content],[data-content-html],[data-media]{cursor:default} [data-content]:hover,[data-content-html]:hover,[data-media]:hover{outline:1px dashed #b84330;outline-offset:3px}';frame.contentDocument.head.append(helper);
+ };
+ document.querySelector('#refresh-preview').onclick=()=>window.refreshDraftPreview();section.onchange=()=>{if(!frame.src)window.refreshDraftPreview();else update()};
+ document.querySelectorAll('[data-preview-size]').forEach(button=>button.onclick=()=>{mobile=button.dataset.previewSize==='mobile';document.querySelectorAll('[data-preview-size]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));update()});
+ document.querySelector('[data-panel="preview"] .panel-head p').textContent='Черновик до публикации. Переключайте компьютер и телефон, проверяйте кнопки и попапы. Чтобы перейти к полю текста или фото, зажмите Alt и нажмите на элемент. На телефоне используйте разделы редактора.';
 })();

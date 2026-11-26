@@ -1,35 +1,299 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-10T07:54:07Z",
+  "generatedAt": "2026-11-26T00:00:00+05:00",
   "title": "Design System: Visa Land",
   "extensions": {
     "colorMeta": {
-      "porcelain": { "role": "neutral", "displayName": "Porcelain", "canonical": "#F5F3ED", "tonalRamp": ["#272621", "#4B4941", "#706D62", "#969388", "#BBB9AF", "#D7D5CD", "#E9E7E0", "#F5F3ED"] },
-      "matcha-leaf": { "role": "secondary", "displayName": "Matcha Leaf", "canonical": "#A5B88A", "tonalRamp": ["#25301C", "#3F5030", "#596F45", "#748F5B", "#90AA73", "#A5B88A", "#CCD7BC", "#EEF2E8"] },
-      "graphite": { "role": "neutral", "displayName": "Graphite", "canonical": "#292B29", "tonalRamp": ["#151615", "#292B29", "#464946", "#656965", "#868A86", "#ADB0AD", "#D3D5D3", "#F0F1F0"] },
-      "tomato-red": { "role": "primary", "displayName": "Tomato Red", "canonical": "#D85B49", "tonalRamp": ["#3A1713", "#64251E", "#8D342A", "#B94637", "#D85B49", "#E88B7D", "#F2B9B0", "#FBE9E6"] },
-      "muted-graphite": { "role": "neutral", "displayName": "Muted Graphite", "canonical": "#656A64", "tonalRamp": ["#171A17", "#303430", "#4A4E49", "#656A64", "#858A84", "#A9ADA8", "#D0D2CF", "#EFF0EF"] },
-      "night-graphite": { "role": "neutral", "displayName": "Night Graphite", "canonical": "#1B1D1B", "tonalRamp": ["#111211", "#1B1D1B", "#393C39", "#595D59", "#7B7F7B", "#A4A7A4", "#CED0CE", "#EFF0EF"] },
-      "white": { "role": "neutral", "displayName": "White", "canonical": "#FFFFFF", "tonalRamp": ["#262626", "#4D4D4D", "#737373", "#999999", "#BFBFBF", "#D9D9D9", "#EEEEEE", "#FFFFFF"] }
+      "paper": {
+        "role": "neutral",
+        "displayName": "Paper",
+        "canonical": "#f7f7f5",
+        "tonalRamp": [
+          "oklch(15% 0.002 100)",
+          "oklch(26% 0.003 100)",
+          "oklch(38% 0.004 100)",
+          "oklch(50% 0.005 100)",
+          "oklch(62% 0.005 100)",
+          "oklch(74% 0.004 100)",
+          "oklch(86% 0.003 100)",
+          "oklch(95% 0.001 100)"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "canonical": "#252728",
+        "tonalRamp": [
+          "oklch(15% 0.002 100)",
+          "oklch(26% 0.003 100)",
+          "oklch(38% 0.004 100)",
+          "oklch(50% 0.005 100)",
+          "oklch(62% 0.005 100)",
+          "oklch(74% 0.004 100)",
+          "oklch(86% 0.003 100)",
+          "oklch(95% 0.001 100)"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Muted",
+        "canonical": "#606363",
+        "tonalRamp": [
+          "oklch(15% 0.002 100)",
+          "oklch(26% 0.003 100)",
+          "oklch(38% 0.004 100)",
+          "oklch(50% 0.005 100)",
+          "oklch(62% 0.005 100)",
+          "oklch(74% 0.004 100)",
+          "oklch(86% 0.003 100)",
+          "oklch(95% 0.001 100)"
+        ]
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Line",
+        "canonical": "#dededb",
+        "tonalRamp": [
+          "oklch(15% 0.002 100)",
+          "oklch(26% 0.003 100)",
+          "oklch(38% 0.004 100)",
+          "oklch(50% 0.005 100)",
+          "oklch(62% 0.005 100)",
+          "oklch(74% 0.004 100)",
+          "oklch(86% 0.003 100)",
+          "oklch(95% 0.001 100)"
+        ]
+      },
+      "accent": {
+        "role": "primary",
+        "displayName": "Travel Red",
+        "canonical": "#b84330",
+        "tonalRamp": [
+          "oklch(15% 0.03 32)",
+          "oklch(26% 0.07 32)",
+          "oklch(38% 0.11 32)",
+          "oklch(50% 0.14 32)",
+          "oklch(62% 0.14 32)",
+          "oklch(74% 0.10 32)",
+          "oklch(86% 0.05 32)",
+          "oklch(95% 0.015 32)"
+        ]
+      },
+      "accent-hover": {
+        "role": "primary",
+        "displayName": "Deep Travel Red",
+        "canonical": "#973523",
+        "tonalRamp": [
+          "oklch(15% 0.03 32)",
+          "oklch(26% 0.07 32)",
+          "oklch(38% 0.11 32)",
+          "oklch(50% 0.14 32)",
+          "oklch(62% 0.14 32)",
+          "oklch(74% 0.10 32)",
+          "oklch(86% 0.05 32)",
+          "oklch(95% 0.015 32)"
+        ]
+      },
+      "tile": {
+        "role": "neutral",
+        "displayName": "Tile",
+        "canonical": "#eeeeeb",
+        "tonalRamp": [
+          "oklch(15% 0.002 100)",
+          "oklch(26% 0.003 100)",
+          "oklch(38% 0.004 100)",
+          "oklch(50% 0.005 100)",
+          "oklch(62% 0.005 100)",
+          "oklch(74% 0.004 100)",
+          "oklch(86% 0.003 100)",
+          "oklch(95% 0.001 100)"
+        ]
+      },
+      "tab": {
+        "role": "neutral",
+        "displayName": "Tab",
+        "canonical": "#e6e6e3",
+        "tonalRamp": [
+          "oklch(15% 0.002 100)",
+          "oklch(26% 0.003 100)",
+          "oklch(38% 0.004 100)",
+          "oklch(50% 0.005 100)",
+          "oklch(62% 0.005 100)",
+          "oklch(74% 0.004 100)",
+          "oklch(86% 0.003 100)",
+          "oklch(95% 0.001 100)"
+        ]
+      },
+      "white": {
+        "role": "neutral",
+        "displayName": "White",
+        "canonical": "#ffffff",
+        "tonalRamp": [
+          "oklch(15% 0.002 100)",
+          "oklch(26% 0.003 100)",
+          "oklch(38% 0.004 100)",
+          "oklch(50% 0.005 100)",
+          "oklch(62% 0.005 100)",
+          "oklch(74% 0.004 100)",
+          "oklch(86% 0.003 100)",
+          "oklch(95% 0.001 100)"
+        ]
+      },
+      "form-panel": {
+        "role": "neutral",
+        "displayName": "Form Panel",
+        "canonical": "#252a2bed",
+        "tonalRamp": [
+          "oklch(15% 0.002 100)",
+          "oklch(26% 0.003 100)",
+          "oklch(38% 0.004 100)",
+          "oklch(50% 0.005 100)",
+          "oklch(62% 0.005 100)",
+          "oklch(74% 0.004 100)",
+          "oklch(86% 0.003 100)",
+          "oklch(95% 0.001 100)"
+        ]
+      },
+      "admin-line": {
+        "role": "neutral",
+        "displayName": "Admin Line",
+        "canonical": "#d9dcda",
+        "tonalRamp": [
+          "oklch(15% 0.002 100)",
+          "oklch(26% 0.003 100)",
+          "oklch(38% 0.004 100)",
+          "oklch(50% 0.005 100)",
+          "oklch(62% 0.005 100)",
+          "oklch(74% 0.004 100)",
+          "oklch(86% 0.003 100)",
+          "oklch(95% 0.001 100)"
+        ]
+      },
+      "admin-field-border": {
+        "role": "neutral",
+        "displayName": "Admin Field Border",
+        "canonical": "#bfc5c1",
+        "tonalRamp": [
+          "oklch(15% 0.002 100)",
+          "oklch(26% 0.003 100)",
+          "oklch(38% 0.004 100)",
+          "oklch(50% 0.005 100)",
+          "oklch(62% 0.005 100)",
+          "oklch(74% 0.004 100)",
+          "oklch(86% 0.003 100)",
+          "oklch(95% 0.001 100)"
+        ]
+      },
+      "admin-secondary": {
+        "role": "neutral",
+        "displayName": "Admin Secondary",
+        "canonical": "#e9ece7",
+        "tonalRamp": [
+          "oklch(15% 0.002 100)",
+          "oklch(26% 0.003 100)",
+          "oklch(38% 0.004 100)",
+          "oklch(50% 0.005 100)",
+          "oklch(62% 0.005 100)",
+          "oklch(74% 0.004 100)",
+          "oklch(86% 0.003 100)",
+          "oklch(95% 0.001 100)"
+        ]
+      },
+      "admin-error": {
+        "role": "semantic",
+        "displayName": "Admin Error",
+        "canonical": "#9b2923",
+        "tonalRamp": [
+          "oklch(15% 0.03 32)",
+          "oklch(26% 0.07 32)",
+          "oklch(38% 0.11 32)",
+          "oklch(50% 0.14 32)",
+          "oklch(62% 0.14 32)",
+          "oklch(74% 0.10 32)",
+          "oklch(86% 0.05 32)",
+          "oklch(95% 0.015 32)"
+        ]
+      }
     },
     "typographyMeta": {
-      "display": { "displayName": "Display", "purpose": "Opening hero statement with bold/light phrase contrast." },
-      "headline": { "displayName": "Headline", "purpose": "Oversized section theses." },
-      "title": { "displayName": "Title", "purpose": "Tour cards and compact destination headings." },
-      "body": { "displayName": "Body", "purpose": "Editorial explanation and trip information." },
-      "label": { "displayName": "Label", "purpose": "Navigation, metadata, captions, statuses, and actions." }
+      "display": {
+        "displayName": "Display",
+        "purpose": "Opening hero statement."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Main section headings."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Format tile titles."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "General explanatory copy."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Compact actions."
+      },
+      "admin-heading": {
+        "displayName": "Admin Heading",
+        "purpose": "Fixed admin page title."
+      },
+      "admin-section": {
+        "displayName": "Admin Section",
+        "purpose": "Fixed admin panel heading."
+      },
+      "admin-field": {
+        "displayName": "Admin Field",
+        "purpose": "Legible 16px editor input text."
+      }
     },
     "shadows": [],
     "motion": [
-      { "name": "hero-drift", "value": "18s ease-in-out infinite alternate", "purpose": "The single cinematic hero motion: scale to 1.05 and translate horizontally by -1.5%." },
-      { "name": "state-fast", "value": "250ms", "purpose": "Button lift and other immediate interactive feedback." },
-      { "name": "state-standard", "value": "300ms", "purpose": "Navigation underlines, header transition, FAQ, and mobile menu." },
-      { "name": "media-slow", "value": "700ms", "purpose": "Restrained gallery image zoom." },
-      { "name": "reduced-motion", "value": "prefers-reduced-motion: reduce", "purpose": "Disables animation, transitions, and smooth scrolling." }
+      {
+        "name": "control-feedback",
+        "value": "200ms",
+        "purpose": "Button color feedback and accordion plus/minus rotation."
+      },
+      {
+        "name": "departure-photo",
+        "value": "500ms; scale(1.035)",
+        "purpose": "Departure image hover only; no whole-card lift."
+      },
+      {
+        "name": "hero-playback",
+        "value": "visibility and user controlled",
+        "purpose": "Pause/resume control at top right; pause offscreen, when hidden, or under reduced motion."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "prefers-reduced-motion: reduce",
+        "purpose": "Disable CSS animation/transitions, smooth scroll, image hover scaling, and hero video playback."
+      },
+      {
+        "name": "draft-preview-refresh",
+        "value": "180ms debounce",
+        "purpose": "Refresh hero draft after editor changes; not a visual entrance effect."
+      }
     ],
     "breakpoints": [
-      { "name": "stack", "value": "900px" },
-      { "name": "mobile", "value": "600px" }
+      {
+        "name": "wide-inset",
+        "value": "1500px"
+      },
+      {
+        "name": "tablet",
+        "value": "1000px"
+      },
+      {
+        "name": "mobile-layout",
+        "value": "700px"
+      },
+      {
+        "name": "mobile-hero-media",
+        "value": "600px"
+      }
     ]
   },
   "components": [
@@ -37,81 +301,113 @@
       "name": "Accent Button",
       "kind": "button",
       "refersTo": "button-accent",
-      "description": "Primary conversion action for choosing a trip or continuing to WhatsApp.",
-      "html": "<button class=\"ds-button-accent\">ВЫБРАТЬ ПУТЕШЕСТВИЕ <span aria-hidden=\"true\">→</span></button>",
-      "css": ".ds-button-accent { display:inline-flex; align-items:center; justify-content:space-between; gap:40px; min-width:250px; padding:17px 22px; border:0; border-radius:0; background:var(--tomato, #D85B49); color:#171917; font:700 12px/1.2 Manrope, Arial, sans-serif; transition:transform .25s; } .ds-button-accent:hover { transform:translateY(-3px); } .ds-button-accent:focus-visible { outline:3px solid var(--tomato, #D85B49); outline-offset:4px; } .ds-button-accent:active { transform:translateY(-1px); }"
+      "description": "Compact action with visible keyboard focus.",
+      "html": "<button class=\"ds-accent\">Подробнее</button>",
+      "css": ".ds-accent{font-family:var(--display, Manrope, Arial, sans-serif);display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:12px 24px;font-size:14px;font-weight:600;line-height:1.45;border-radius:6px;border:0;background:var(--accent,#b84330);color:#fff;cursor:pointer;transition:background .2s,color .2s}.ds-accent:hover{background:#973523}.ds-accent:focus-visible{outline:3px solid var(--accent,#b84330);outline-offset:5px}.ds-accent:active{opacity:.85}@media(prefers-reduced-motion:reduce){.ds-accent{transition:none}}"
     },
     {
-      "name": "Outline WhatsApp Button",
+      "name": "Outline Button",
       "kind": "button",
       "refersTo": "button-outline",
-      "description": "Compact header action over either the hero or scrolled Porcelain header.",
-      "html": "<a class=\"ds-button-outline\" href=\"#\">WhatsApp ↗</a>",
-      "css": ".ds-button-outline { display:inline-flex; padding:12px 18px; border:1px solid currentColor; border-radius:0; background:transparent; color:var(--graphite, #292B29); font:700 12px/1.2 Manrope, Arial, sans-serif; text-decoration:none; transition:background .25s, color .25s; } .ds-button-outline:hover { background:var(--graphite, #292B29); color:var(--porcelain, #F5F3ED); } .ds-button-outline:focus-visible { outline:3px solid var(--tomato, #D85B49); outline-offset:4px; }"
+      "description": "Compact action with visible keyboard focus.",
+      "html": "<button class=\"ds-outline\">Подробнее</button>",
+      "css": ".ds-outline{font-family:var(--display, Manrope, Arial, sans-serif);display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:12px 24px;font-size:14px;font-weight:600;line-height:1.45;border-radius:6px;border:0;background:#ffffff14;color:#fff;cursor:pointer;transition:background .2s,color .2s}.ds-outline:hover{background:#fff}.ds-outline:focus-visible{outline:3px solid var(--accent,#b84330);outline-offset:5px}.ds-outline:active{opacity:.85}@media(prefers-reduced-motion:reduce){.ds-outline{transition:none}}.ds-outline{border:1px solid #ffffff70}.ds-outline:hover{color:var(--ink,#252728)}"
     },
     {
-      "name": "Trip Card",
-      "kind": "card",
-      "refersTo": "card-trip",
-      "description": "Documentary-image travel card with factual metadata and ruled price footer.",
-      "html": "<article class=\"ds-trip-card\"><div class=\"ds-trip-photo\"><span class=\"ds-trip-status\">ОТКРЫТ НАБОР</span></div><div class=\"ds-trip-body\"><p class=\"ds-trip-meta\">20–29 МАРТА · 10 ДНЕЙ</p><h3>Корея + Япония</h3><p class=\"ds-trip-route\">Сеул — Пусан — Осака — Киото — Токио</p><div class=\"ds-trip-price\"><strong>от $2 850</strong><span>6 мест</span></div></div></article>",
-      "css": ".ds-trip-card { width:320px; border-radius:0; background:var(--porcelain, #F5F3ED); color:var(--graphite, #292B29); font-family:Manrope, Arial, sans-serif; transition:transform .35s; } .ds-trip-card:hover { transform:translateY(-8px); } .ds-trip-card:focus-visible { outline:3px solid var(--tomato, #D85B49); outline-offset:4px; } .ds-trip-photo { position:relative; height:250px; background:linear-gradient(145deg, #596452, #A5B88A); } .ds-trip-status { position:absolute; top:12px; left:12px; padding:8px 10px; background:var(--porcelain, #F5F3ED); font-size:11px; letter-spacing:.08em; } .ds-trip-body { padding:24px; } .ds-trip-meta { margin:0; color:#656A64; font-size:10px; letter-spacing:.08em; } .ds-trip-body h3 { margin:18px 0 12px; font-size:34px; line-height:1; letter-spacing:-.04em; } .ds-trip-route { min-height:42px; margin:0; color:#656A64; font-size:13px; line-height:1.55; } .ds-trip-price { display:flex; justify-content:space-between; margin-top:28px; padding-top:18px; border-top:1px solid rgba(41,43,41,.22); font-size:12px; }"
+      "name": "Application Submit",
+      "kind": "button",
+      "refersTo": "button-form",
+      "description": "Compact action with visible keyboard focus.",
+      "html": "<button class=\"ds-submit\">Подробнее</button>",
+      "css": ".ds-submit{font-family:var(--display, Manrope, Arial, sans-serif);display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:12px 24px;font-size:14px;font-weight:600;line-height:1.45;border-radius:6px;border:0;background:var(--paper,#f7f7f5);color:var(--ink,#252728);cursor:pointer;transition:background .2s,color .2s}.ds-submit:hover{background:#e5e5df}.ds-submit:focus-visible{outline:3px solid var(--accent,#b84330);outline-offset:5px}.ds-submit:active{opacity:.85}@media(prefers-reduced-motion:reduce){.ds-submit{transition:none}}"
     },
     {
       "name": "Dark Field",
       "kind": "input",
       "refersTo": "field-dark",
-      "description": "Transparent contact field on Graphite with Matcha focus feedback.",
-      "html": "<label class=\"ds-field-label\">ВАШЕ ИМЯ<input class=\"ds-field\" placeholder=\"Как к вам обращаться?\"></label>",
-      "css": ".ds-field-label { display:block; padding:24px; background:var(--graphite, #292B29); color:var(--porcelain, #F5F3ED); font:700 11px/1.2 Manrope, Arial, sans-serif; letter-spacing:.1em; } .ds-field { display:block; width:100%; margin-top:8px; padding:15px; border:1px solid rgba(245,243,237,.35); border-radius:0; outline:0; background:transparent; color:var(--porcelain, #F5F3ED); font:400 15px/1.2 Manrope, Arial, sans-serif; caret-color:var(--tomato, #D85B49); } .ds-field::placeholder { color:#C9CDC7; } .ds-field:hover { border-color:rgba(245,243,237,.6); } .ds-field:focus { border-color:var(--matcha, #A5B88A); } .ds-field:focus-visible { outline:3px solid var(--matcha, #A5B88A); outline-offset:4px; }"
-    },
-    {
-      "name": "Editorial Navigation",
-      "kind": "nav",
-      "description": "Centered desktop links with fine animated underlines and a compact stacked wordmark.",
-      "html": "<nav class=\"ds-nav\"><a class=\"ds-brand\" href=\"#\"><span>VISA</span><span>LAND</span></a><div class=\"ds-nav-links\"><a href=\"#\">Путешествия</a><a href=\"#\">Календарь</a><a href=\"#\">О нас</a></div></nav>",
-      "css": ".ds-nav { display:flex; align-items:center; justify-content:space-between; padding:20px 24px; border-bottom:1px solid rgba(41,43,41,.22); background:var(--porcelain, #F5F3ED); color:var(--graphite, #292B29); font-family:Manrope, Arial, sans-serif; } .ds-brand { display:inline-flex; flex-direction:column; color:inherit; font-size:21px; font-weight:800; line-height:.72; letter-spacing:-.08em; text-decoration:none; } .ds-nav-links { display:flex; gap:32px; } .ds-nav-links a { position:relative; color:inherit; font-size:12px; text-decoration:none; } .ds-nav-links a::after { content:\"\"; position:absolute; right:100%; bottom:-5px; left:0; height:1px; background:currentColor; transition:right .3s; } .ds-nav-links a:hover::after { right:0; } .ds-nav a:focus-visible { outline:3px solid var(--tomato, #D85B49); outline-offset:4px; }"
+      "description": "Labeled input on the application panel.",
+      "html": "<label class=\"ds-field\">Ваше имя<input placeholder=\"Как к вам обращаться\"></label>",
+      "css": ".ds-field{font-family:var(--display, Manrope, Arial, sans-serif);display:grid;gap:8px;padding:20px;background:#252a2bed;color:#fff;font-size:14px;border-radius:12px}.ds-field input{font:inherit;min-height:46px;padding:12px;border:1px solid #ffffff40;border-radius:6px;background:#ffffff0a;color:#fff}.ds-field input::placeholder{color:#c2c5c4}.ds-field input:focus-visible{outline:3px solid var(--accent,#b84330);outline-offset:5px}"
     },
     {
       "name": "Format Tabs",
+      "kind": "nav",
+      "refersTo": "tab-selected",
+      "description": "Segmented format selection with restrained red active state.",
+      "html": "<div class=\"ds-tabs\" role=\"tablist\" aria-label=\"Формат\"><button role=\"tab\" aria-selected=\"true\">Групповые</button><button role=\"tab\" aria-selected=\"false\">Экспедиции</button><button role=\"tab\" aria-selected=\"false\">Индивидуальные</button></div>",
+      "css": ".ds-tabs{font-family:var(--display, Manrope, Arial, sans-serif);display:flex;gap:2px;max-width:850px}.ds-tabs button{flex:1;border:0;background:#e6e6e3;padding:14px 18px;min-height:48px;font:inherit;font-size:14px;cursor:pointer}.ds-tabs button:first-child{border-radius:5px 0 0 5px}.ds-tabs button:last-child{border-radius:0 5px 5px 0}.ds-tabs button[aria-selected=true]{background:var(--accent,#b84330);color:#fff}.ds-tabs button:hover:not([aria-selected=true]){background:#d8d8d4}.ds-tabs button:focus-visible{outline:3px solid var(--accent,#b84330);outline-offset:5px}"
+    },
+    {
+      "name": "Format Tile",
+      "kind": "card",
+      "refersTo": "card-format",
+      "description": "Split copy/photo container; the preview shows its text region.",
+      "html": "<article class=\"ds-format\"><h3>Япония и Южная Корея</h3><p>Небольшие группы, живые маршруты и новые знакомства.</p><button>Подробнее</button></article>",
+      "css": ".ds-format{font-family:var(--display, Manrope, Arial, sans-serif);padding:32px;background:#eeeeeb;color:var(--ink,#252728);border-radius:12px;max-width:430px}.ds-format h3{margin:0;font-size:32px;font-weight:500;line-height:1.1;letter-spacing:-.035em}.ds-format p{color:var(--muted,#606363);font-size:15px;line-height:1.65;margin:16px 0}.ds-format button{padding:12px 24px;min-height:46px;border:0;border-radius:6px;background:var(--accent,#b84330);color:#fff;font:600 14px/1.45 Manrope,Arial,sans-serif;cursor:pointer;transition:background .2s}.ds-format button:hover{background:#973523}.ds-format button:focus-visible{outline:3px solid var(--accent,#b84330);outline-offset:5px}"
+    },
+    {
+      "name": "Anchor Navigation",
+      "kind": "nav",
+      "refersTo": null,
+      "description": "Paper navigation linking the five page sections.",
+      "html": "<nav class=\"ds-nav\"><a href=\"#home\">Главная</a><a href=\"#trips\">Форматы поездок</a><a href=\"#calendar\">Календарь</a><a href=\"#visas\">Виза</a><a href=\"#contact\">Оставить заявку</a></nav>",
+      "css": ".ds-nav{font-family:var(--display, Manrope, Arial, sans-serif);display:flex;flex-wrap:wrap;gap:26px;background:var(--paper,#f7f7f5);color:var(--ink,#252728);padding:16px;font-size:14px}.ds-nav a{padding:12px 0;color:inherit;text-decoration:none}.ds-nav a:hover{color:var(--accent,#b84330)}.ds-nav a:focus-visible{outline:3px solid var(--accent,#b84330);outline-offset:5px}"
+    },
+    {
+      "name": "Availability Label",
       "kind": "chip",
-      "description": "Low-decoration tabs integrated into a ruled Matcha editorial field.",
-      "html": "<div class=\"ds-tabs\"><button class=\"ds-tab ds-tab-active\">Групповые</button><button class=\"ds-tab\">Экспедиции</button><button class=\"ds-tab\">Индивидуальные</button></div>",
-      "css": ".ds-tabs { display:flex; gap:8px; padding:18px 20px; border-bottom:1px solid var(--graphite, #292B29); background:var(--matcha, #A5B88A); } .ds-tab { margin-right:28px; padding:10px 0; border:0; border-radius:0; background:transparent; color:var(--graphite, #292B29); font:400 13px/1.2 Manrope, Arial, sans-serif; opacity:.52; cursor:pointer; } .ds-tab:hover { opacity:.78; } .ds-tab-active { font-weight:700; opacity:1; } .ds-tab:focus-visible { outline:3px solid var(--tomato, #D85B49); outline-offset:4px; }"
+      "refersTo": null,
+      "description": "Availability copy follows the departure facts over photography.",
+      "html": "<div class=\"ds-status\">Осталось мест: 6</div>",
+      "css": ".ds-status{font-family:var(--display, Manrope, Arial, sans-serif);background:#353835;color:#fff;font-size:13px;padding:16px 28px;border-top:1px solid #ffffff50}"
+    },
+    {
+      "name": "Admin Field",
+      "kind": "input",
+      "refersTo": "admin-field",
+      "description": "Visible label, legible field text, validation, and clear focus on a white editor surface.",
+      "html": "<label class=\"ds-admin-field\"><span>Название путешествия</span><input value=\"Япония и Южная Корея\"><small>Изменения появятся после публикации.</small></label>",
+      "css": ".ds-admin-field{display:grid;gap:8px;font-family:Manrope,Arial,sans-serif;color:var(--ink,#252728)}.ds-admin-field>span{font-size:14px;font-weight:600;line-height:1.5}.ds-admin-field input{width:100%;min-height:46px;padding:11px 12px;border:1px solid #bfc5c1;border-radius:6px;background:#fff;color:var(--ink,#252728);font:400 16px/1.5 Manrope,Arial,sans-serif}.ds-admin-field input:focus-visible{outline:3px solid var(--accent,#b84330);outline-offset:3px}.ds-admin-field input[aria-invalid=true]{border-color:#a12b26;background:#fff1ee}.ds-admin-field small{font-size:13px;line-height:1.5;color:var(--muted,#606363)}"
+    },
+    {
+      "name": "Admin Publish Action",
+      "kind": "button",
+      "refersTo": "admin-button",
+      "description": "Publication action on the dark sticky save bar, with an explicit retained-draft status.",
+      "html": "<div class=\"ds-save-bar\"><p role=\"status\">Есть несохранённые изменения.</p><button>Сохранить и опубликовать</button></div>",
+      "css": ".ds-save-bar{display:flex;flex-wrap:wrap;align-items:center;gap:12px;padding:18px 20px;background:var(--ink,#252728);color:white;border-radius:10px 10px 0 0;font-family:Manrope,Arial,sans-serif}.ds-save-bar p{font-size:14px;line-height:1.5;margin:0 auto 0 0}.ds-save-bar button{background:var(--accent,#b84330);color:white;border:1px solid transparent;border-radius:6px;padding:11px 18px;min-height:44px;cursor:pointer;font:600 14px/1.4 Manrope,Arial,sans-serif}.ds-save-bar button:hover:not(:disabled){background:#993723}.ds-save-bar button:focus-visible{outline:3px solid var(--accent,#b84330);outline-offset:3px}.ds-save-bar button:disabled{opacity:.5;cursor:default}"
     }
   ],
   "narrative": {
     "northStar": "The Living Travel Journal",
-    "overview": "Visa Land is a calm, code-first travel editorial: large grotesk headlines, documentary trip photography, generous air, and a strict grid of fine rules. It should feel like a contemporary journal made by people who were actually there—not a glossy booking engine or a catalogue of tourism clichés.\n\nThe system moves between Porcelain openness, Matcha warmth, and Graphite depth, with Tomato Red reserved for decisive action. Light and bold Manrope weights create the expressive contrast. On mobile, the hierarchy compresses into a direct path from Instagram arrival, through trips and dates, to a WhatsApp conversation.",
+    "overview": "Visa Land uses neutral paper, medium-weight Manrope, documentary travel imagery, and restrained red actions. Photography carries the atmosphere; quiet surfaces and compact controls keep the travel decision readable.\n\nThe public experience is one continuous page with a founder introduction, split photo/text format tiles, a photographic departure rail, a passport banner, and an image-backed application form. Tour details open in a native dialog.",
     "keyCharacteristics": [
-      "Oversized, tightly set grotesk display type with light-weight phrases inside bold statements.",
-      "Documentary photography shown at generous scale with factual, compact captions.",
-      "Square forms and one-pixel borders that make the page feel composed rather than decorated.",
-      "Flat color fields in Porcelain, Matcha Leaf, and Graphite; Tomato Red marks action.",
-      "One cinematic hero drift, restrained image motion, and a complete reduced-motion fallback."
+      "Neutral paper and dark ink with red reserved for selection and action.",
+      "Medium-weight, tightly tracked headings with readable supporting copy.",
+      "Soft rectangular photographs, flat surfaces, and fine dividers.",
+      "Restrained state feedback and explicit control over hero video."
     ],
     "rules": [
-      { "name": "The Four-Ink Rule", "body": "Build every major composition from Porcelain, Matcha Leaf, Graphite, and Tomato Red; additional neutrals may only support hierarchy.", "section": "colors" },
-      { "name": "The Tomato Means Action Rule", "body": "Do not turn Tomato Red into a decorative field. It identifies an action, focus, or selection.", "section": "colors" },
-      { "name": "The Weight-Shift Rule", "body": "Create expression inside a headline by changing weight before introducing another font, effect, or ornament.", "section": "typography" },
-      { "name": "The Scale Before Decoration Rule", "body": "Headlines earn presence through size, line breaks, and contrast—not shadows, outlines, or gradients on type.", "section": "typography" },
-      { "name": "The Border-Led Grid Rule", "body": "Use fine rules and alignment—not floating rounded containers—to define groups, rows, and transitions.", "section": "layout" },
-      { "name": "The Flat-by-Default Rule", "body": "Do not add ambient shadows to cards, navigation, fields, or modals; use borders, color, and overlap instead.", "section": "elevation" },
-      { "name": "The No Soft Corners Rule", "body": "Rounded pills and generic soft cards do not belong in this system; a status may be compact, but its geometry remains square.", "section": "shapes" }
+      {
+        "name": "The Restrained Red Rule",
+        "body": "Red identifies action, selection, or focus; photography supplies the page's broader color.",
+        "section": "colors"
+      }
     ],
     "dos": [
-      "Do use real Visa Land trip photography and factual captions.",
-      "Do preserve strong light/bold contrast inside oversized headlines.",
-      "Do organize content with one-pixel borders, alignment, and decisive color fields.",
-      "Do keep the mobile journey short: understand the offer, choose a trip or date, continue in WhatsApp.",
-      "Do reserve cinematic movement for the hero and keep all other motion subordinate."
+      "Do use the current neutral paper palette and restrained red actions.",
+      "Do keep the six-section sequence and open tour details in the dialog.",
+      "Do retain readable photographic overlays and visible keyboard focus.",
+      "Do honor saved hero media, pause controls, and reduced-motion preferences.",
+      "Do preserve legible 16px admin fields, 44px minimum control targets, and visible save status.",
+      "Do keep device-specific hero media separate from shared text, shade, and height settings."
     ],
     "donts": [
-      "Don't introduce rounded cards, pill buttons, soft shadows, glassmorphism, or generic booking-widget styling.",
-      "Don't use Tomato Red as ambient decoration or on large background areas.",
-      "Don't replace documentary imagery with stock travel clichés or invented social proof.",
-      "Don't add competing display fonts, illustrative icons, or ornamental gradients.",
-      "Don't let desktop-only annotations or dense metadata obstruct the mobile conversion path."
+      "Don't restore obsolete green, terracotta, slate-blue, or multipage styling rules.",
+      "Don't add ambient card shadows, oversized pill controls, or competing display fonts.",
+      "Don't move tour program, gallery, inclusions, or FAQ into separate main-page sections.",
+      "Don't force video playback when reduced motion, manual pause, or page visibility stops it.",
+      "Don't substitute a narrow layout for desktop preview or discard drafts after failed publication."
     ]
   }
 }

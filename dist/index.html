@@ -1,262 +1,234 @@
-<!doctype html>
-<html lang="ru">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta
-      name="description"
-      content="VISALAND — авторские путешествия по Японии и Южной Корее из Алматы. Небольшие группы, продуманные маршруты и визовое сопровождение."
-    />
-    <meta name="theme-color" content="#F5F3ED" />
-    <title>Авторские туры в Японию и Корею из Алматы — VISALAND</title>
-    <link rel="canonical" href="https://www.gohaxo.kz/" />
-    <meta property="og:type" content="website" />
-    <meta property="og:locale" content="ru_KZ" />
-    <meta property="og:site_name" content="VISALAND" />
-    <meta property="og:title" content="Авторские туры в Японию и Корею из Алматы — VISALAND" />
-    <meta property="og:description" content="Небольшие группы, продуманные маршруты и визовое сопровождение." />
-    <meta property="og:url" content="https://www.gohaxo.kz/" />
-    <meta property="og:image" content="https://www.gohaxo.kz/assets/media/hero-desktop-nyc.jpg" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:image" content="https://www.gohaxo.kz/assets/media/hero-desktop-nyc.jpg" />
-    <script type="application/ld+json">
-      {"@context":"https://schema.org","@type":["Organization","TravelAgency"],"name":"VISALAND","url":"https://www.gohaxo.kz/","logo":"https://www.gohaxo.kz/assets/media/hero-desktop-nyc.jpg","description":"Авторские путешествия по Японии и Южной Корее из Алматы.","areaServed":"KZ","sameAs":["https://www.instagram.com/gohaxo/"]}
-    </script>
-    <link rel="stylesheet" href="/styles.css?v=7" />
-    <link rel="stylesheet" href="/pages.css?v=42" />
-  </head>
-  <body data-page="home">
-    <a class="skip-link" href="#main">К содержимому</a>
-    <header class="page-header">
-      <a class="wordmark" href="/" aria-label="VISALAND — главная">VISALAND</a
-      ><button id="nav-toggle" aria-expanded="false" aria-controls="site-nav">
-        Меню
-      </button>
-      <nav class="site-nav" id="site-nav" aria-label="Основная навигация">
-        <a href="/#trips">Путешествия</a
-        ><a href="/#calendar">Календарь</a><a href="/visas">Визы</a
-        ><a href="/#about">О нас</a><a href="/#faq">FAQ</a>
-      </nav>
-      <a
-        class="nav-contact"
-        href="https://wa.me/message/QHA2WWUW5XGED1"
-        target="_blank"
-        rel="noopener"
-        >WhatsApp ↗</a
-      >
-    </header>
-    <main id="main">
-      <section class="home-opening">
-        <img
-          class="home-photo"
-          src="/assets/media/hero-desktop-nyc.jpg"
-          alt=""
-          fetchpriority="high"
-        /><video
-          class="home-film"
-          muted
-          loop
-          autoplay
-          playsinline
-          poster="/assets/media/hero-desktop-nyc.jpg"
-          aria-hidden="true"
-        ></video>
-        <div class="film-shade"></div>
-        <div class="home-title">
-          <h1 data-content-html="heroTitle">
-            Азия,<br /><span>которую проживают</span><br />вместе
-          </h1>
-          <p data-content="heroCopy">
-            Продуманные маршруты, небольшие группы и люди, с которыми хочется
-            разделить впечатления.
-          </p>
-          <a class="button button-accent" href="/#trips"
-            >Выбрать путешествие ↗</a
-          >
-        </div>
-        <p class="film-caption">Япония · Южная Корея · Ваши новые истории</p>
-      </section>
-      <section class="home-intro section">
-        <h2 data-content-html="introTitle">
-          Путешествуйте соло.<br /><span>Но не в одиночку.</span>
-        </h2>
-        <p data-content="introCopy">
-          Знакомые с открыток места и маленькие открытия. Локальная кухня, живые
-          города и время почувствовать страну без спешки.
-        </p>
-      </section>
-      <section class="catalog-section section matcha" id="trips">
-        <div class="section-head">
-          <h2>Куда отправимся?</h2>
-        </div>
-        <div class="catalog-toolbar">
-          <div class="catalog-filters" aria-label="Формат путешествия">
-            <button data-filter="all" class="active" aria-pressed="true">
-              Все маршруты</button
-            ><button data-filter="group" aria-pressed="false">Групповые</button
-            ><button data-filter="expedition" aria-pressed="false">
-              Экспедиции</button
-            ><button data-filter="private" aria-pressed="false">
-              Индивидуальные
-            </button>
-          </div>
-          <p id="result-count" aria-live="polite"></p>
-        </div>
-        <div class="journey-grid" id="catalog" aria-live="polite">
-          <p>Загружаем путешествия…</p>
-        </div>
-      </section>
-      <section class="section" id="calendar">
-        <div class="section-head">
-          <h2>Календарь путешествий</h2>
-        </div>
-        <div id="departures" class="calendar-entries">
-          <p>Загружаем даты…</p>
-        </div>
-      </section>
-      <section class="visa-help section" id="visa-support">
-        <div class="visa-help-copy">
-          <h2 data-content-html="visaTitle">
-            Поможем подготовиться<br /><span>к путешествию</span>
-          </h2>
-          <p data-content="visaCopy">
-            Дадим понятный список документов, проверим комплект и сопроводим
-            процесс оформления визы. Перед вылетом соберём всю важную информацию
-            в одном месте.
-          </p>
-          <p class="visa-note">Решение о выдаче визы принимает консульство.</p>
-          <a class="button visa-details-button" href="/visas"
-            >Подробнее о визах</a
-          >
-        </div>
-        <figure class="visa-help-photo">
-          <img
-            src="/assets/media/visa-support-ai.jpg"
-            alt="Документы для подготовки к путешествию"
-            loading="lazy"
-            decoding="async"
-          />
-          <figcaption data-content="visaCaption">
-            Подготовка без лишнего стресса
-          </figcaption>
-        </figure>
-      </section>
+<!DOCTYPE html>
 
-      <section class="about-opening" id="about">
-        <div>
-          <h2>За маршрутом<br /><span>стоит человек.</span></h2>
-          <p data-content="aboutCopy">
-            Меня зовут Гаухар. Я организую путешествия и лично сопровождаю часть
-            групп. Для меня важно создать комфортный, живой и запоминающийся
-            маршрут.
-          </p>
-          <p data-content="aboutTeam">
-            Вместе со мной работают групп-лидеры и местные специалисты — люди,
-            которые любят страну и умеют делиться этой любовью.
-          </p>
-        </div>
-        <img
-          id="about-image"
-          src="/assets/media/founder-group.jpg"
-          alt="Гаухар и участники поездки VISALAND" loading="lazy" decoding="async"
-        />
-      </section>
-      <section class="section faq-page" id="faq">
-        <h2>Вопросы<br /><span>и ответы.</span></h2>
-        <div id="public-faq"></div>
-      </section>
-            <section class="lead-section" id="contact">
-        <div class="lead-section-copy">
-          <h2 data-content-html="contactTitle">
-            Готовы к новому<br /><span>путешествию?</span>
-          </h2>
-          <p data-content="contactCopy">
-            Оставьте заявку, и мы расскажем подробности о выбранном туре.
-          </p>
-          <p>
-            После отправки заявка появится у команды VISALAND. Мы свяжемся с
-            вами по указанному номеру.
-          </p>
-        </div>
-        <form class="lead-form" id="lead-form">
-          <label
-            >Ваше имя<input
-              name="name"
-              autocomplete="name"
-              required
-              placeholder="Как к вам обращаться?" /></label
-          ><label
-            >Номер телефона<input
-              name="phone"
-              autocomplete="tel"
-              required
-              type="tel"
-              placeholder="+7 ___ ___ __ __" /></label
-          ><label
-            >Интересующий тур<select
-              name="tour"
-              id="tour-select"
-              required
-            ></select></label
-          ><label
-            >Дата заезда<select
-              name="date"
-              id="date-select"
-              required
-            ></select></label
-          ><label class="wide"
-            >Комментарий<textarea
-              name="comment"
-              rows="3"
-              placeholder="Расскажите о пожеланиях (необязательно)"
-            ></textarea></label
-          ><label class="consent wide"
-            ><input type="checkbox" required /><span
-              >Я согласен(а) на обработку персональных данных</span
-            ></label
-          ><button class="button button-accent wide" type="submit">
-            Оставить заявку ↗
-          </button>
-          <p
-            class="form-status wide"
-            id="form-status"
-            role="status"
-            aria-live="polite"
-          ></p>
-        </form>
-      </section>
-      <p id="page-status" role="status"></p>
-    </main>
-    <footer class="page-footer">
-      <a class="footer-wordmark" href="/">VISALAND</a>
-      <div>
-        <p>Авторские путешествия из Алматы</p>
-        <a href="/#trips">Маршруты</a
-        ><a href="/#calendar">Даты поездок</a
-        ><a href="/#about">О проекте</a>
-      </div>
-      <div>
-        <a
-          href="https://wa.me/message/QHA2WWUW5XGED1"
-          target="_blank"
-          rel="noopener"
-          >WhatsApp ↗</a
-        ><a
-          href="https://www.instagram.com/gohaxo/"
-          target="_blank"
-          rel="noopener"
-          >Instagram ↗</a
-        >
-        <p>© 2026 VISALAND</p>
-      </div>
-    </footer>
-    <script src="/catalog-data.js"></script>
-    <script src="/catalog-model.js"></script>
-    <script src="/hero-media.js?v=12"></script>
-    <script src="/vendor/supabase-2.119.2.js"></script>
-    <script src="/supabase-config.js"></script>
-    <script src="/live-sync.js?v=1"></script>
-    <script src="/pages.js?v=33"></script>
-    <script src="/journal-ui.js?v=9"></script>
-  </body>
-</html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="VISALAND — авторские путешествия по Японии и Южной Корее из Алматы. Небольшие группы, продуманные маршруты и визовое сопровождение." name="description"/>
+<meta content="#F5F3ED" name="theme-color"/>
+<title>Авторские туры в Японию и Корею из Алматы — VISALAND</title>
+<link href="https://www.gohaxo.kz/" rel="canonical"/>
+<meta content="website" property="og:type"/>
+<meta content="ru_KZ" property="og:locale"/>
+<meta content="VISALAND" property="og:site_name"/>
+<meta content="Авторские туры в Японию и Корею из Алматы — VISALAND" property="og:title"/>
+<meta content="Небольшие группы, продуманные маршруты и визовое сопровождение." property="og:description"/>
+<meta content="https://www.gohaxo.kz/" property="og:url"/>
+<meta content="https://www.gohaxo.kz/assets/media/hero-group-japan.jpg" property="og:image"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="https://www.gohaxo.kz/assets/media/hero-group-japan.jpg" name="twitter:image"/>
+<script type="application/ld+json">
+      {"@context":"https://schema.org","@type":["Organization","TravelAgency"],"name":"VISALAND","url":"https://www.gohaxo.kz/","logo":"https://www.gohaxo.kz/assets/media/hero-group-japan.jpg","description":"Авторские путешествия по Японии и Южной Корее из Алматы.","areaServed":"KZ","sameAs":["https://www.instagram.com/gohaxo/"]}
+    </script>
+<link href="/landing.css?v=1" rel="stylesheet"/>
+</head>
+<body data-page="home">
+<a class="skip-link" href="#main"><span data-content="globalText1">К содержимому</span></a>
+<header class="page-header">
+<a aria-label="VISALAND — главная" class="wordmark" data-content="brandName" href="#home">VISALAND</a>
+<button aria-controls="site-nav" aria-expanded="false" id="nav-toggle" type="button"><span data-content="globalText2">Меню</span></button>
+<nav aria-label="Основная навигация" class="site-nav" id="site-nav">
+<a href="#home"><span data-content="globalText3">Главная</span></a><a href="#trips"><span data-content="globalText4">Форматы поездок</span></a><a href="#calendar"><span data-content="globalText5">Календарь</span></a><a href="#visas"><span data-content="globalText6">Виза</span></a><a href="#contact"><span data-content="globalText7">Оставить заявку</span></a>
+</nav>
+<a class="nav-contact" data-content-href="globalHref9" href="https://wa.me/message/QHA2WWUW5XGED1" rel="noopener" target="_blank"><span data-content="globalText8">WhatsApp</span></a>
+</header>
+<main id="main">
+<section aria-label="Авторские путешествия VISALAND" class="home-opening" id="home">
+<img alt="" class="home-photo" data-content-alt="homeAlt1" data-media="heroPoster" fetchpriority="high" src="/assets/media/hero-group-japan.jpg"/>
+<video aria-hidden="true" autoplay="" class="home-film" loop="" muted="" playsinline="" poster="/assets/media/hero-group-japan.jpg"></video>
+<div class="film-shade"></div>
+<button aria-pressed="false" class="hero-pause" hidden="" type="button">Остановить видео</button>
+<div class="home-title">
+<h1 data-content-html="heroTitle">Азия, которую мы<br/><span>проживаем вместе</span></h1>
+<p data-content="heroCopy">Авторские путешествия по Японии и Южной Корее. Небольшие группы, живые маршруты и новые знакомства.</p>
+<a class="button button-outline" data-content="heroButton" href="#trips">Выбрать путешествие</a>
+</div>
+<p class="film-caption" data-content="heroCaption">Япония · Южная Корея</p>
+</section>
+<section aria-labelledby="founder-title" class="founder-intro" id="about">
+<div class="founder-copy">
+<h2 data-content-html="founderName" id="founder-title">Gauhar<br/>Bekpayeva</h2>
+<p data-content="aboutCopy">Меня зовут Гаухар. Я организую путешествия и лично сопровождаю часть групп. Для меня важно создать комфортный, живой и запоминающийся маршрут.</p>
+</div>
+<img alt="Гаухар и участницы путешествия на Таймс-сквер" data-content-alt="aboutAlt1" data-media="aboutImage" decoding="async" id="about-image" loading="lazy" src="/assets/media/founder-group.jpg"/>
+</section>
+<section aria-labelledby="formats-title" class="section formats-section catalog-section" id="trips">
+<div class="section-head formats-heading"><h2 data-content="formatsTitle" id="formats-title">Форматы поездок</h2></div>
+<div aria-label="Формат поездки" class="catalog-filters" role="tablist">
+<button aria-controls="format-panel" aria-selected="true" data-filter="group" id="format-group" role="tab"><span data-content="tripsText1">Групповые путешествия</span></button>
+<button aria-controls="format-panel" aria-selected="false" data-filter="expedition" id="format-expedition" role="tab" tabindex="-1"><span data-content="tripsText2">Экспедиции</span></button>
+<button aria-controls="format-panel" aria-selected="false" data-filter="private" id="format-private" role="tab" tabindex="-1"><span data-content="tripsText3">Индивидуальные</span></button>
+</div>
+<div aria-labelledby="format-group" id="format-panel" role="tabpanel" tabindex="0">
+<p class="format-description" id="format-description"></p>
+<div aria-live="polite" class="format-tours" id="catalog"></div>
+</div>
+</section>
+<section aria-labelledby="calendar-title" class="section calendar-section" id="calendar">
+<div class="section-head"><h2 data-content="calendarTitle" id="calendar-title">Календарь поездок</h2><div class="calendar-controls"><button aria-controls="departures" aria-label="Предыдущие поездки" data-scroll="-1" type="button"><svg aria-hidden="true" viewbox="0 0 24 24"><path d="m14 6-6 6 6 6"></path></svg></button><button aria-controls="departures" aria-label="Следующие поездки" data-scroll="1" type="button"><svg aria-hidden="true" viewbox="0 0 24 24"><path d="m10 6 6 6-6 6"></path></svg></button></div></div>
+<p class="calendar-hint"><span data-content="calendarText1">Выберите даты — откройте программу путешествия.</span></p>
+<div aria-label="Ближайшие поездки" class="departure-rail" id="departures" role="region" tabindex="0"></div>
+</section>
+<section aria-labelledby="visa-title" class="visa-section" id="visas">
+<div class="visa-help">
+<img alt="Паспорта для подготовки к путешествию" class="visa-background" data-content-alt="visasAlt94" data-media="visaImage" loading="lazy" src="/assets/media/visa-support-ai.jpg"/>
+<div class="visa-help-copy">
+<h2 data-content-html="visaTitle" id="visa-title">Поможем подготовиться<br/><span>к путешествию</span></h2>
+<p data-content="visaCopy">Дадим понятный список документов, проверим комплект и сопроводим процесс оформления визы.</p>
+<p class="visa-note"><span data-content="visasText1">Решение о выдаче визы принимает консульство.</span></p>
+<a class="button button-outline" href="#visa-directions"><span data-content="visasText2">Выбрать направление</span></a>
+</div>
+</div>
+<div class="visa-directory" id="visa-directions"><div class="visa-directory-intro"><h3><span data-content="visasText3">Визовое сопровождение</span></h3><p><span data-content="visasText4">Начнём с индивидуального разбора вашей ситуации. Выберите страну, чтобы посмотреть услуги и стоимость.</span></p><a class="text-link" data-content-href="visasHref95" href="https://wa.me/message/QHA2WWUW5XGED1" rel="noopener" target="_blank"><span data-content="visasText5">Обсудить оформление в WhatsApp</span></a></div><div class="visa-services">
+<details class="visa-accordion" id="korea" name="visa-directions"><summary><span data-content="visasText6">Южная Корея</span><span aria-hidden="true" class="expand-mark"></span></summary><div class="visa-service-content">
+<article>
+<h3><span data-content="visasText7">K-ETA</span><span><span data-content="visasText8">25 000 ₸</span></span></h3>
+<p><span data-content="visasText9">Стоимость включает государственный сбор — около 4 000 ₸.</span></p>
+<h4><span data-content="visasText10">Что входит</span></h4>
+<ul>
+<li><span data-content="visasText11">Анализ вашей ситуации перед подачей.</span></li>
+<li><span data-content="visasText12">Заполнение и подача анкеты K-ETA.</span></li>
+<li><span data-content="visasText13">Подготовка к прохождению паспортного контроля.</span></li>
+<li><span data-content="visasText14">Поддержка в течение 3 лет — срока действия K-ETA: обновление
+                  информации о поездке перед каждым следующим въездом.</span></li>
+</ul>
+<dl>
+<dt><span data-content="visasText15">Рассмотрение</span></dt>
+<dd><span data-content="visasText16">До 72 часов.</span></dd>
+<dt><span data-content="visasText17">Срок действия</span></dt>
+<dd><span data-content="visasText18">3 года.</span></dd>
+<dt><span data-content="visasText19">Подача</span></dt>
+<dd><span data-content="visasText20">Онлайн.</span></dd>
+</dl>
+</article>
+<article>
+<h3><span data-content="visasText21">Туристическая виза</span><span><span data-content="visasText22">45 000 ₸</span></span></h3>
+<p><span data-content="visasText23">Консульский сбор — 40 USD, оплачивается отдельно.</span></p>
+<h4><span data-content="visasText24">Что входит</span></h4>
+<ul>
+<li><span data-content="visasText25">Индивидуальный анализ визового кейса.</span></li>
+<li><span data-content="visasText26">Проверка и подготовка документов.</span></li>
+<li><span data-content="visasText27">Заполнение визовой анкеты.</span></li>
+<li><span data-content="visasText28">Формирование полного пакета документов.</span></li>
+<li><span data-content="visasText29">Сопровождение процесса подачи.</span></li>
+</ul>
+<dl>
+<dt><span data-content="visasText30">Рассмотрение</span></dt>
+<dd><span data-content="visasText31">До 15 дней.</span></dd>
+<dt><span data-content="visasText32">Тип визы</span></dt>
+<dd><span data-content="visasText33">Однократная.</span></dd>
+<dt><span data-content="visasText34">Подача</span></dt>
+<dd><span data-content="visasText35">Алматы или Астана, в зависимости от региона проживания
+                  заявителя.</span></dd>
+</dl>
+</article>
+</div></details>
+<details class="visa-accordion" id="japan" name="visa-directions"><summary><span data-content="visasText36">Япония</span><span aria-hidden="true" class="expand-mark"></span></summary><div class="visa-service-content">
+<article>
+<h3><span data-content="visasText37">Туристическая виза</span><span><span data-content="visasText38">45 000 ₸</span></span></h3>
+<p><span data-content="visasText39">Консульский сбор отсутствует.</span></p>
+<h4><span data-content="visasText40">Что входит</span></h4>
+<ul>
+<li><span data-content="visasText41">Анализ визового кейса.</span></li>
+<li><span data-content="visasText42">Подготовка и проверка документов.</span></li>
+<li><span data-content="visasText43">Заполнение анкеты.</span></li>
+<li><span data-content="visasText44">Подготовка маршрута, бронирований и необходимых подтверждений.</span></li>
+<li><span data-content="visasText45">Подача документов по доверенности.</span></li>
+</ul>
+<dl>
+<dt><span data-content="visasText46">Рассмотрение</span></dt>
+<dd><span data-content="visasText47">5 рабочих дней.</span></dd>
+<dt><span data-content="visasText48">Тип визы</span></dt>
+<dd><span data-content="visasText49">Однократная.</span></dd>
+<dt><span data-content="visasText50">Подача</span></dt>
+<dd><span data-content="visasText51">Астана.</span></dd>
+</dl>
+<details>
+<summary><span data-content="visasText52">Если виза не выдана</span></summary>
+<p><span data-content="visasText53">Приостановление рассмотрения — документы возвращаются без
+                  окончательного отказа. После устранения замечаний возможна
+                  повторная подача, в том числе на следующий день.</span></p>
+<p><span data-content="visasText54">Отказ — повторная подача с той же целью поездки возможна через
+                  6 месяцев.</span></p>
+</details>
+</article>
+</div></details>
+<details class="visa-accordion" id="schengen" name="visa-directions"><summary><span data-content="visasText55">Шенгенская зона</span><span aria-hidden="true" class="expand-mark"></span></summary><div class="visa-service-content">
+<article>
+<h3><span data-content="visasText56">Визовое сопровождение</span><span><span data-content="visasText57">45 000 ₸</span></span></h3>
+<p><span data-content="visasText58">Дополнительно оплачиваются: консульский сбор — 90 EUR для
+                взрослых, 45 EUR для детей и сервисный сбор визового центра,
+                ориентировочно 18 000–20 000 ₸ в зависимости от страны.</span></p>
+<h4><span data-content="visasText59">Что входит</span></h4>
+<ul>
+<li><span data-content="visasText60">Анализ визовой истории и ситуации заявителя.</span></li>
+<li><span data-content="visasText61">Подбор подходящей страны и категории подачи по маршруту.</span></li>
+<li><span data-content="visasText62">Заполнение анкеты.</span></li>
+<li><span data-content="visasText63">Подготовка маршрута, бронирований и подтверждающих документов.</span></li>
+<li><span data-content="visasText64">Формирование и проверка полного пакета.</span></li>
+<li><span data-content="visasText65">Сопровождение до подачи документов.</span></li>
+</ul>
+<dl>
+<dt><span data-content="visasText66">Рассмотрение</span></dt>
+<dd><span data-content="visasText67">До 15 календарных дней, в отдельных случаях дольше.</span></dd>
+<dt><span data-content="visasText68">Тип визы</span></dt>
+<dd><span data-content="visasText69">Однократная, двукратная или многократная — по решению
+                  консульства.</span></dd>
+<dt><span data-content="visasText70">Подача</span></dt>
+<dd><span data-content="visasText71">В доступном визовом центре или консульстве с учётом страны
+                  назначения и места проживания заявителя.</span></dd>
+</dl>
+</article>
+</div></details>
+<details class="visa-accordion" id="usa" name="visa-directions"><summary><span data-content="visasText72">США</span><span aria-hidden="true" class="expand-mark"></span></summary><div class="visa-service-content">
+<article>
+<h3><span data-content="visasText73">Туристическая / деловая виза B1/B2</span><span><span data-content="visasText74">250 000 ₸</span></span></h3>
+<p><span data-content="visasText75">Стоимость включает консульский сбор — 185 USD.</span></p>
+<h4><span data-content="visasText76">Что входит</span></h4>
+<ul>
+<li><span data-content="visasText77">Подробный анализ визового кейса.</span></li>
+<li><span data-content="visasText78">Заполнение анкеты DS-160.</span></li>
+<li><span data-content="visasText79">Создание личного кабинета и оплата консульского сбора.</span></li>
+<li><span data-content="visasText80">Запись на собеседование и подбор доступной даты.</span></li>
+<li><span data-content="visasText81">Индивидуальная консультация и подготовка к вопросам визового
+                  офицера.</span></li>
+<li><span data-content="visasText82">Сопровождение на всех этапах оформления.</span></li>
+</ul>
+<dl>
+<dt><span data-content="visasText83">Сроки</span></dt>
+<dd><span data-content="visasText84">Зависят от доступности записи на собеседование. Решение обычно
+                  сообщают во время собеседования, если не требуется
+                  дополнительная проверка.</span></dd>
+<dt><span data-content="visasText85">Получение паспорта</span></dt>
+<dd><span data-content="visasText86">После одобрения обычно занимает 2–3 рабочих дня, но срок может
+                  увеличиться.</span></dd>
+<dt><span data-content="visasText87">Срок действия визы</span></dt>
+<dd><span data-content="visasText88">От 1 месяца до 10 лет — по решению визового офицера.</span></dd>
+<dt><span data-content="visasText89">Собеседование</span></dt>
+<dd><span data-content="visasText90">Алматы или Астана, независимо от региона прописки, при наличии
+                  доступной записи.</span></dd>
+</dl>
+</article>
+</div></details>
+<details class="visa-accordion" id="other" name="visa-directions"><summary><span data-content="visasText91">Великобритания и другие страны</span><span aria-hidden="true" class="expand-mark"></span></summary><div class="visa-service-content">
+<p><span data-content="visasText92">Оформление виз в Великобританию, Австралию, Канаду и другие страны
+              — по индивидуальному запросу.</span></p>
+<p><span data-content="visasText93">Стоимость и сроки зависят от направления, категории визы и
+              особенностей вашего случая.</span></p>
+</div></details>
+</div></div>
+</section>
+<section aria-labelledby="contact-title" class="lead-section" id="contact">
+<img alt="" class="lead-background" data-content-alt="contactAlt9" data-media="contactImage" loading="lazy" src="/assets/media/gallery-dinner.jpg"/>
+<div class="lead-section-copy"><h2 data-content-html="contactTitle" id="contact-title">Готовы к новому<br/><span>путешествию?</span></h2><p data-content="contactCopy">Оставьте заявку, и мы расскажем подробности о выбранном туре.</p><p><span data-content="contactText1">Мы свяжемся с вами по указанному номеру.</span></p></div>
+<form class="lead-form" id="lead-form">
+<label><span data-content="contactText2">Ваше имя</span><input autocomplete="name" data-content-placeholder="contactPlaceholder10" name="name" placeholder="Как к вам обращаться?" required=""/></label><label><span data-content="contactText3">Номер телефона</span><input autocomplete="tel" data-content-placeholder="contactPlaceholder11" name="phone" placeholder="+7 ___ ___ __ __" required="" type="tel"/></label><label><span data-content="contactText4">Интересующий тур</span><select id="tour-select" name="tour" required=""></select></label><label><span data-content="contactText5">Дата заезда</span><select id="date-select" name="date" required=""></select></label><label class="wide"><span data-content="contactText6">Комментарий</span><textarea data-content-placeholder="contactPlaceholder12" name="comment" placeholder="Расскажите о пожеланиях (необязательно)" rows="3"></textarea></label><label class="consent wide"><input required="" type="checkbox"/><span><span data-content="contactText7">Я согласен(а) на обработку персональных данных</span></span></label><button class="button button-accent wide" type="submit"><span data-content="contactText8">Оставить заявку</span></button>
+<p aria-live="polite" class="form-status wide" id="form-status" role="status"></p>
+</form>
+</section>
+<p id="page-status" role="status"></p>
+</main>
+<footer class="page-footer"><a class="wordmark" data-content="brandName" href="#home">VISALAND</a><p><span data-content="footerText1">Авторские путешествия из Алматы</span></p><div><a data-content-href="footerHref5" href="https://wa.me/message/QHA2WWUW5XGED1" rel="noopener" target="_blank"><span data-content="footerText2">WhatsApp</span></a><a data-content-href="footerHref6" href="https://www.instagram.com/gohaxo/" rel="noopener" target="_blank"><span data-content="footerText3">Instagram</span></a><span><span data-content="footerText4">© 2026 VISALAND</span></span></div></footer>
+<dialog aria-labelledby="tour-modal-title" id="tour-modal"><button aria-label="Закрыть программу тура" class="modal-close" type="button"><svg aria-hidden="true" viewbox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"></path></svg></button><div id="tour-detail"></div></dialog>
+<script src="/catalog-data.js"></script><script src="/catalog-model.js"></script><script src="/site-content.js?v=1"></script><script src="/hero-media.js?v=14"></script><script src="/vendor/supabase-2.119.2.js"></script><script src="/supabase-config.js"></script><script src="/live-sync.js?v=1"></script><script src="/landing.js?v=2"></script>
+</body></html>

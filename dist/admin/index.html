@@ -1,63 +1,24 @@
 <!doctype html>
-<html lang="ru">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="robots" content="noindex,nofollow">
-  <title>Visa Land — управление сайтом</title>
-  <link rel="stylesheet" href="/admin/admin.css?v=7">
-</head>
-<body>
-  <main>
-    <section class="login" id="login-panel">
-      <div class="login-card">
-        <h1>Управление сайтом</h1>
-        <p>Введите пароль администратора.</p>
-        <form id="login-form"><label><span>Email администратора</span><input id="email" type="email" autocomplete="username" required aria-describedby="login-error"></label><label><span>Пароль</span><input id="password" type="password" autocomplete="current-password" required aria-describedby="login-error"></label><button>Войти</button><p class="error" id="login-error" role="status" aria-live="polite"></p></form>
-      </div>
-    </section>
-
-    <section class="dashboard" id="dashboard" hidden>
-      <header><div><h1>Редактор Visa Land</h1><p class="header-note">Изменения публикуются на главной, в маршрутах, календаре и FAQ.</p></div><div class="header-actions"><a href="/" target="_blank" rel="noopener">Открыть сайт</a><button class="secondary" id="logout">Выйти</button></div></header>
-      <nav role="tablist" aria-label="Разделы редактора"><button class="tab active" role="tab" aria-selected="true" data-tab="content">Страницы</button><button class="tab" role="tab" aria-selected="false" data-tab="media">Медиа</button><button class="tab" role="tab" aria-selected="false" data-tab="tours">Путешествия</button><button class="tab" role="tab" aria-selected="false" data-tab="leads">Архив заявок <span class="tab-count" id="lead-count">0</span></button><button class="tab" role="tab" aria-selected="false" data-tab="layout">Порядок блоков</button></nav>
-
-      <form id="editor-form">
-        <section class="panel active" data-panel="content">
-          <div class="panel-head"><div><h2>Тексты страниц</h2></div><p>Здесь только поля, которые действительно используются на главной и странице «О нас». Заголовки поддерживают &lt;br&gt; и &lt;em&gt;.</p></div>
-          <div class="form-grid" id="content-fields"></div>
-          <div class="faq-editor-list" id="faq-fields"></div>
-        </section>
-        <section class="panel" data-panel="media">
-          <div class="panel-head"><div><p class="label">Медиатека</p><h2>Фото и видео</h2></div><p>Укажите URL или загрузите изображение до 5 МБ и видео до 10 МБ. Файлы сохраняются в Supabase Storage.</p></div>
-          <div class="media-grid" id="media-fields"></div>
-        </section>
-        <section class="panel" data-panel="tours">
-          <div class="panel-head"><div><p class="label">Каталог</p><h2>Туры и фотографии</h2></div><p>Укажите URL изображения или загрузите файл. При пустом поле будет использована резервная фотография.</p></div>
-          <div id="tour-fields"></div>
-        </section>
-        <section class="panel" data-panel="leads">
-          <div class="panel-head"><div><p class="label">Обращения клиентов</p><h2>Заявки</h2></div><div><p>Все заявки с формы сайта сохраняются в Supabase.</p><button class="secondary" type="button" id="refresh-leads">Обновить список</button></div></div>
-          <div class="leads-list" id="leads-list"><p class="empty-state">Загружаем заявки…</p></div>
-        </section>
-        <section class="panel" data-panel="layout">
-          <div class="panel-head"><div><p class="label">Композиция</p><h2>Порядок секций</h2></div><p>Перемещайте блоки вверх и вниз. Первый экран рекомендуется оставить первым.</p></div>
-          <ol class="section-order" id="section-order"></ol>
-        </section>
-        <div class="save-bar"><p id="save-status" role="status" aria-live="polite"></p><button class="reset" type="button" id="reset-site">Вернуть исходную версию</button><button type="submit">Сохранить и опубликовать</button></div>
-      </form>
-    </section>
-  </main>
-  <dialog id="reset-dialog"><h2>Вернуть исходную версию?</h2><p>Все сохранённые тексты, фотографии и порядок блоков будут удалены. Главная страница вернётся к базовой версии.</p><div><button id="cancel-reset" class="secondary">Отмена</button><button id="confirm-reset" class="reset">Вернуть исходную</button></div></dialog>
-  <script src="/vendor/supabase-2.119.2.js"></script>
-  <script src="/supabase-config.js?v=4"></script>
-  <script src="/catalog-data.js"></script>
-  <script src="/catalog-model.js"></script>
-  <script src="/live-sync.js?v=1"></script>
-  <script src="/admin/admin.js?v=8"></script>
-  <script src="/admin/catalog-editor.js?v=10"></script>
-  <script src="/hero-media.js?v=12"></script>
-  <script src="/admin/hero-editor.js?v=8"></script>
-  <link rel="stylesheet" href="/admin/hero-editor.css?v=7">
-  <link rel="stylesheet" href="/admin/catalog-editor.css?v=7">
-<script src="/admin/visual-editor.js?v=5"></script></body>
-</html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>VISALAND — управление сайтом</title><link rel="stylesheet" href="/admin/admin.css?v=9"><link rel="stylesheet" href="/admin/catalog-editor.css?v=8"></head><body>
+<a class="skip-link" href="#admin-main">К редактору</a>
+<main id="admin-main">
+<section class="login" id="login-panel"><div class="login-card"><h1>Управление сайтом</h1><p>Войдите под аккаунтом администратора VISALAND.</p><form id="login-form"><label class="field"><span>Email</span><input id="email" type="email" autocomplete="username" required></label><label class="field"><span>Пароль</span><input id="password" type="password" autocomplete="current-password" required></label><button type="submit">Войти</button><p id="login-error" role="status" aria-live="polite"></p></form></div></section>
+<section class="dashboard" id="dashboard" hidden>
+<header><div><a class="admin-brand" href="/" target="_blank" rel="noopener">VISALAND</a><h1>Редактор сайта</h1><p class="header-note">Измените поля, проверьте предпросмотр и нажмите «Сохранить и опубликовать».</p></div><div class="header-actions"><a class="secondary" href="/" target="_blank" rel="noopener">Открыть сайт</a><button type="button" class="secondary" id="logout">Выйти</button></div></header>
+<div id="load-state" role="status"><p id="load-status">Загружаем опубликованные настройки…</p><button type="button" id="retry-load" hidden>Повторить загрузку</button></div>
+<nav role="tablist" aria-label="Разделы редактора" hidden>
+<button type="button" class="tab active" role="tab" data-tab="hero" aria-selected="true">Первый экран</button><button type="button" class="tab" role="tab" data-tab="content" aria-selected="false">Тексты и ссылки</button><button type="button" class="tab" role="tab" data-tab="media" aria-selected="false">Фотографии</button><button type="button" class="tab" role="tab" data-tab="tours" aria-selected="false">Туры</button><button type="button" class="tab" role="tab" data-tab="faq" aria-selected="false">Вопросы о турах</button><button type="button" class="tab" role="tab" data-tab="preview" aria-selected="false">Предпросмотр</button><button type="button" class="tab" role="tab" data-tab="leads" aria-selected="false">Заявки <span id="lead-count" class="tab-count">0</span></button>
+</nav>
+<form id="editor-form" novalidate hidden>
+<section class="panel active" data-panel="hero"><div class="panel-head"><h2>Первый экран</h2><p>Фото или видео на обложке. Текст, затемнение и высота общие. Фото, видео и кадрирование можно настроить отдельно для компьютера и телефона.</p></div><div id="hero-editor"></div></section>
+<section class="panel" data-panel="content"><div class="panel-head"><h2>Тексты и ссылки</h2><p>Все тексты главной страницы, визовые цены, подписи полей и кнопок. Изменения появятся на сайте после публикации.</p></div><label class="field search-field"><span>Найти текст</span><input id="content-search" type="search" placeholder="Например: Япония, стоимость, телефон"></label><p id="search-status" role="status"></p><div id="content-fields"></div></section>
+<section class="panel" data-panel="media"><div class="panel-head"><h2>Фотографии разделов</h2><p>Загрузите JPG, PNG или WebP до 5 МБ или вставьте ссылку. Обложки и видео первого экрана находятся в разделе «Первый экран», фотографии маршрутов — в разделе «Туры».</p></div><div id="media-fields" class="media-grid"></div></section>
+<section class="panel" data-panel="tours"><div class="panel-head"><h2>Туры</h2></div><div id="tour-fields"></div></section>
+<section class="panel" data-panel="faq"><div class="panel-head"><h2>Вопросы о турах</h2><p>Эти вопросы и ответы показываются внутри попапа каждого тура. Можно добавить вопрос или удалить ненужный.</p><button type="button" id="add-faq">Добавить вопрос</button></div><div id="faq-fields"></div></section>
+<section class="panel" data-panel="preview"><div class="panel-head"><h2>Предпросмотр черновика</h2><p>Здесь показаны текущие изменения до публикации. Нажмите на текст или фото, чтобы перейти к его полю в редакторе.</p></div><div class="preview-toolbar"><label class="field"><span>Раздел сайта</span><select id="preview-section"><option value="#home">Обложка</option><option value="#about">О Гаухар</option><option value="#trips">Форматы</option><option value="#calendar">Календарь</option><option value="#visas">Виза</option><option value="#contact">Заявка</option></select></label><button type="button" data-preview-size="desktop" aria-pressed="true">Компьютер</button><button type="button" data-preview-size="mobile" aria-pressed="false">Телефон</button><button type="button" class="secondary" id="refresh-preview">Обновить черновик</button></div><p id="preview-status" role="status"></p><div class="page-preview-wrap"><iframe id="page-preview" title="Черновик сайта" loading="lazy"></iframe></div></section>
+<section class="panel" data-panel="leads"><div class="panel-head"><h2>Заявки с сайта</h2><p>Заявки поступают из формы на главной. Здесь показаны последние 200 обращений.</p><button type="button" class="secondary" id="refresh-leads">Обновить заявки</button></div><div id="leads-list"></div></section>
+<div class="save-bar"><p id="save-status" role="status" aria-live="polite">Нет несохранённых изменений.</p><button type="button" class="secondary" id="reset-site">Сбросить сайт</button><button id="save-site" type="submit">Сохранить и опубликовать</button></div>
+</form></section></main>
+<dialog id="reset-dialog" aria-labelledby="reset-title"><h2 id="reset-title">Сбросить сайт к исходной версии?</h2><p>Сохранённые тексты, настройки обложки, туры и календарь вернутся к исходным. Заявки и файлы в хранилище сохранятся. Это действие заменит опубликованные настройки.</p><div><button type="button" class="secondary" id="cancel-reset">Отмена</button><button type="button" id="confirm-reset">Сбросить и опубликовать</button></div></dialog>
+<script src="/vendor/supabase-2.119.2.js"></script><script src="/supabase-config.js?v=4"></script><script src="/catalog-data.js"></script><script src="/catalog-model.js"></script><script src="/site-content.js?v=1"></script><script src="/live-sync.js?v=1"></script><script src="/hero-media.js?v=14"></script><script src="/admin/admin.js?v=9"></script><script src="/admin/catalog-editor.js?v=11"></script><script src="/admin/hero-editor.js?v=9"></script><script src="/admin/visual-editor.js?v=6"></script>
+</body></html>

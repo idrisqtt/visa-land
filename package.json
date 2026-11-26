@@ -1,0 +1,6 @@
+{
+  "name": "visaland-site-checks",
+  "private": true,
+  "scripts": {"test": "node tests/admin-functional.cjs"},
+  "devDependencies": {"playwright": "1.65.1"}
+}

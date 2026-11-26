@@ -2,7 +2,7 @@
   const defaults=window.VisaDefaults;
   const clone=value=>JSON.parse(JSON.stringify(value));
   const escape=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-  function url(value){try{const u=new URL(String(value||''),location.origin);return ['http:','https:'].includes(u.protocol)?u.href:''}catch{return ''}}
+  function url(value){if(!String(value??'').trim())return '';try{const u=new URL(String(value||''),location.origin);return ['http:','https:'].includes(u.protocol)?u.href:''}catch{return ''}}
   function tours(config={}){
     const saved=config.tours||[];
     const list=config.content?.catalogVersion==='2'?saved:defaults.tours.map(t=>({...t,...saved.find(s=>s.id===t.id)})).concat(saved.filter(s=>!defaults.tours.some(t=>t.id===s.id)));
