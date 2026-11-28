@@ -18,46 +18,46 @@ colors:
   admin-error: "#9b2923"
 typography:
   display:
-    fontFamily: "Manrope, Arial, sans-serif"
+    fontFamily: "Cy Grotesk V3 Key, Manrope, Arial, sans-serif"
     fontSize: "clamp(44px, 5.8vw, 84px)"
-    fontWeight: 500
+    fontWeight: 800
     lineHeight: 1.06
-    letterSpacing: "-0.035em"
+    letterSpacing: "-0.04em"
   headline:
-    fontFamily: "Manrope, Arial, sans-serif"
+    fontFamily: "Cy Grotesk V3 Key, Manrope, Arial, sans-serif"
     fontSize: "clamp(30px, 3.6vw, 54px)"
-    fontWeight: 500
+    fontWeight: 700
     lineHeight: 1.12
-    letterSpacing: "-0.035em"
+    letterSpacing: "-0.04em"
   title:
-    fontFamily: "Manrope, Arial, sans-serif"
+    fontFamily: "Cy Grotesk V3 Key, Manrope, Arial, sans-serif"
     fontSize: "clamp(27px, 3vw, 42px)"
-    fontWeight: 500
+    fontWeight: 700
     lineHeight: 1.1
-    letterSpacing: "-0.035em"
+    letterSpacing: "-0.04em"
   body:
-    fontFamily: "Manrope, Arial, sans-serif"
+    fontFamily: "Cy Grotesk V3 Key, Manrope, Arial, sans-serif"
     fontSize: "16px"
     fontWeight: 400
     lineHeight: 1.65
   label:
-    fontFamily: "Manrope, Arial, sans-serif"
+    fontFamily: "Cy Grotesk V3 Key, Manrope, Arial, sans-serif"
     fontSize: "14px"
-    fontWeight: 600
+    fontWeight: 400
     lineHeight: 1.45
   admin-heading:
-    fontFamily: "Manrope, Arial, sans-serif"
+    fontFamily: "Cy Grotesk V3 Key, Manrope, Arial, sans-serif"
     fontSize: "28px"
     fontWeight: 700
     letterSpacing: "-0.03em"
   admin-section:
-    fontFamily: "Manrope, Arial, sans-serif"
+    fontFamily: "Cy Grotesk V3 Key, Manrope, Arial, sans-serif"
     fontSize: "26px"
     fontWeight: 700
     lineHeight: 1.25
     letterSpacing: "-0.025em"
   admin-field:
-    fontFamily: "Manrope, Arial, sans-serif"
+    fontFamily: "Cy Grotesk V3 Key, Manrope, Arial, sans-serif"
     fontSize: "16px"
     fontWeight: 400
     lineHeight: 1.5
@@ -139,7 +139,7 @@ components:
 
 **Creative North Star: "The Living Travel Journal"**
 
-Visa Land uses neutral paper, medium-weight Manrope, documentary travel imagery, and restrained red actions. Photography carries the atmosphere; quiet surfaces and compact controls keep the travel decision readable.
+Visa Land uses neutral paper, Cy Grotesk V3 Key with bold headings and regular body text, documentary travel imagery, and restrained red actions. Photography carries the atmosphere; quiet surfaces and compact controls keep the travel decision readable.
 
 The public experience is one continuous page with a founder introduction, split photo/text format tiles, a photographic departure rail, a passport banner, and an image-backed application form. Tour details open in a native dialog.
 
@@ -173,8 +173,8 @@ The current palette is neutral paper and ink with a restrained red accent. Front
 
 ## Typography
 
-**Display Font:** Manrope, with Arial and sans-serif fallbacks.
-**Body Font:** Manrope, with Arial and sans-serif fallbacks.
+**Display Font:** Cy Grotesk V3 Key, Bold (700) / Heavy (800), tracking -0.04em.
+**Body Font:** supplied Cy Grotesk Key Regular (400) for prose and Thin (250) for supporting captions, both bundled as WOFF2 with Cyrillic support. The CSS family name remains `Cy Grotesk V3 Key` as an alias; source metadata does not confirm V3. Controls, menu, prices and dates use the supplied Regular (400), because Medium is unavailable. Synthetic weight is disabled. Headings request 700/800; these Key files are still missing, so their local declarations fall back to Manrope/Arial. Supplied Cy Grotesk Std Grand Demi (600, expanded width) awaits the user’s choice before use.
 
 Use medium-weight headings with tight tracking; inline heading spans step down to regular weight. Body copy has generous leading. Labels and actions use sentence case without forced uppercase tracking.
 
@@ -210,7 +210,7 @@ Use soft rectangles: controls and fields use the control radius, main tiles and 
 
 ### Admin Typography and Tokens
 
-The operation surface keeps fixed Manrope sizes instead of travel display scaling: page title 28px (23px on mobile), panel heading 26px (24px on mobile), subheading 19px, field text 16px, field labels and actions 14px, and hints 13px. Paper, ink, accent, and muted text are shared with the landing page. Admin-specific line, field-border, secondary-surface, and error tokens support dense editing. Admin controls have at least 44px targets; standard fields have a 46px minimum height. Focus uses the accent outline with a 3px offset. Invalid fields add a red border and pale error background.
+The operation surface keeps fixed Cy Grotesk V3 Key sizes instead of travel display scaling: page title 28px (23px on mobile), panel heading 26px (24px on mobile), subheading 19px, field text 16px, field labels and actions 14px, and hints 13px. Paper, ink, accent, and muted text are shared with the landing page. Admin-specific line, field-border, secondary-surface, and error tokens support dense editing. Admin controls have at least 44px targets; standard fields have a 46px minimum height. Focus uses the accent outline with a 3px offset. Invalid fields add a red border and pale error background.
 
 ### Buttons
 

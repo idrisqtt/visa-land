@@ -1,0 +1,78 @@
+/* Cy Grotesk Key Thin (250) and Regular (400) are bundled as WOFF2.
+   Other requested Key weights still resolve locally or fall back to Manrope. */
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap');
+
+@font-face {
+  font-family: 'Cy Grotesk V3 Key';
+  src: url('/assets/fonts/cy-grotesk-key-thin.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 250;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Cy Grotesk V3 Key';
+  src: url('/assets/fonts/cy-grotesk-key-regular.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Cy Grotesk V3 Key';
+  src: local('Cy Grotesk V3 Key Bold'), local('CyGroteskV3Key-Bold');
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Cy Grotesk V3 Key';
+  src: local('Cy Grotesk V3 Key Heavy'), local('CyGroteskV3Key-Heavy');
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+}
+
+:root {
+  --font-family: 'Cy Grotesk V3 Key', 'Manrope', Arial, sans-serif;
+  --display: var(--font-family);
+  --font-body: 400;
+  --font-light: 250;
+  --font-medium: 400; /* Regular is the available face for controls and data. */
+  --font-heading: 700;
+  --font-display: 800;
+  --heading-tracking: -.04em;
+  font-family: var(--font-family);
+  font-weight: var(--font-body);
+  font-synthesis: none;
+}
+h1, h2, h3, h4 {
+  font-weight: var(--font-heading);
+  letter-spacing: var(--heading-tracking);
+}
+button, .button, .secondary, .site-nav, .nav-contact, .text-link,
+.lead-form label, .detail-questions summary, time {
+  font-weight: var(--font-medium);
+}
+/* Calendar cards are buttons, but their descriptions remain regular text. */
+.departure-card p, .departure-status {
+  font-weight: var(--font-body);
+}
+.visa-accordion > summary {
+  font-weight: var(--font-heading);
+  letter-spacing: -.02em;
+}
+.visa-service-content h3 > span:last-child,
+.visa-service-content h3 > span:last-child span {
+  font-weight: var(--font-medium);
+  letter-spacing: normal;
+  font-variant-numeric: tabular-nums;
+}
+.detail-facts dd, .departure-date, .detail-days > li > span {
+  font-weight: var(--font-medium);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Supporting copy uses the supplied Thin face; prose stays Regular. */
+.film-caption, .visa-help-copy .visa-note, .calendar-hint,
+.page-footer > p, .detail-facts dt, .hero-media-status {
+  font-weight: var(--font-light);
+}
